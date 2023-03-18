@@ -1,0 +1,45 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: unset;
+    border: 0 none;
+    vertical-align: baseline;
+    font-size: unset;
+}
+
+*:focus {
+    outline: none;
+}
+
+html, body {
+    min-height: 100vh;
+}
+
+body, div, header, main, footer, nav {
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+img, video {
+    height: auto;
+    max-width: 100%;
+}
+
+ol, ul {
+    list-style: none;
+}
+
+h1, h2, h3, h4, h5, h6, p, span, a {
+    font-size: 100%;
+    font-weight: normal;
+}
+
+a, i {
+    color: unset;
+    font-weight: unset;
+    text-decoration: none;
+    font-style: normal;
+}

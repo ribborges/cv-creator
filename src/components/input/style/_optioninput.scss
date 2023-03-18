@@ -1,0 +1,18 @@
+@import './input.scss';
+
+select {
+    option {
+        background-color: rgba($dark-color, 0.4);
+    }
+
+    option:checked {
+        background-color: $primary-accent-color;
+    }
+
+    optgroup {
+        background-color: rgba($dark-color, 0.4);
+        option {
+            background-color: rgba($dark-color, 0.4);
+        }
+    }
+}

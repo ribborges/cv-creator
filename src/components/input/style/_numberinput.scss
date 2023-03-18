@@ -1,0 +1,11 @@
+@import './input.scss';
+
+input[type=number] {
+    &::-webkit-inner-spin-button {
+        width: 30px;
+        height: 30px;
+        padding: 5px;
+        //transform: rotate(90deg);
+        cursor: pointer;
+    }
+}
