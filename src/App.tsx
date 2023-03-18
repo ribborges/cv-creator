@@ -1,15 +1,13 @@
 import { useState } from 'react';
+import { v4 as uuidv4 } from 'uuid';
+import { Button } from './components/input/Button';
+
+import PersonalInfo from './components/forms/PersonalInfo';
 import EduHistory from './components/forms/EduHistory';
 import WorkExp from './components/forms/WorkExp';
 import Spacer from './components/separator/Spacer';
+
 import './_app.scss';
-import { v4 as uuidv4 } from 'uuid';
-import { Button } from './components/input/Button';
-import { InputText } from './components/input/InputText';
-import { InputEmail } from './components/input/InputEmail';
-import { InputPhone } from './components/input/InputPhone';
-import { InputURL } from './components/input/InputUrl';
-import { InputTextArea } from './components/input/InputTextArea';
 
 interface obj {
   id: string,
@@ -18,6 +16,7 @@ interface obj {
 export default function App() {
   const [eduHistoryList, setEduHistoryList] = useState<obj[]>([]);
   const [workExpList, setWorkExpListList] = useState<obj[]>([]);
+  const [formData, setFormData] = useState({});
 
   const handleEduHistoryAdd = () => {
     setEduHistoryList([...eduHistoryList, { id: uuidv4() }]);
@@ -35,26 +34,34 @@ export default function App() {
     setWorkExpListList(workExpList.filter(singleWorkExp => singleWorkExp.id !== id));
   };
 
+  const handleInputChange = (event: any) => {
+    const { name, value } = event.target;
+    setFormData({ ...formData, [name]: value });
+  };
+
+  const handleExportJson = (event: any) => {
+    event.preventDefault();
+    const jsonData = JSON.stringify(formData, null, 2);
+    const fileData = new Blob([jsonData], { type: 'application/json' });
+    const fileUrl = URL.createObjectURL(fileData);
+    const link = document.createElement('a');
+    link.href = fileUrl;
+    link.download = 'cv-creator-data.json';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
+
   return (
     <div className="app">
       <h1>Curriculum Vitae Creator</h1>
       <Spacer />
-      <form action="">
+      <form onSubmit={handleExportJson}>
         <div className="flex-container">
           <div className="flex-1">
             <h2>Personal information</h2>
           </div>
-          <div className="flex-container flex-3">
-            <div className="flex-container">
-              <InputText id="name" name="name" icon="bi bi-fonts" placeholder="Nome" />
-              <InputPhone id="phone" name="phone" icon="bi bi-telephone" placeholder="Telefone" />
-              <InputEmail id="email" name="email" icon="bi bi-envelope" placeholder="Email" />
-              <InputText id="address" name="address" icon="bi bi-geo-alt" placeholder="Endereço" />
-              <InputURL id="linkedinurl" name="linkedinurl" icon="bi bi-linkedin" placeholder="LinkedIn" />
-              <InputURL id="githuburl" name="githuburl" icon="bi bi-github" placeholder="GitHub" />
-            </div>
-            <InputTextArea id="adicionalinfo" name="adicionalinfo" icon="bi bi-card-text" title="Informações adicionais" />
-          </div>
+          <PersonalInfo className="flex-3" onChange={handleInputChange}/>
         </div>
 
         <Spacer />
@@ -65,9 +72,9 @@ export default function App() {
           </div>
           <div className="flex-container flex-3 flex-col">
             {
-              eduHistoryList.map((singleEduHistory) => (
+              eduHistoryList.map((singleEduHistory, index) => (
                 <div key={singleEduHistory.id}>
-                  <EduHistory className="flex-1" />
+                  <EduHistory id={index.toString()} className="flex-1" onChange={handleInputChange} />
                   <Button type="button" onClick={() => handleEduHistoryRemove(singleEduHistory.id)}><i className="bi bi-trash-fill" /></Button>
                 </div>
               ))
@@ -84,9 +91,9 @@ export default function App() {
           </div>
           <div className="flex-container flex-3 flex-col">
             {
-              workExpList.map((singleWorkExp) => (
+              workExpList.map((singleWorkExp, index) => (
                 <div key={singleWorkExp.id}>
-                  <WorkExp className="flex-1" />
+                  <WorkExp id={index.toString()} className="flex-1" onChange={handleInputChange} />
                   <Button type="button" onClick={() => handleWorkExpRemove(singleWorkExp.id)}><i className="bi bi-trash-fill" /></Button>
                 </div>
               ))
@@ -98,7 +105,7 @@ export default function App() {
         <Spacer />
 
         <div className="flex-container">
-          <Button className="flex-1" type="button" onClick={() => alert("Wow, theres nothing here!!! 😬")}>Download .json</Button>
+          <Button className="flex-1" type="submit">Download .json</Button>
           <Button className="flex-1" type="button" onClick={() => alert("Wow, theres nothing here!!! 😬")}>Import .json</Button>
           <Button className="flex-1" type="button" onClick={() => alert("Wow, theres nothing here!!! 😬")}>Create CV</Button>
         </div>

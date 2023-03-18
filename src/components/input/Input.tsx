@@ -1,76 +1,102 @@
-import React, { ReactNode } from 'react';
-import './_style.scss';
-
-interface togleProps {
-    className?: string,
-    id?: string,
-    value: string,
-    name?: string,
-    children?: ReactNode,
-}
+import { ReactNode } from 'react';
+import './style/_input.scss';
 
 export interface inputProps {
+    disabled?: boolean,
+    type?: React.HTMLInputTypeAttribute | "textarea" | "option",
     id?: string,
     name?: string,
-    icon: string,
-}
-
-interface optionProps extends inputProps {
-    children?: ReactNode,
-}
-
-interface fieldsetProps {
-    legend?: string,
+    onChange?: React.ChangeEventHandler<HTMLInputElement>,
+    pattern?: string,
+    minLength?: number,
+    value?: string,
     className?: string,
+    icon: string,
+    placeholder?: string,
+    title?: string,
     children?: ReactNode,
 }
 
-interface buttonProps {
-    type?: "button" | "submit" | "reset" | undefined,
-    onClick?: React.MouseEventHandler<HTMLButtonElement> | undefined,
-    children?: ReactNode,
-}
+export function Input(Props: inputProps) {
+    switch (Props.type) {
+        case "textarea":
+            return (
+                <div className="text-area">
+                    <div className="text-area-title">
+                        <span className={Props.icon + " input-addon"} />
+                        <span className="input-addon">{Props.title}</span>
+                    </div>
+                    <div className="text-box">
+                        <textarea
+                            id={Props.id}
+                            name={Props.title}
+                            placeholder={Props.placeholder}
+                        />
+                    </div>
+                </div>
+            );
+            break;
 
-export function InputCheckbox(Props: togleProps) {
-    return (
-        <label className={Props.className + " label-container"}>
-            <input type="checkbox" id={Props.id} value={Props.value} name={Props.name}/>
-            <span>{Props.children}</span>
-        </label>
-    );
-}
+        case "checkbox": case "radius":
+            return (
+                <label className={Props.className + " label-container"}>
+                    <input
+                        type={Props.type}
+                        id={Props.id}
+                        name={Props.name}
+                        value={Props.value}
+                        onChange={Props.onChange}
+                        disabled={Props.disabled}
+                    />
+                    <span>{Props.title}</span>
+                </label>
+            );
+            break;
 
-export function InputRadio(Props: togleProps) {
-    return (
-        <label className={Props.className + " label-container"}>
-            <input type="radio" id={Props.id} value={Props.value} name={Props.name}/>
-            <span>{Props.children}</span>
-        </label>
-    );
-}
+        case "range":
+            return (
+                <div className="input-group">
+                    <span className={Props.icon + " input-addon"} />
+                    <div className="input-addon">
+                        <input
+                            type={Props.type}
+                            id={Props.id}
+                            name={Props.name}
+                            onChange={Props.onChange}
+                            disabled={Props.disabled}
+                        />
+                    </div>
+                </div>
+            );
+            break;
 
-export function InputRange(Props: inputProps) {
-    return (
-        <div className="input-group">
-            <span className={Props.icon + " input-addon"}/>
-            <div className="input-addon">
-                <input type="range"/>
-            </div>
-        </div>
-    );
-}
+        case "option":
+            return (
+                <div className="input-group">
+                    <span className={Props.icon + " input-addon"} />
+                    <select id={Props.id} name={Props.name}>
+                        {Props.children}
+                    </select>
+                </div>
+            );
+            break;
 
-export function Fieldset(Props: fieldsetProps) {
-    return (
-        <fieldset className={Props.className}>
-            <legend>{Props.legend}</legend>
-            {Props.children}
-        </fieldset>
-    );
-}
-
-export function Button(props: buttonProps) {
-    return (
-        <button type={props.type} onClick={props.onClick}>{props.children}</button>
-    );
+        default:
+            return (
+                <div className={Props.className + " input-group"}>
+                    <span className={Props.icon + " input-addon"} />
+                    <input
+                        id={Props.id}
+                        name={Props.name}
+                        type={Props.type}
+                        pattern={Props.pattern}
+                        minLength={Props.minLength}
+                        onChange={Props.onChange}
+                        placeholder={Props.placeholder}
+                        disabled={Props.disabled}
+                    />
+                </div>
+            );
+            break;
+    }
 }

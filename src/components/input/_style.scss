@@ -1,62 +1,95 @@
+@import "./style/_input.scss";
 @import "../../style/abstract/var";
 
-@mixin input-group-child {
-    &:last-child {
-        margin-left: -1px;
-        border-bottom-left-radius: 0;
-        border-top-left-radius: 0;
-    }
+input[type="text"],
+input[type="phone"],
+input[type="email"],
+input[type="url"],
+input[type="password"],
+input[type="date"],
+input[type="search"] {
+}
 
-    &:first-child {
-        margin-right: -1px;
-        border-bottom-right-radius: 0;
-        border-top-right-radius: 0;
-    }
-
-    &:not(:first-child):not(:last-child) {
-        margin-left: 0;
-        margin-right: 0;
-        border-radius: 0;
+input[type="number"] {
+    &::-webkit-inner-spin-button {
+        width: 30px;
+        height: 30px;
+        padding: 5px;
+        transform: rotate(90deg);
+        cursor: pointer;
     }
 }
 
-input, textarea, select {
-    padding: 15px;
-    color: $light-color;
-    background-color: $dark-color;
-    border-radius: $border-radius;
-    border: 2px solid rgba($light-color, 0.2);
-    height: auto;
-	transition: all 1s, height 0s, width 0s;
+input[type="color"] {
+    padding: 0;
 
-    &:hover, &:focus {
-	    box-shadow: 0 0 100px 0 rgba($light-color, 0.2);
-    }
-
-    &:focus {
-        outline-color: $primary-accent-color;
-        outline-width: 3px;
-        outline-style: solid;
-        outline-offset: -1px;
-    }
-}
-
-fieldset {
-    padding: 15px;
-    border-radius: $border-radius;
-    border: 2px solid rgba($light-color, 0.2);
-    margin: 10px;
-
-    legend {
-        padding: 10px;
+    &::-webkit-color-swatch {
         border-radius: $border-radius;
-        border: 2px solid rgba($light-color, 0.2);
+        border: none;
+        margin: 0;
+        height: 100%;
+        width: 100%;
     }
 }
 
-// Checkbox and Radio
+input[type="file"] {
+    &::-webkit-file-upload-button {
+        display: none;
+    }
+}
+
+input[type="range"] {
+    accent-color: $primary-accent-color;
+    padding: 0;
+    border-radius: 0;
+    border: none;
+
+    &:hover,
+    &:focus {
+        color: unset;
+        background: none;
+        text-shadow: none;
+        box-shadow: none;
+    }
+
+    &::-webkit-slider-runnable-track,
+    &::-moz-range-track {
+        -webkit-appearance: none !important;
+        cursor: pointer;
+        background: none;
+        background-color: $light-color;
+        transition: 0.5s;
+    }
+
+    &::-webkit-slider-thumb,
+    &::-moz-range-thumb {
+        -webkit-appearance: none !important;
+        cursor: pointer;
+        background: none;
+        background-color: $primary-accent-color;
+        border-radius: 0;
+        transition: 0.5s;
+    }
+}
+
+select {
+    option {
+        background-color: rgba($dark-color, 0.4);
+    }
+
+    option:checked {
+        background-color: $primary-accent-color;
+    }
+
+    optgroup {
+        background-color: rgba($dark-color, 0.4);
+        option {
+            background-color: rgba($dark-color, 0.4);
+        }
+    }
+}
+
 .label-container {
-    margin: 10px;
     display: flex;
 
     input[type=checkbox], input[type=radio] {
@@ -70,33 +103,52 @@ fieldset {
     }
 }
 
-input[type=range] {
-    accent-color: $primary-accent-color;
-    padding: 0;
-    border-radius: 0;
-    border: none;
+.text-area {
+    margin: 10px;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: auto;
 
-    &:hover, &:focus {
-        color: unset;
-        background: none;
-	    text-shadow: none;
-	    box-shadow: none;
+    .text-area-title {
+        position: relative;
+        display: flex;
+        flex-wrap: wrap;
+        align-items: stretch;
+        border-radius: $border-radius;
+        border: 2px solid rgba($light-grey-color, 0.2);
+        width: 100%;
+        border-bottom-right-radius: 0;
+        border-bottom-left-radius: 0;
+
+        .input-addon {
+            @include input-group-child();
+            padding: 15px;
+            display: flex;
+
+            &:first-child {
+                border-right: 2px solid rgba($light-color, 0.2);
+            }
+        }
     }
 
-    &::-webkit-slider-runnable-track, &::-moz-range-track {
-        -webkit-appearance: none !important;
-        cursor: pointer;
-        background: none;
-        background-color: $light-color;
-        transition: 0.5s;
-    }
+    .text-box {
+        position: relative;
 
-    &::-webkit-slider-thumb, &::-moz-range-thumb {
-        -webkit-appearance: none !important;
-        cursor: pointer;
-        background: none;
-        background-color: $primary-accent-color;
-        border-radius: 0;
-        transition: 0.5s;
+        textarea {
+            border-radius: $border-radius;
+            border-top: 0;
+            border-top-right-radius: 0;
+            border-top-left-radius: 0;
+            resize: vertical;
+            box-sizing: border-box;
+            width: 100%;
+        }
+
+        button {
+            position: absolute;
+            bottom: 17px;
+            right: 10px;
+        }
     }
 }
