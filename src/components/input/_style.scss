@@ -21,7 +21,7 @@ input[type="number"] {
 }
 
 input[type="color"] {
-    padding: 0;
+    padding: 5px;
 
     &::-webkit-color-swatch {
         border-radius: $border-radius;
@@ -90,12 +90,17 @@ select {
 }
 
 .label-container {
+    margin: 10px;
     display: flex;
 
     input[type=checkbox], input[type=radio] {
         accent-color: $primary-accent-color;
-        min-height: 25px;
-        min-width: 25px;
+        min-height: 30px;
+        min-width: 30px;
+
+        &:focus {
+            outline: none;
+        }
     }
 
     input, span {

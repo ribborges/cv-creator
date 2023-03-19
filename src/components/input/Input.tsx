@@ -1,17 +1,17 @@
 import { ReactNode } from 'react';
-import './style/_input.scss';
+import './_style.scss';
 
 export interface inputProps {
     disabled?: boolean,
     type?: React.HTMLInputTypeAttribute | "textarea" | "option",
     id?: string,
     name?: string,
-    onChange?: React.ChangeEventHandler<HTMLInputElement>,
+    onChange?: any,
     pattern?: string,
     minLength?: number,
     value?: string,
     className?: string,
-    icon: string,
+    icon?: string,
     placeholder?: string,
     title?: string,
     children?: ReactNode,
@@ -29,7 +29,9 @@ export function Input(Props: inputProps) {
                     <div className="text-box">
                         <textarea
                             id={Props.id}
-                            name={Props.title}
+                            name={Props.name}
+                            value={Props.value}
+                            onChange={Props.onChange}
                             placeholder={Props.placeholder}
                         />
                     </div>
@@ -48,7 +50,7 @@ export function Input(Props: inputProps) {
                         onChange={Props.onChange}
                         disabled={Props.disabled}
                     />
-                    <span>{Props.title}</span>
+                    <span>{Props.children}</span>
                 </label>
             );
             break;
@@ -62,6 +64,7 @@ export function Input(Props: inputProps) {
                             type={Props.type}
                             id={Props.id}
                             name={Props.name}
+                            value={Props.value}
                             onChange={Props.onChange}
                             disabled={Props.disabled}
                         />
@@ -74,7 +77,7 @@ export function Input(Props: inputProps) {
             return (
                 <div className="input-group">
                     <span className={Props.icon + " input-addon"} />
-                    <select id={Props.id} name={Props.name}>
+                    <select id={Props.id} name={Props.name} value={Props.value} onChange={Props.onChange}>
                         {Props.children}
                     </select>
                 </div>
@@ -86,9 +89,10 @@ export function Input(Props: inputProps) {
                 <div className={Props.className + " input-group"}>
                     <span className={Props.icon + " input-addon"} />
                     <input
+                        type={Props.type}
                         id={Props.id}
                         name={Props.name}
-                        type={Props.type}
+                        value={Props.value}
                         pattern={Props.pattern}
                         minLength={Props.minLength}
                         onChange={Props.onChange}

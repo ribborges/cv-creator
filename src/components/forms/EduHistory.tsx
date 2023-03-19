@@ -1,29 +1,98 @@
 import { Fieldset } from '../input/Fieldset';
 import { Input } from '../input/Input';
-import { InputTextArea } from '../input/InputTextArea';
-import { InputCheckbox } from '../input/InputToggle';
+import { FormData } from './CvForm';
 
 interface eduHistoryProps {
-    id?: string,
+    id: number,
+    value?: {
+        schoolName: string,
+        schoolDegree: string,
+        schoolFieldStudy: string,
+        schoolLocation: string,
+        schoolBgDate: string,
+        schoolEdDate: string,
+        schoolCurrently: string,
+        schoolDetails: string;
+    },
     className?: string,
-    onChange?: React.ChangeEventHandler<HTMLInputElement>,
+    onChange: (event: React.ChangeEvent<HTMLInputElement>, index: number, key: keyof FormData["eduHistory"][number]) => void;
 }
 
 export default function EduHistory(props: eduHistoryProps) {
     return (
-        <Fieldset className={props.className + " flex-container"} legend="Education history">
+        <Fieldset className={props.className} legend="Education history">
             <div className="flex-container">
-                <Input type="text" id={"schoolName" + props.id} name={"schoolName" + props.id} onChange={props.onChange} icon="bi bi-mortarboard-fill" placeholder="School name" />
-                <Input type="text" id={"schoolDegree" + props.id} name={"schoolDegree" + props.id} onChange={props.onChange} icon="bi bi-award-fill" placeholder="Degree" />
-                <Input type="text" id={"schoolFieldStudy" + props.id} name={"schoolFieldStudy" + props.id} onChange={props.onChange} icon="bi bi-binoculars-fill" placeholder="Field of study" />
-                <Input type="text" id={"schoolLocation" + props.id} name={"schoolLocation" + props.id} onChange={props.onChange} icon="bi bi-geo-alt-fill" placeholder="Location" />
+                <Input
+                    type="text"
+                    id={"schoolName" + props.id}
+                    name={"schoolName" + props.id}
+                    value={props.value?.schoolName}
+                    onChange={(e: React.ChangeEvent<HTMLInputElement>) => props.onChange(e, props.id, "schoolName")}
+                    icon="bi bi-mortarboard-fill"
+                    placeholder="School name"
+                />
+                <Input
+                    type="text"
+                    id={"schoolDegree" + props.id}
+                    name={"schoolDegree" + props.id}
+                    value={props.value?.schoolDegree}
+                    onChange={(e: React.ChangeEvent<HTMLInputElement>) => props.onChange(e, props.id, "schoolDegree")}
+                    icon="bi bi-award-fill"
+                    placeholder="Degree"
+                />
+                <Input
+                    type="text"
+                    id={"schoolFieldStudy" + props.id}
+                    name={"schoolFieldStudy" + props.id}
+                    value={props.value?.schoolFieldStudy}
+                    onChange={(e: React.ChangeEvent<HTMLInputElement>) => props.onChange(e, props.id, "schoolFieldStudy")}
+                    icon="bi bi-binoculars-fill"
+                    placeholder="Field of study"
+                />
+                <Input
+                    type="text"
+                    id={"schoolLocation" + props.id}
+                    name={"schoolLocation" + props.id}
+                    value={props.value?.schoolLocation}
+                    onChange={(e: React.ChangeEvent<HTMLInputElement>) => props.onChange(e, props.id, "schoolLocation")}
+                    icon="bi bi-geo-alt-fill"
+                    placeholder="Location"
+                />
             </div>
             <div className="flex-container">
-                <Input type="date" id={"schoolBgDate" + props.id} name={"schoolBgDate" + props.id} onChange={props.onChange} icon="bi bi-calendar-fill" />
-                <Input type="date" id={"schoolEdDate" + props.id} name={"schoolEdDate" + props.id} onChange={props.onChange} icon="bi bi-calendar-fill" />
+                <Input
+                    type="date"
+                    id={"schoolBgDate" + props.id}
+                    name={"schoolBgDate" + props.id}
+                    value={props.value?.schoolBgDate}
+                    onChange={(e: React.ChangeEvent<HTMLInputElement>) => props.onChange(e, props.id, "schoolBgDate")}
+                    icon="bi bi-calendar-fill"
+                />
+                <Input
+                    type="date"
+                    id={"schoolEdDate" + props.id}
+                    name={"schoolEdDate" + props.id}
+                    value={props.value?.schoolEdDate}
+                    onChange={(e: React.ChangeEvent<HTMLInputElement>) => props.onChange(e, props.id, "schoolEdDate")}
+                    icon="bi bi-calendar-fill"
+                />
             </div>
-            <InputCheckbox id="checkbox-1" value="Checkbox 1" name="checkbox">I currently study here</InputCheckbox>
-            <InputTextArea icon="bi bi-card-text" name="Details" />
+            <Input
+                type="checkbox"
+                id={"schoolCurrently" + props.id}
+                name={"schoolCurrently" + props.id}
+                value={props.value?.schoolCurrently}
+                onChange={(e: React.ChangeEvent<HTMLInputElement>) => props.onChange(e, props.id, "schoolCurrently")}
+            >I currently study here</Input>
+            <Input
+                type="textarea"
+                id={"schoolDetails" + props.id}
+                name={"schoolDetails" + props.id}
+                value={props.value?.schoolDetails}
+                onChange={(e: React.ChangeEvent<HTMLInputElement>) => props.onChange(e, props.id, "schoolDetails")}
+                icon="bi bi-card-text"
+                title="Details"
+            />
         </Fieldset>
     );
 }
