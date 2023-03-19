@@ -5,6 +5,8 @@ import PersonalInfo from './PersonalInfo';
 import EduHistory from './EduHistory';
 import WorkExp from './WorkExp';
 import Spacer from '../separator/Spacer';
+import PdfRenderer from '../cv/PdfRenderer';
+import Modal from '../modal/Modal';
 
 export interface FormData {
     name: string,
@@ -21,7 +23,6 @@ export interface FormData {
         schoolLocation: string,
         schoolBgDate: string,
         schoolEdDate: string,
-        schoolCurrently: string,
         schoolDetails: string;
     }>,
     workExp: Array<{
@@ -30,7 +31,6 @@ export interface FormData {
         workLocation: string,
         workBgDate: string,
         workEdDate: string,
-        workCurrently: string,
         workDetails: string;
     }>;
 }
@@ -51,7 +51,6 @@ export default function CvForm() {
             schoolLocation: '',
             schoolBgDate: '',
             schoolEdDate: '',
-            schoolCurrently: '',
             schoolDetails: ''
         }],
         workExp: [{
@@ -60,7 +59,6 @@ export default function CvForm() {
             workLocation: '',
             workBgDate: '',
             workEdDate: '',
-            workCurrently: '',
             workDetails: ''
         }]
     });
@@ -126,20 +124,21 @@ export default function CvForm() {
         event.preventDefault();
         const name = event.currentTarget.name;
 
+        const data = {
+            name: formData.name,
+            phone: formData.phone,
+            email: formData.email,
+            address: formData.address,
+            linkedinUrl: formData.linkedinUrl,
+            githubUrl: formData.githubUrl,
+            adicionalInfo: formData.adicionalInfo,
+            eduHistory: formData.eduHistory,
+            workExp: formData.workExp
+        };
+
         switch (name) {
             case "export":
                 //const form = new FormData(event.currentTarget);
-                const data = {
-                    name: formData.name,
-                    phone: formData.phone,
-                    email: formData.email,
-                    address: formData.address,
-                    linkedinUrl: formData.linkedinUrl,
-                    githubUrl: formData.githubUrl,
-                    adicionalInfo: formData.adicionalInfo,
-                    eduHistory: formData.eduHistory,
-                    workExp: formData.workExp
-                };
                 const jsonString = JSON.stringify(data, null, 2);
                 const blob = new Blob([jsonString], { type: "application/json" });
                 const url = URL.createObjectURL(blob);
@@ -151,7 +150,7 @@ export default function CvForm() {
                 document.body.removeChild(link);
                 URL.revokeObjectURL(url);
                 break;
-            
+
             case "import":
                 alert("Wow, theres nothing here!!! 😬");
                 break;
@@ -219,7 +218,9 @@ export default function CvForm() {
             <div className="flex-container">
                 <Button className="flex-1" type="button" name="export" onClick={handleSubmit} disabled>Export .json</Button>
                 <Button className="flex-1" type="button" name="import" onClick={handleSubmit} disabled>Import .json</Button>
-                <Button className="flex-1" type="button" name="create" onClick={handleSubmit}>Create CV</Button>
+                <Modal className="flex-1" buttonText="Show .pdf">
+                    <PdfRenderer data={formData} />
+                </Modal>
             </div>
         </form>
     );

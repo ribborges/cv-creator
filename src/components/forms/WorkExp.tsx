@@ -10,7 +10,6 @@ interface workExpProps {
         workLocation: string,
         workBgDate: string,
         workEdDate: string,
-        workCurrently: string,
         workDetails: string;
     },
     className?: string,
@@ -51,7 +50,7 @@ export default function WorkExp(props: workExpProps) {
             </div>
             <div className="flex-container">
                 <Input
-                    type="date"
+                    type="month"
                     id={"workBgDate" + props.id}
                     name={"workBgDate" + props.id}
                     value={props.value?.workBgDate}
@@ -59,7 +58,7 @@ export default function WorkExp(props: workExpProps) {
                     icon="bi bi-calendar-fill"
                 />
                 <Input
-                    type="date"
+                    type="month"
                     id={"workEdDate" + props.id}
                     name={"workEdDate" + props.id}
                     value={props.value?.workEdDate}
@@ -67,13 +66,6 @@ export default function WorkExp(props: workExpProps) {
                     icon="bi bi-calendar-fill"
                 />
             </div>
-            <Input
-                type="checkbox"
-                id={"workCurrently" + props.id}
-                name={"workCurrently" + props.id}
-                value={props.value?.workCurrently}
-                onChange={(e: React.ChangeEvent<HTMLInputElement>) => props.onChange(e, props.id, "workCurrently")}
-            >I currently study here</Input>
             <Input
                 type="textarea"
                 id={"workDetails" + props.id}

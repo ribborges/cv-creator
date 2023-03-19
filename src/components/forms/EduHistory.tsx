@@ -11,7 +11,6 @@ interface eduHistoryProps {
         schoolLocation: string,
         schoolBgDate: string,
         schoolEdDate: string,
-        schoolCurrently: string,
         schoolDetails: string;
     },
     className?: string,
@@ -61,7 +60,7 @@ export default function EduHistory(props: eduHistoryProps) {
             </div>
             <div className="flex-container">
                 <Input
-                    type="date"
+                    type="month"
                     id={"schoolBgDate" + props.id}
                     name={"schoolBgDate" + props.id}
                     value={props.value?.schoolBgDate}
@@ -69,7 +68,7 @@ export default function EduHistory(props: eduHistoryProps) {
                     icon="bi bi-calendar-fill"
                 />
                 <Input
-                    type="date"
+                    type="month"
                     id={"schoolEdDate" + props.id}
                     name={"schoolEdDate" + props.id}
                     value={props.value?.schoolEdDate}
@@ -77,13 +76,6 @@ export default function EduHistory(props: eduHistoryProps) {
                     icon="bi bi-calendar-fill"
                 />
             </div>
-            <Input
-                type="checkbox"
-                id={"schoolCurrently" + props.id}
-                name={"schoolCurrently" + props.id}
-                value={props.value?.schoolCurrently}
-                onChange={(e: React.ChangeEvent<HTMLInputElement>) => props.onChange(e, props.id, "schoolCurrently")}
-            >I currently study here</Input>
             <Input
                 type="textarea"
                 id={"schoolDetails" + props.id}

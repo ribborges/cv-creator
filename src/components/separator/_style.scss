@@ -2,8 +2,6 @@
 
 .spacer {
 	display: block;
-	margin-top: 60px;
-	margin-bottom: 60px;
 	border-bottom: none;
 	border-top-width: 1px;
 	border-top-style: solid;
@@ -12,7 +10,6 @@
 
 .blankspace {
 	border-style: none;
-	height: 5vw;
 }
 
 @media (prefers-color-scheme: light) {

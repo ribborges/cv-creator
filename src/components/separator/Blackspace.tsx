@@ -1,7 +1,13 @@
 import './_style.scss';
 
-export default function Blanckspace() {
+interface blanckspaceProps {
+    height?: number;
+}
+
+export default function Blanckspace(props: blanckspaceProps) {
     return (
-        <hr className="blankspace"/>
+        <hr style={{
+            height: (props.height === undefined ? "30px" : props.height + "px"),
+        }} className="blankspace"/>
     )
 }

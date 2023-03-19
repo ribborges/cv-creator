@@ -1,7 +1,14 @@
 import './_style.scss';
 
-export default function Spacer() {
+interface spacerProps {
+    height?: number;
+}
+
+export default function Spacer(props: spacerProps) {
     return (
-        <hr className="spacer"/>
+        <hr style={{
+            marginTop: (props.height === undefined ? "60px" : props.height/2 + "px"),
+            marginBottom: (props.height === undefined ? "60px" : props.height/2 + "px")
+        }} className="spacer"/>
     )
 }
