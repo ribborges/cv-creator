@@ -1,6 +1,6 @@
 import { Fieldset } from '../input/Fieldset';
 import { Input } from '../input/Input';
-import { FormData } from './CvForm';
+import { displayText, FormData } from './CvForm';
 
 interface workExpProps {
     id: number,
@@ -12,6 +12,7 @@ interface workExpProps {
         workEdDate: string,
         workDetails: string;
     },
+    lang: displayText,
     className?: string,
     onChange: (event: React.ChangeEvent<HTMLInputElement>, index: number, key: keyof FormData["workExp"][number]) => void;
 }
@@ -27,7 +28,7 @@ export default function WorkExp(props: workExpProps) {
                     value={props.value?.workCompanyName}
                     onChange={(e: React.ChangeEvent<HTMLInputElement>) => props.onChange(e, props.id, "workCompanyName")}
                     icon="bi bi-buildings-fill"
-                    placeholder="Company name"
+                    placeholder={props.lang.workCompanyName}
                 />
                 <Input
                     type="text"
@@ -36,7 +37,7 @@ export default function WorkExp(props: workExpProps) {
                     value={props.value?.workJobTitle}
                     onChange={(e: React.ChangeEvent<HTMLInputElement>) => props.onChange(e, props.id, "workJobTitle")}
                     icon="bi bi-briefcase-fill"
-                    placeholder="Job title"
+                    placeholder={props.lang.workJobTitle}
                 />
                 <Input
                     type="text"
@@ -45,7 +46,7 @@ export default function WorkExp(props: workExpProps) {
                     value={props.value?.workLocation}
                     onChange={(e: React.ChangeEvent<HTMLInputElement>) => props.onChange(e, props.id, "workLocation")}
                     icon="bi bi-geo-alt-fill"
-                    placeholder="Location"
+                    placeholder={props.lang.location}
                 />
             </div>
             <div className="flex-container">
@@ -73,7 +74,7 @@ export default function WorkExp(props: workExpProps) {
                 value={props.value?.workDetails}
                 onChange={(e: React.ChangeEvent<HTMLInputElement>) => props.onChange(e, props.id, "workDetails")}
                 icon="bi bi-card-text"
-                title="Details"
+                title={props.lang.details}
             />
         </Fieldset>
     );

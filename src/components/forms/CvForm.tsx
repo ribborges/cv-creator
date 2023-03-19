@@ -7,6 +7,7 @@ import WorkExp from './WorkExp';
 import Spacer from '../separator/Spacer';
 import PdfRenderer from '../cv/PdfRenderer';
 import Modal from '../modal/Modal';
+import { Input } from '../input/Input';
 
 export interface FormData {
     name: string,
@@ -15,7 +16,7 @@ export interface FormData {
     address: string,
     linkedinUrl: string,
     githubUrl: string,
-    adicionalInfo: string,
+    summary: string,
     eduHistory: Array<{
         schoolName: string,
         schoolDegree: string,
@@ -35,7 +36,53 @@ export interface FormData {
     }>;
 }
 
+export interface displayText {
+    language: string,
+    personalInfo: string,
+    eduHistory: string,
+    workExp: string,
+    export: string,
+    import: string,
+    view: string,
+    viewTitle: string,
+    name: string,
+    phone: string,
+    address: string,
+    summary: string,
+    schoolName: string,
+    schoolDegree: string,
+    schoolFieldStudy: string,
+    workCompanyName: string,
+    workJobTitle: string,
+    location: string,
+    details: string,
+    resetForm: string;
+}
+
 export default function CvForm() {
+    const [lang, setLang] = useState<displayText>({
+        language: "Language",
+        personalInfo: "Personal information",
+        eduHistory: "Education history",
+        workExp: "Work experience",
+        export: "Export",
+        import: "Import",
+        view: "View",
+        viewTitle: "PDF view",
+        name: "Name",
+        phone: "Phone",
+        address: "Address",
+        summary: "Summary",
+        schoolName: "School name",
+        schoolDegree: "Degree",
+        schoolFieldStudy: "Field of study",
+        workCompanyName: "Company name",
+        workJobTitle: "Job title",
+        location: "Location",
+        details: "Details",
+        resetForm: "Reset form"
+    });
+
     const [formData, setFormData] = useState<FormData>({
         name: '',
         phone: '',
@@ -43,24 +90,9 @@ export default function CvForm() {
         address: '',
         linkedinUrl: '',
         githubUrl: '',
-        adicionalInfo: '',
-        eduHistory: [{
-            schoolName: '',
-            schoolDegree: '',
-            schoolFieldStudy: '',
-            schoolLocation: '',
-            schoolBgDate: '',
-            schoolEdDate: '',
-            schoolDetails: ''
-        }],
-        workExp: [{
-            workCompanyName: '',
-            workJobTitle: '',
-            workLocation: '',
-            workBgDate: '',
-            workEdDate: '',
-            workDetails: ''
-        }]
+        summary: '',
+        eduHistory: [],
+        workExp: []
     });
 
     const handleChange = (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -131,7 +163,7 @@ export default function CvForm() {
             address: formData.address,
             linkedinUrl: formData.linkedinUrl,
             githubUrl: formData.githubUrl,
-            adicionalInfo: formData.adicionalInfo,
+            summary: formData.summary,
             eduHistory: formData.eduHistory,
             workExp: formData.workExp
         };
@@ -166,26 +198,93 @@ export default function CvForm() {
 
     };
 
+    const handleLanguageChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+        const lang = event.target.value;
+
+        switch (lang) {
+            case "en":
+                setLang({
+                    language: "Language",
+                    personalInfo: "Personal information",
+                    eduHistory: "Education history",
+                    workExp: "Work experience",
+                    export: "Export",
+                    import: "Import",
+                    view: "View",
+                    viewTitle: "PDF view",
+                    name: "Name",
+                    phone: "Phone",
+                    address: "Address",
+                    summary: "Summary",
+                    schoolName: "School name",
+                    schoolDegree: "Degree",
+                    schoolFieldStudy: "Field of study",
+                    workCompanyName: "Company name",
+                    workJobTitle: "Job title",
+                    location: "Location",
+                    details: "Details",
+                    resetForm: "Reset form"
+                })
+                break;
+            case "pt":
+                setLang({
+                    language: "Linguagem",
+                    personalInfo: "Informações pessoais",
+                    eduHistory: "Histórico acadêmico",
+                    workExp: "Experiência de trabalho",
+                    export: "Exportar",
+                    import: "Importar",
+                    view: "Vizualizar",
+                    viewTitle: "Vizualizador de PDF",
+                    name: "Nome",
+                    phone: "Telefone",
+                    address: "Endereço",
+                    summary: "Sumário",
+                    schoolName: "Nome da instituição",
+                    schoolDegree: "Gráu",
+                    schoolFieldStudy: "Curso",
+                    workCompanyName: "Nome da empresa",
+                    workJobTitle: "Cargo",
+                    location: "Localização",
+                    details: "Detalhes",
+                    resetForm: "Resetar formulário"
+                })
+                break;
+        }
+    };
+
     return (
         <form ref={formRef}>
             <div className="flex-container">
-                <div className="flex-1">
-                    <h2>Personal information</h2>
+                <div className="flex-5">
+                    <h2>{lang.language}</h2>
                 </div>
-                <PersonalInfo className="flex-3" data={formData} onChange={handleChange} />
+                <Input icon="bi bi-translate" type="option" onChange={handleLanguageChange}>
+                    <option value="en">English</option>
+                    <option value="pt">Português</option>
+                </Input>
             </div>
 
             <Spacer />
 
             <div className="flex-container">
                 <div className="flex-1">
-                    <h2>Education history</h2>
+                    <h2>{lang.personalInfo}</h2>
+                </div>
+                <PersonalInfo className="flex-3" lang={lang} data={formData} onChange={handleChange} />
+            </div>
+
+            <Spacer />
+
+            <div className="flex-container">
+                <div className="flex-1">
+                    <h2>{lang.eduHistory}</h2>
                 </div>
                 <div className="flex-container flex-3 flex-col">
                     {
                         formData.eduHistory.map((value, index) => (
-                            <div key={index}>
-                                <EduHistory className="flex-1" id={index} value={value} onChange={handleEduHistoryChange} />
+                            <div key={index} className="flex-container flex-col">
+                                <EduHistory className="flex-1" lang={lang} id={index} value={value} onChange={handleEduHistoryChange} />
                                 <Button type="button" onClick={() => handleRemoveEduHistory(index)}><i className="bi bi-trash-fill" /></Button>
                             </div>
                         ))
@@ -198,13 +297,13 @@ export default function CvForm() {
 
             <div className="flex-container">
                 <div className="flex-1">
-                    <h2>Work experience</h2>
+                    <h2>{lang.workExp}</h2>
                 </div>
                 <div className="flex-container flex-3 flex-col">
                     {
                         formData.workExp.map((value, index) => (
-                            <div key={index}>
-                                <WorkExp className="flex-1" id={index} value={value} onChange={handleWorkExpChange} />
+                            <div key={index} className="flex-container flex-col">
+                                <WorkExp className="flex-1" lang={lang} id={index} value={value} onChange={handleWorkExpChange} />
                                 <Button type="button" onClick={() => handleRemoveWorkExp(index)}><i className="bi bi-trash-fill" /></Button>
                             </div>
                         ))
@@ -216,12 +315,13 @@ export default function CvForm() {
             <Spacer />
 
             <div className="flex-container">
-                <Button className="flex-1" type="button" name="export" onClick={handleSubmit} disabled>Export .json</Button>
-                <Button className="flex-1" type="button" name="import" onClick={handleSubmit} disabled>Import .json</Button>
-                <Modal className="flex-1" buttonText="Show .pdf">
-                    <PdfRenderer data={formData} />
+                <Modal className="flex-1" title={lang.viewTitle} buttonText={lang.view + " .pdf"}>
+                    <PdfRenderer lang={lang} data={formData} />
                 </Modal>
             </div>
         </form>
     );
 }
+
+// <Button className="flex-1" type="button" name="export" onClick={handleSubmit} >{lang.export} .json</Button>
+// <Button className="flex-1" type="button" name="import" onClick={handleSubmit} disabled>{lang.import} .json</Button>

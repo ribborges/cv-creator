@@ -6,6 +6,7 @@ import './_style.scss';
 
 interface modalProps {
     buttonText?: string,
+    title?: string,
     className?: string,
     children?: ReactNode,
 }
@@ -28,9 +29,12 @@ export default function Modal(props: modalProps) {
             {isOpen && (
                 <div className="modal">
                     <div className="modal-content">
-                        <Button onClick={closeModal}>
-                            <i className="bi bi-x-circle-fill" />
-                        </Button>
+                        <div className="modal-header">
+                            <Button onClick={closeModal}>
+                                <i className="bi bi-x-circle-fill" />
+                            </Button>
+                            <span className="modal-title">{props.title}</span>
+                        </div>
                         <Spacer height={50} />
                         <div className="modal-body">
                             {props.children}

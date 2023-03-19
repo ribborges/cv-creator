@@ -33,5 +33,10 @@
         &:hover, &:focus {
             color: $dark-color;
         }
+
+        &:disabled {
+            color: rgba($dark-color, 0.2);
+            border: 2px solid rgba($primary-accent-color, 0.2);
+        }
     }
 }

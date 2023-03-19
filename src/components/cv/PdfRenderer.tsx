@@ -1,5 +1,5 @@
 import { Document, Page, Text, View, StyleSheet, Font, PDFViewer, Link } from "@react-pdf/renderer";
-import { FormData } from '../forms/CvForm';
+import { displayText, FormData } from '../forms/CvForm';
 
 import FontRobotoSlabBlack from './RobotoSlab/RobotoSlab-Black.ttf';
 import FontRobotoSlabBold from './RobotoSlab/RobotoSlab-Bold.ttf';
@@ -90,34 +90,35 @@ const styles = StyleSheet.create({
 });
 
 interface pdfProps {
-    data: FormData;
+    data: FormData,
+    lang: displayText;
 }
 
-export default function PdfRenderer({ data }: pdfProps) {
+export default function PdfRenderer({ data, lang }: pdfProps) {
     return (
         <PDFViewer style={styles.viewer}>
             <Document>
                 <Page size="A4" style={styles.page}>
                     <View style={styles.section}>
                         <Text style={styles.name}>{data.name}</Text>
-                        <Text style={styles.info1}>{data.email} {data.phone === undefined || " " ? "" : "|"} {data.phone} {data.address === undefined || " " ? "" : "|"} {data.address}</Text>
-                        <Text style={styles.info1}><Link style={styles.link} src={data.linkedinUrl}>{data.linkedinUrl}</Link> {data.githubUrl === undefined || " " ? "" : "|"} <Link style={styles.link} src={data.githubUrl}>{data.githubUrl}</Link></Text>
+                        <Text style={styles.info1}>{data.email} {data.phone == undefined || " " ? "" : "|"} {data.phone} {data.address == undefined || " " ? "" : "|"} {data.address}</Text>
+                        <Text style={styles.info1}><Link style={styles.link} src={data.linkedinUrl}>{data.linkedinUrl}</Link> {data.githubUrl == undefined || " " ? "" : "|"} <Link style={styles.link} src={data.githubUrl}>{data.githubUrl}</Link></Text>
                         <View style={styles.subSection}>
-                            <Text style={styles.title2}>{data.adicionalInfo === undefined || " " ? "" : "Summary"}</Text>
-                            <Text style={styles.info2}>{data.adicionalInfo}</Text>
+                            <Text style={styles.title2}>{data.summary === "" ? "" : lang.summary}</Text>
+                            <Text style={styles.info2}>{data.summary}</Text>
                         </View>
                     </View>
                     {
                         data.workExp === undefined || [] ? "" : <View style={styles.spacer} />
                     }
                     <View style={styles.section}>
-                        <Text style={styles.title1}>{data.workExp === undefined || [] ? "" : "Work experience"}</Text>
+                        <Text style={styles.title1}>{data.workExp.length <= 0 ? "" : lang.workExp}</Text>
                         {
                             data.workExp.map((value, index) => (
                                 <View key={index} style={styles.subSection}>
                                     <Text style={styles.title2}>{value.workJobTitle}</Text>
                                     <Text style={styles.text1}>{value.workCompanyName}</Text>
-                                    <Text style={styles.text1}>{value.workLocation} {value.workBgDate === undefined || " " ? "" : "| " + value.workBgDate + (value.workEdDate === undefined || " " ? " - Today" : " - " + value.workEdDate)}</Text>
+                                    <Text style={styles.text1}>{value.workLocation} {value.workBgDate.length === undefined || " " ? "" : "| " + value.workBgDate + (value.workEdDate == undefined || " " ? " - Today" : " - " + value.workEdDate)}</Text>
                                     <Text style={styles.text2}>{value.workDetails}</Text>
                                 </View>
                             ))
@@ -127,13 +128,13 @@ export default function PdfRenderer({ data }: pdfProps) {
                         data.eduHistory === undefined || [] ? "" : <View style={styles.spacer} />
                     }
                     <View style={styles.section}>
-                        <Text style={styles.title1}>{data.eduHistory === undefined || [] ? "" : "Education history"}</Text>
+                        <Text style={styles.title1}>{data.eduHistory.length <= 0 ? "" : lang.eduHistory}</Text>
                         {
                             data.eduHistory.map((value, index) => (
                                 <View key={index} style={styles.subSection}>
-                                    <Text style={styles.title2}>{value.schoolDegree} {value.schoolFieldStudy === undefined || " " ? "" : "|"} {value.schoolFieldStudy}</Text>
+                                    <Text style={styles.title2}>{value.schoolDegree} {value.schoolFieldStudy == undefined || " " ? "" : "|"} {value.schoolFieldStudy}</Text>
                                     <Text style={styles.text1}>{value.schoolName}</Text>
-                                    <Text style={styles.text1}>{value.schoolLocation} {value.schoolBgDate === undefined || " " ? "" : "| " + value.schoolBgDate + (value.schoolEdDate === undefined || " " ? " - Today" : " - " + value.schoolEdDate)}</Text>
+                                    <Text style={styles.text1}>{value.schoolLocation} {value.schoolBgDate == undefined || " " ? "" : "| " + value.schoolBgDate + (value.schoolEdDate == undefined || " " ? " - Today" : " - " + value.schoolEdDate)}</Text>
                                     <Text style={styles.text2}>{value.schoolDetails}</Text>
                                 </View>
                             ))

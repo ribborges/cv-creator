@@ -1,8 +1,9 @@
 import { Input } from '../input/Input';
-import { FormData } from './CvForm';
+import { displayText, FormData } from './CvForm';
 
 interface personalInfoProps {
     className?: string,
+    lang: displayText,
     data: FormData,
     onChange?: React.ChangeEventHandler<HTMLInputElement>,
 }
@@ -18,7 +19,7 @@ export default function PersonalInfo(props: personalInfoProps) {
                     value={props.data.name}
                     onChange={props.onChange}
                     icon="bi bi-fonts"
-                    placeholder="Nome"
+                    placeholder={props.lang.name}
                 />
                 <Input
                     type="phone"
@@ -27,7 +28,7 @@ export default function PersonalInfo(props: personalInfoProps) {
                     value={props.data.phone}
                     onChange={props.onChange}
                     icon="bi bi-telephone"
-                    placeholder="Telefone"
+                    placeholder={props.lang.phone}
                 />
                 <Input
                     type="email"
@@ -45,7 +46,7 @@ export default function PersonalInfo(props: personalInfoProps) {
                     value={props.data.address}
                     onChange={props.onChange}
                     icon="bi bi-geo-alt"
-                    placeholder="Endereço"
+                    placeholder={props.lang.address}
                 />
                 <Input
                     type="url"
@@ -66,7 +67,7 @@ export default function PersonalInfo(props: personalInfoProps) {
                     placeholder="GitHub"
                 />
             </div>
-            <Input type="textarea" id="adicionalInfo" name="adicionalInfo" value={props.data.adicionalInfo} onChange={props.onChange} icon="bi bi-card-text" title="Informações adicionais" />
+            <Input type="textarea" id="summary" name="summary" value={props.data.summary} onChange={props.onChange} icon="bi bi-card-text" title={props.lang.summary} />
         </div>
     );
 }
