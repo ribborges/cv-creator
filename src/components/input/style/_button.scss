@@ -11,9 +11,18 @@
     transition: 1s;
 
     &:hover, &:focus {
-        color: $light-color;
         background-color: $primary-accent-color;
         box-shadow: 0 0 100px 0 rgba($light-color, 0.2);
+    }
+
+    &:disabled {
+        color: rgba($light-color, 0.2);
+        border: 2px solid rgba($primary-accent-color, 0.2);
+
+        &:hover, &:focus {
+            background-color: transparent;
+            box-shadow: none;
+        }
     }
 }
 

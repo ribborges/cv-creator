@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import { Button } from '../input/Button';
 
 import PersonalInfo from './PersonalInfo';
@@ -84,7 +84,7 @@ export default function CvForm() {
             schoolBgDate: '',
             schoolEdDate: '',
             schoolCurrently: '',
-            schoolDetails: '',
+            schoolDetails: ''
         }];
         setFormData({ ...formData, eduHistory: newEduHistory });
     };
@@ -102,54 +102,73 @@ export default function CvForm() {
     };
 
     const handleAddWorkExp = () => {
-        const newWorkExp = [...formData.eduHistory, {
-            schoolName: '',
-            schoolDegree: '',
-            schoolFieldStudy: '',
-            schoolLocation: '',
-            schoolBgDate: '',
-            schoolEdDate: '',
-            schoolCurrently: '',
-            schoolDetails: '',
+        const newWorkExp = [...formData.workExp, {
+            workCompanyName: '',
+            workJobTitle: '',
+            workLocation: '',
+            workBgDate: '',
+            workEdDate: '',
+            workCurrently: '',
+            workDetails: ''
         }];
-        setFormData({ ...formData, eduHistory: newWorkExp });
+        setFormData({ ...formData, workExp: newWorkExp });
     };
 
     const handleRemoveWorkExp = (index: number) => {
-        const newWorkExp = [...formData.eduHistory];
+        const newWorkExp = [...formData.workExp];
         newWorkExp.splice(index, 1);
-        setFormData({ ...formData, eduHistory: newWorkExp });
+        setFormData({ ...formData, workExp: newWorkExp });
     };
 
-    const handleExportJson = (event: React.FormEvent<HTMLFormElement>) => {
+    const formRef = useRef<HTMLFormElement>(null);
+
+    const handleSubmit = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
         event.preventDefault();
-        //const form = new FormData(event.currentTarget);
-        const data = {
-            name: formData.name,
-            phone: formData.phone,
-            email: formData.email,
-            address: formData.address,
-            linkedinUrl: formData.linkedinUrl,
-            githubUrl: formData.githubUrl,
-            adicionalInfo: formData.adicionalInfo,
-            eduHistory: formData.eduHistory,
-            workExp: formData.workExp
-        };
-        const jsonString = JSON.stringify(data, null, 2);
-        const blob = new Blob([jsonString], { type: "application/json" });
-        const url = URL.createObjectURL(blob);
-        const link = document.createElement("a");
-        link.href = url;
-        link.download = "cv-creator-data.json";
-        document.body.appendChild(link);
-        link.click();
-        document.body.removeChild(link);
-        URL.revokeObjectURL(url);
-    };
+        const name = event.currentTarget.name;
 
+        switch (name) {
+            case "export":
+                //const form = new FormData(event.currentTarget);
+                const data = {
+                    name: formData.name,
+                    phone: formData.phone,
+                    email: formData.email,
+                    address: formData.address,
+                    linkedinUrl: formData.linkedinUrl,
+                    githubUrl: formData.githubUrl,
+                    adicionalInfo: formData.adicionalInfo,
+                    eduHistory: formData.eduHistory,
+                    workExp: formData.workExp
+                };
+                const jsonString = JSON.stringify(data, null, 2);
+                const blob = new Blob([jsonString], { type: "application/json" });
+                const url = URL.createObjectURL(blob);
+                const link = document.createElement("a");
+                link.href = url;
+                link.download = "cv-creator-data.json";
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+                URL.revokeObjectURL(url);
+                break;
+            
+            case "import":
+                alert("Wow, theres nothing here!!! 😬");
+                break;
+
+            case "create":
+                alert("Wow, theres nothing here!!! 😬");
+                break;
+
+            default:
+                alert("Huummm, there's something wrong here!!! 🤔");
+                break;
+        }
+
+    };
 
     return (
-        <form onSubmit={handleExportJson}>
+        <form ref={formRef}>
             <div className="flex-container">
                 <div className="flex-1">
                     <h2>Personal information</h2>
@@ -198,9 +217,9 @@ export default function CvForm() {
             <Spacer />
 
             <div className="flex-container">
-                <Button className="flex-1" type="submit">Export .json</Button>
-                <Button className="flex-1" type="button" onClick={() => alert("Wow, theres nothing here!!! 😬")}>Import .json</Button>
-                <Button className="flex-1" type="button" onClick={() => alert("Wow, theres nothing here!!! 😬")}>Create CV</Button>
+                <Button className="flex-1" type="button" name="export" onClick={handleSubmit} disabled>Export .json</Button>
+                <Button className="flex-1" type="button" name="import" onClick={handleSubmit} disabled>Import .json</Button>
+                <Button className="flex-1" type="button" name="create" onClick={handleSubmit}>Create CV</Button>
             </div>
         </form>
     );
