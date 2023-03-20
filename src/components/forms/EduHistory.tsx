@@ -1,6 +1,7 @@
+import { displayText } from '../../App';
 import { Fieldset } from '../input/Fieldset';
 import { Input } from '../input/Input';
-import { displayText, FormData } from './CvForm';
+import { FormData } from './CvForm';
 
 interface eduHistoryProps {
     id: number,

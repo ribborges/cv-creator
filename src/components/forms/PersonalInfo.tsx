@@ -1,5 +1,6 @@
+import { displayText } from '../../App';
 import { Input } from '../input/Input';
-import { displayText, FormData } from './CvForm';
+import { FormData } from './CvForm';
 
 interface personalInfoProps {
     className?: string,

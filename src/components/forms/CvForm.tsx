@@ -7,7 +7,6 @@ import WorkExp from './WorkExp';
 import Spacer from '../separator/Spacer';
 import PdfRenderer from '../cv/PdfRenderer';
 import Modal from '../modal/Modal';
-import { Input } from '../input/Input';
 import { displayText } from '../../App';
 
 export interface FormData {
