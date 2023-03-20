@@ -1,5 +1,6 @@
 import { Document, Page, Text, View, StyleSheet, Font, PDFViewer, Link } from "@react-pdf/renderer";
-import { displayText, FormData } from '../forms/CvForm';
+import { displayText } from "../../App";
+import { FormData } from '../forms/CvForm';
 
 import FontRobotoSlabBlack from './RobotoSlab/RobotoSlab-Black.ttf';
 import FontRobotoSlabBold from './RobotoSlab/RobotoSlab-Bold.ttf';
@@ -101,15 +102,15 @@ export default function PdfRenderer({ data, lang }: pdfProps) {
                 <Page size="A4" style={styles.page}>
                     <View style={styles.section}>
                         <Text style={styles.name}>{data.name}</Text>
-                        <Text style={styles.info1}>{data.email} {data.phone == undefined || " " ? "" : "|"} {data.phone} {data.address == undefined || " " ? "" : "|"} {data.address}</Text>
-                        <Text style={styles.info1}><Link style={styles.link} src={data.linkedinUrl}>{data.linkedinUrl}</Link> {data.githubUrl == undefined || " " ? "" : "|"} <Link style={styles.link} src={data.githubUrl}>{data.githubUrl}</Link></Text>
+                        <Text style={styles.info1}>{data.email} {data.phone === "" ? "" : "|"} {data.phone} {data.address === "" ? "" : "|"} {data.address}</Text>
+                        <Text style={styles.info1}><Link style={styles.link} src={data.linkedinUrl}>{data.linkedinUrl}</Link> {data.githubUrl === "" ? "" : "|"} <Link style={styles.link} src={data.githubUrl}>{data.githubUrl}</Link></Text>
                         <View style={styles.subSection}>
                             <Text style={styles.title2}>{data.summary === "" ? "" : lang.summary}</Text>
                             <Text style={styles.info2}>{data.summary}</Text>
                         </View>
                     </View>
                     {
-                        data.workExp === undefined || [] ? "" : <View style={styles.spacer} />
+                        data.workExp.length <= 0 ? "" : <View style={styles.spacer} />
                     }
                     <View style={styles.section}>
                         <Text style={styles.title1}>{data.workExp.length <= 0 ? "" : lang.workExp}</Text>
@@ -125,16 +126,16 @@ export default function PdfRenderer({ data, lang }: pdfProps) {
                         }
                     </View>
                     {
-                        data.eduHistory === undefined || [] ? "" : <View style={styles.spacer} />
+                        data.eduHistory.length <= 0 ? "" : <View style={styles.spacer} />
                     }
                     <View style={styles.section}>
                         <Text style={styles.title1}>{data.eduHistory.length <= 0 ? "" : lang.eduHistory}</Text>
                         {
                             data.eduHistory.map((value, index) => (
                                 <View key={index} style={styles.subSection}>
-                                    <Text style={styles.title2}>{value.schoolDegree} {value.schoolFieldStudy == undefined || " " ? "" : "|"} {value.schoolFieldStudy}</Text>
+                                    <Text style={styles.title2}>{value.schoolDegree} {value.schoolFieldStudy === "" ? "" : "|"} {value.schoolFieldStudy}</Text>
                                     <Text style={styles.text1}>{value.schoolName}</Text>
-                                    <Text style={styles.text1}>{value.schoolLocation} {value.schoolBgDate == undefined || " " ? "" : "| " + value.schoolBgDate + (value.schoolEdDate == undefined || " " ? " - Today" : " - " + value.schoolEdDate)}</Text>
+                                    <Text style={styles.text1}>{value.schoolLocation} {value.schoolBgDate === "" ? "" : "| " + value.schoolBgDate + (value.schoolEdDate === "" ? " - Today" : " - " + value.schoolEdDate)}</Text>
                                     <Text style={styles.text2}>{value.schoolDetails}</Text>
                                 </View>
                             ))
