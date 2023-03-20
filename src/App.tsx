@@ -26,7 +26,8 @@ export interface displayText {
   workJobTitle: string,
   location: string,
   details: string,
-  resetForm: string;
+  resetForm: string,
+  today: string;
 }
 
 export default function App() {
@@ -51,7 +52,8 @@ export default function App() {
     workJobTitle: "Job title",
     location: "Location",
     details: "Details",
-    resetForm: "Reset form"
+    resetForm: "Reset form",
+    today: "Today"
   });
 
   const handleLanguageChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
@@ -80,7 +82,8 @@ export default function App() {
           workJobTitle: "Job title",
           location: "Location",
           details: "Details",
-          resetForm: "Reset form"
+          resetForm: "Reset form",
+          today: "Today"
         })
         break;
       case "pt":
@@ -105,7 +108,8 @@ export default function App() {
           workJobTitle: "Cargo",
           location: "Localização",
           details: "Detalhes",
-          resetForm: "Resetar formulário"
+          resetForm: "Resetar formulário",
+          today: "Hoje"
         })
         break;
     }

@@ -57,6 +57,7 @@ const styles = StyleSheet.create({
         color: "#1a1a1a",
         fontSize: "10",
         fontFamily: 'Roboto-Slab',
+        textAlign: 'justify',
     },
     spacer: {
         borderBottomColor: "#333333",
@@ -87,6 +88,7 @@ const styles = StyleSheet.create({
         fontSize: "10",
         fontFamily: 'Roboto-Slab',
         marginLeft: 15,
+        textAlign: 'justify',
     },
 });
 
@@ -104,43 +106,52 @@ export default function PdfRenderer({ data, lang }: pdfProps) {
                         <Text style={styles.name}>{data.name}</Text>
                         <Text style={styles.info1}>{data.email} {data.phone === "" ? "" : "|"} {data.phone} {data.address === "" ? "" : "|"} {data.address}</Text>
                         <Text style={styles.info1}><Link style={styles.link} src={data.linkedinUrl}>{data.linkedinUrl}</Link> {data.githubUrl === "" ? "" : "|"} <Link style={styles.link} src={data.githubUrl}>{data.githubUrl}</Link></Text>
-                        <View style={styles.subSection}>
-                            <Text style={styles.title2}>{data.summary === "" ? "" : lang.summary}</Text>
-                            <Text style={styles.info2}>{data.summary}</Text>
-                        </View>
-                    </View>
-                    {
-                        data.workExp.length <= 0 ? "" : <View style={styles.spacer} />
-                    }
-                    <View style={styles.section}>
-                        <Text style={styles.title1}>{data.workExp.length <= 0 ? "" : lang.workExp}</Text>
                         {
-                            data.workExp.map((value, index) => (
-                                <View key={index} style={styles.subSection}>
-                                    <Text style={styles.title2}>{value.workJobTitle}</Text>
-                                    <Text style={styles.text1}>{value.workCompanyName}</Text>
-                                    <Text style={styles.text1}>{value.workLocation} {value.workBgDate.length === undefined || " " ? "" : "| " + value.workBgDate + (value.workEdDate == undefined || " " ? " - Today" : " - " + value.workEdDate)}</Text>
-                                    <Text style={styles.text2}>{value.workDetails}</Text>
+                            data.summary === "" ? "" :
+                                <View style={styles.subSection}>
+                                    <Text style={styles.title2}>{lang.summary}</Text>
+                                    <Text style={styles.info2}>{data.summary}</Text>
                                 </View>
-                            ))
                         }
                     </View>
                     {
-                        data.eduHistory.length <= 0 ? "" : <View style={styles.spacer} />
-                    }
-                    <View style={styles.section}>
-                        <Text style={styles.title1}>{data.eduHistory.length <= 0 ? "" : lang.eduHistory}</Text>
-                        {
-                            data.eduHistory.map((value, index) => (
-                                <View key={index} style={styles.subSection}>
-                                    <Text style={styles.title2}>{value.schoolDegree} {value.schoolFieldStudy === "" ? "" : "|"} {value.schoolFieldStudy}</Text>
-                                    <Text style={styles.text1}>{value.schoolName}</Text>
-                                    <Text style={styles.text1}>{value.schoolLocation} {value.schoolBgDate === "" ? "" : "| " + value.schoolBgDate + (value.schoolEdDate === "" ? " - Today" : " - " + value.schoolEdDate)}</Text>
-                                    <Text style={styles.text2}>{value.schoolDetails}</Text>
+                        data.workExp.length <= 0 ? "" :
+                            <>
+                                <View style={styles.spacer} />
+                                <View style={styles.section}>
+                                    <Text style={styles.title1}>{lang.workExp}</Text>
+                                    {
+                                        data.workExp.map((value, index) => (
+                                            <View key={index} style={styles.subSection}>
+                                                <Text style={styles.title2}>{value.workJobTitle}</Text>
+                                                <Text style={styles.text1}>{value.workCompanyName}</Text>
+                                                <Text style={styles.text1}>{value.workLocation} {value.workBgDate === "" ? "" : "| " + value.workBgDate + (value.workEdDate == undefined || " " ? " - " + lang.today : " - " + value.workEdDate)}</Text>
+                                                <Text style={styles.text2}>{value.workDetails}</Text>
+                                            </View>
+                                        ))
+                                    }
                                 </View>
-                            ))
-                        }
-                    </View>
+                            </>
+                    }
+                    {
+                        data.eduHistory.length <= 0 ? "" :
+                            <>
+                                <View style={styles.spacer} />
+                                <View style={styles.section}>
+                                    <Text style={styles.title1}>{lang.eduHistory}</Text>
+                                    {
+                                        data.eduHistory.map((value, index) => (
+                                            <View key={index} style={styles.subSection}>
+                                                <Text style={styles.title2}>{value.schoolDegree} {value.schoolFieldStudy === "" ? "" : "|"} {value.schoolFieldStudy}</Text>
+                                                <Text style={styles.text1}>{value.schoolName}</Text>
+                                                <Text style={styles.text1}>{value.schoolLocation} {value.schoolBgDate === "" ? "" : "| " + value.schoolBgDate + (value.schoolEdDate === "" ? " - " + lang.today : " - " + value.schoolEdDate)}</Text>
+                                                <Text style={styles.text2}>{value.schoolDetails}</Text>
+                                            </View>
+                                        ))
+                                    }
+                                </View>
+                            </>
+                    }
                 </Page>
             </Document>
         </PDFViewer>
