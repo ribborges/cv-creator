@@ -7,7 +7,7 @@
     border-radius: $border-radius;
     border: 2px solid $primary-accent-color;
     padding: 15px;
-    margin: 5px;
+    margin: 15px;
     transition: 1s;
 
     &:hover, &:focus {
@@ -23,6 +23,13 @@
             background-color: transparent;
             box-shadow: none;
         }
+    }
+}
+
+@media screen and (max-width: 700px) {
+    .button {
+        padding: 10px;
+        margin: 5px;
     }
 }
 

@@ -20,27 +20,33 @@
         border: 2px solid rgba($light-grey-color, 0.2);
         display: flex;
     }
-    
+
     input {
         flex: auto;
     }
 
-    input, button, textarea, select {
+    input,
+    button,
+    textarea,
+    select {
         @include input-group-child();
     }
 }
 
-input, textarea, select {
+input,
+textarea,
+select {
     padding: 15px;
     color: $light-color;
     background-color: $dark-color;
     border-radius: $border-radius;
     border: 2px solid rgba($light-grey-color, 0.2);
     height: auto;
-	transition: all 1s, height 0s, width 0s;
+    transition: all 1s, height 0s, width 0s;
 
-    &:hover, &:focus {
-	    box-shadow: 0 0 100px 0 rgba($light-color, 0.2);
+    &:hover,
+    &:focus {
+        box-shadow: 0 0 100px 0 rgba($light-color, 0.2);
     }
 
     &:focus {
@@ -51,6 +57,22 @@ input, textarea, select {
     }
 }
 
+@media screen and (max-width: 700px) {
+    input,
+    textarea,
+    select {
+        padding: 10px;
+    }
+
+    .input-group {
+        margin: 5px;
+
+        .input-addon {
+            padding: 10px;
+        }
+    }
+}
+
 @media (prefers-color-scheme: light) {
     .input-group {
         .input-addon {
@@ -58,7 +80,10 @@ input, textarea, select {
         }
     }
 
-    input, button, textarea, select {
+    input,
+    button,
+    textarea,
+    select {
         color: $dark-color;
         background-color: $light-color;
     }

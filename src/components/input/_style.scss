@@ -93,7 +93,8 @@ select {
     margin: 10px;
     display: flex;
 
-    input[type=checkbox], input[type=radio] {
+    input[type="checkbox"],
+    input[type="radio"] {
         accent-color: $primary-accent-color;
         min-height: 30px;
         min-width: 30px;
@@ -103,7 +104,8 @@ select {
         }
     }
 
-    input, span {
+    input,
+    span {
         padding: 5px;
     }
 }
@@ -154,6 +156,18 @@ select {
             position: absolute;
             bottom: 17px;
             right: 10px;
+        }
+    }
+}
+
+@media screen and (max-width: 700px) {
+    .text-area {
+        margin: 5px;
+
+        .text-area-title {
+            .input-addon {
+                padding: 10px;
+            }
         }
     }
 }

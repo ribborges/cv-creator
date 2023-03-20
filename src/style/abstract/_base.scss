@@ -1,12 +1,13 @@
 :root {
-    font-family: 'Ubuntu', sans-serif;
+    font-family: "Ubuntu", sans-serif;
+    font-size: $text-font-size;
     line-height: 1.5;
     font-weight: 400;
-  
+
     color-scheme: dark;
     color: $light-color;
     background-color: $dark-grey-color;
-  
+
     font-synthesis: none;
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
@@ -15,19 +16,27 @@
 }
 
 h1 {
+    display: inline-block;
+    margin: 10px;
     font-size: 2rem;
     font-weight: bolder;
 }
 
 h2 {
+    display: inline-block;
+    margin: 10px;
     font-size: 1.5rem;
     font-weight: bold;
 }
-  
-@media (prefers-color-scheme: light) {
-    :root {
-      color: $dark-color;
-      background-color: $light-grey-color;
+
+a {
+    color: $primary-accent-color;
+    transition: 1s;
+
+    &:hover {
+        color: $secondary-accent-color;
+        text-shadow: 0 0 20px #ffffff82;
+        text-decoration: underline;
     }
 }
 
@@ -56,8 +65,35 @@ h2 {
     .flex-5 {
         flex: 5;
     }
+}
 
-    .flex-col {
+.flex-col {
+    flex-direction: column;
+}
+
+@media screen and (max-width: 700px) {
+    :root {
+        line-height: 1.2;
+    }
+
+    h1 {
+        font-size: 1.8rem;
+        font-weight: bolder;
+    }
+
+    h2 {
+        font-size: 1.3rem;
+        font-weight: bold;
+    }
+
+    .flex-container {
         flex-direction: column;
+    }
+}
+
+@media (prefers-color-scheme: light) {
+    :root {
+        color: $dark-color;
+        background-color: $light-grey-color;
     }
 }
