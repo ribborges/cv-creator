@@ -152,6 +152,41 @@ export default function PdfRenderer({ data, lang }: pdfProps) {
                                 </View>
                             </>
                     }
+                    {
+                        data.licensesCertif.length <= 0 ? "" :
+                            <>
+                                <View style={styles.spacer} />
+                                <View style={styles.section}>
+                                    <Text style={styles.title1}>{lang.licensesCertif}</Text>
+                                    {
+                                        data.licensesCertif.map((value, index) => (
+                                            <View key={index} style={styles.subSection}>
+                                                <Text style={styles.title2}>{value.licensesCertifName}</Text>
+                                                <Text style={styles.text1}>{value.licensesCertifOrg}</Text>
+                                            </View>
+                                        ))
+                                    }
+                                </View>
+                            </>
+                    }
+                    {
+                        data.skills.length <= 0 ? "" :
+                            <>
+                                <View style={styles.spacer} />
+                                <View style={styles.section}>
+                                    <Text style={styles.title1}>{lang.skills}</Text>
+                                    <View style={styles.subSection}>
+                                        <Text style={styles.text1}>
+                                            {
+                                                data.skills.map((value, index) => (
+                                                    value + (index === data.skills.length - 1 ? "." : ", ")
+                                                ))
+                                            }
+                                        </Text>
+                                    </View>
+                                </View>
+                            </>
+                    }
                 </Page>
             </Document>
         </PDFViewer>

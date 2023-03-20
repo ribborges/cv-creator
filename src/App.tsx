@@ -27,7 +27,11 @@ export interface displayText {
   location: string,
   details: string,
   resetForm: string,
-  today: string;
+  today: string,
+  licensesCertif: string,
+  licensesCertifOrg: string,
+  skills: string,
+  skill: string;
 }
 
 export default function App() {
@@ -53,7 +57,11 @@ export default function App() {
     location: "Location",
     details: "Details",
     resetForm: "Reset form",
-    today: "Today"
+    today: "Today",
+    licensesCertif: "Licenses & Certifications",
+    licensesCertifOrg: "Organization",
+    skills: "Skills",
+    skill: "Skill"
   });
 
   const handleLanguageChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
@@ -83,7 +91,11 @@ export default function App() {
           location: "Location",
           details: "Details",
           resetForm: "Reset form",
-          today: "Today"
+          today: "Today",
+          licensesCertif: "Licenses & Certifications",
+          licensesCertifOrg: "Organization",
+          skills: "Skills",
+          skill: "Skill"
         })
         break;
       case "pt":
@@ -95,8 +107,8 @@ export default function App() {
           workExp: "Experiência de trabalho",
           export: "Exportar",
           import: "Importar",
-          view: "Vizualizar",
-          viewTitle: "Vizualizador de PDF",
+          view: "Visualizar",
+          viewTitle: "Visualizador de PDF",
           name: "Nome",
           phone: "Telefone",
           address: "Endereço",
@@ -109,7 +121,11 @@ export default function App() {
           location: "Localização",
           details: "Detalhes",
           resetForm: "Resetar formulário",
-          today: "Hoje"
+          today: "Hoje",
+          licensesCertif: "Licenças & Certificações",
+          licensesCertifOrg: "Organização",
+          skills: "Habilidades",
+          skill: "Habilidade"
         })
         break;
     }
