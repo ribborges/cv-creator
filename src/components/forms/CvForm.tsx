@@ -10,6 +10,7 @@ import Modal from '../modal/Modal';
 import { displayText } from '../../App';
 import Skill from './Skill';
 import LicensesCertif from './LicensesCertif';
+import { Input } from '../input/Input';
 
 export interface FormData {
     name: string,
@@ -170,7 +171,9 @@ export default function CvForm(props: cvFormProps) {
             githubUrl: formData.githubUrl,
             summary: formData.summary,
             eduHistory: formData.eduHistory,
-            workExp: formData.workExp
+            workExp: formData.workExp,
+            licensesCertif: formData.licensesCertif,
+            skills: formData.skills
         };
 
         switch (name) {
@@ -201,6 +204,20 @@ export default function CvForm(props: cvFormProps) {
                 break;
         }
 
+    };
+
+    const readFile = (event: React.ChangeEvent<HTMLInputElement>) => {
+        const file = event.target.files?.[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = (e) => {
+                const content = e.target?.result as string;
+                const parsedObject = JSON.parse(content);
+                setFormData(parsedObject);
+                event.target.value = "";
+            };
+            reader.readAsText(file);
+        }
     };
 
     return (
@@ -291,6 +308,8 @@ export default function CvForm(props: cvFormProps) {
             <Spacer />
 
             <div className="flex-container">
+                <Button className="flex-1" type="button" name="export" onClick={handleSubmit} >{props.lang.export} .json</Button>
+                <div className="flex-1 flex-container flex-col button" style={{ textAlign: 'center' }}>{props.lang.import} .json <Input icon="bi-filetype-json" accept=".json" type="file" placeholder="Importar .json" onChange={readFile} /></div>
                 <Modal className="flex-1" title={props.lang.viewTitle} buttonText={props.lang.view + " .pdf"}>
                     <PdfRenderer lang={props.lang} data={formData} />
                 </Modal>
@@ -299,5 +318,4 @@ export default function CvForm(props: cvFormProps) {
     );
 }
 
-// <Button className="flex-1" type="button" name="export" onClick={handleSubmit} >{props.lang.export} .json</Button>
 // <Button className="flex-1" type="button" name="import" onClick={handleSubmit} disabled>{props.lang.import} .json</Button>

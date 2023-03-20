@@ -9,6 +9,7 @@ export interface inputProps {
     onChange?: any,
     pattern?: string,
     minLength?: number,
+    accept?: string,
     value?: string,
     className?: string,
     icon?: string,
@@ -94,6 +95,7 @@ export function Input(Props: inputProps) {
                         name={Props.name}
                         value={Props.value}
                         pattern={Props.pattern}
+                        accept={Props.accept}
                         minLength={Props.minLength}
                         onChange={Props.onChange}
                         placeholder={Props.placeholder}
