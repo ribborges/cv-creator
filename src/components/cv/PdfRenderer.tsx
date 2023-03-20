@@ -1,6 +1,7 @@
-import { Document, Page, Text, View, StyleSheet, Font, PDFViewer, Link } from "@react-pdf/renderer";
+import { Document, Page, Text, View, StyleSheet, Font, PDFViewer, Link, PDFDownloadLink } from "@react-pdf/renderer";
 import { displayText } from "../../App";
 import { FormData } from '../forms/CvForm';
+import { isMobile } from "react-device-detect";
 
 import FontRobotoSlabBlack from './RobotoSlab/RobotoSlab-Black.ttf';
 import FontRobotoSlabBold from './RobotoSlab/RobotoSlab-Bold.ttf';
@@ -99,96 +100,110 @@ interface pdfProps {
 
 export default function PdfRenderer({ data, lang }: pdfProps) {
     return (
-        <PDFViewer style={styles.viewer}>
-            <Document>
-                <Page size="A4" style={styles.page}>
-                    <View style={styles.section}>
-                        <Text style={styles.name}>{data.name}</Text>
-                        <Text style={styles.info1}>{data.email} {data.phone === "" ? "" : "|"} {data.phone} {data.address === "" ? "" : "|"} {data.address}</Text>
-                        <Text style={styles.info1}><Link style={styles.link} src={data.linkedinUrl}>{data.linkedinUrl}</Link> {data.githubUrl === "" ? "" : "|"} <Link style={styles.link} src={data.githubUrl}>{data.githubUrl}</Link></Text>
-                        {
-                            data.summary === "" ? "" :
+        isMobile ?
+            <PDFDownloadLink className="button"
+                document={<DocCv data={data} lang={lang} />}
+                fileName="cv-creator"
+            >
+                Download pdf
+            </PDFDownloadLink>
+            :
+            <PDFViewer style={styles.viewer}>
+                <DocCv data={data} lang={lang} />
+            </PDFViewer>
+    );
+}
+
+function DocCv({ data, lang }: pdfProps) {
+    return (
+        <Document>
+            <Page size="A4" style={styles.page}>
+                <View style={styles.section}>
+                    <Text style={styles.name}>{data.name}</Text>
+                    <Text style={styles.info1}>{data.email} {data.phone === "" ? "" : "|"} {data.phone} {data.address === "" ? "" : "|"} {data.address}</Text>
+                    <Text style={styles.info1}><Link style={styles.link} src={data.linkedinUrl}>{data.linkedinUrl}</Link> {data.githubUrl === "" ? "" : "|"} <Link style={styles.link} src={data.githubUrl}>{data.githubUrl}</Link></Text>
+                    {
+                        data.summary === "" ? "" :
+                            <View style={styles.subSection}>
+                                <Text style={styles.title2}>{lang.summary}</Text>
+                                <Text style={styles.info2}>{data.summary}</Text>
+                            </View>
+                    }
+                </View>
+                {
+                    data.workExp.length <= 0 ? "" :
+                        <>
+                            <View style={styles.spacer} />
+                            <View style={styles.section}>
+                                <Text style={styles.title1}>{lang.workExp}</Text>
+                                {
+                                    data.workExp.map((value, index) => (
+                                        <View key={index} style={styles.subSection}>
+                                            <Text style={styles.title2}>{value.workJobTitle}</Text>
+                                            <Text style={styles.text1}>{value.workCompanyName}</Text>
+                                            <Text style={styles.text1}>{value.workLocation} {value.workBgDate === "" ? "" : "| " + value.workBgDate + (value.workEdDate == undefined || " " ? " - " + lang.today : " - " + value.workEdDate)}</Text>
+                                            <Text style={styles.text2}>{value.workDetails}</Text>
+                                        </View>
+                                    ))
+                                }
+                            </View>
+                        </>
+                }
+                {
+                    data.eduHistory.length <= 0 ? "" :
+                        <>
+                            <View style={styles.spacer} />
+                            <View style={styles.section}>
+                                <Text style={styles.title1}>{lang.eduHistory}</Text>
+                                {
+                                    data.eduHistory.map((value, index) => (
+                                        <View key={index} style={styles.subSection}>
+                                            <Text style={styles.title2}>{value.schoolDegree} {value.schoolFieldStudy === "" ? "" : "|"} {value.schoolFieldStudy}</Text>
+                                            <Text style={styles.text1}>{value.schoolName}</Text>
+                                            <Text style={styles.text1}>{value.schoolLocation} {value.schoolBgDate === "" ? "" : "| " + value.schoolBgDate + (value.schoolEdDate === "" ? " - " + lang.today : " - " + value.schoolEdDate)}</Text>
+                                            <Text style={styles.text2}>{value.schoolDetails}</Text>
+                                        </View>
+                                    ))
+                                }
+                            </View>
+                        </>
+                }
+                {
+                    data.licensesCertif.length <= 0 ? "" :
+                        <>
+                            <View style={styles.spacer} />
+                            <View style={styles.section}>
+                                <Text style={styles.title1}>{lang.licensesCertif}</Text>
+                                {
+                                    data.licensesCertif.map((value, index) => (
+                                        <View key={index} style={styles.subSection}>
+                                            <Text style={styles.title2}>{value.licensesCertifName}</Text>
+                                            <Text style={styles.text1}>{value.licensesCertifOrg}</Text>
+                                        </View>
+                                    ))
+                                }
+                            </View>
+                        </>
+                }
+                {
+                    data.skills.length <= 0 ? "" :
+                        <>
+                            <View style={styles.spacer} />
+                            <View style={styles.section}>
+                                <Text style={styles.title1}>{lang.skills}</Text>
                                 <View style={styles.subSection}>
-                                    <Text style={styles.title2}>{lang.summary}</Text>
-                                    <Text style={styles.info2}>{data.summary}</Text>
+                                    <Text style={styles.text1}>
+                                        {
+                                            data.skills.map((value, index) => (
+                                                value + (index === data.skills.length - 1 ? "." : ", ")
+                                            ))
+                                        }
+                                    </Text>
                                 </View>
-                        }
-                    </View>
-                    {
-                        data.workExp.length <= 0 ? "" :
-                            <>
-                                <View style={styles.spacer} />
-                                <View style={styles.section}>
-                                    <Text style={styles.title1}>{lang.workExp}</Text>
-                                    {
-                                        data.workExp.map((value, index) => (
-                                            <View key={index} style={styles.subSection}>
-                                                <Text style={styles.title2}>{value.workJobTitle}</Text>
-                                                <Text style={styles.text1}>{value.workCompanyName}</Text>
-                                                <Text style={styles.text1}>{value.workLocation} {value.workBgDate === "" ? "" : "| " + value.workBgDate + (value.workEdDate == undefined || " " ? " - " + lang.today : " - " + value.workEdDate)}</Text>
-                                                <Text style={styles.text2}>{value.workDetails}</Text>
-                                            </View>
-                                        ))
-                                    }
-                                </View>
-                            </>
-                    }
-                    {
-                        data.eduHistory.length <= 0 ? "" :
-                            <>
-                                <View style={styles.spacer} />
-                                <View style={styles.section}>
-                                    <Text style={styles.title1}>{lang.eduHistory}</Text>
-                                    {
-                                        data.eduHistory.map((value, index) => (
-                                            <View key={index} style={styles.subSection}>
-                                                <Text style={styles.title2}>{value.schoolDegree} {value.schoolFieldStudy === "" ? "" : "|"} {value.schoolFieldStudy}</Text>
-                                                <Text style={styles.text1}>{value.schoolName}</Text>
-                                                <Text style={styles.text1}>{value.schoolLocation} {value.schoolBgDate === "" ? "" : "| " + value.schoolBgDate + (value.schoolEdDate === "" ? " - " + lang.today : " - " + value.schoolEdDate)}</Text>
-                                                <Text style={styles.text2}>{value.schoolDetails}</Text>
-                                            </View>
-                                        ))
-                                    }
-                                </View>
-                            </>
-                    }
-                    {
-                        data.licensesCertif.length <= 0 ? "" :
-                            <>
-                                <View style={styles.spacer} />
-                                <View style={styles.section}>
-                                    <Text style={styles.title1}>{lang.licensesCertif}</Text>
-                                    {
-                                        data.licensesCertif.map((value, index) => (
-                                            <View key={index} style={styles.subSection}>
-                                                <Text style={styles.title2}>{value.licensesCertifName}</Text>
-                                                <Text style={styles.text1}>{value.licensesCertifOrg}</Text>
-                                            </View>
-                                        ))
-                                    }
-                                </View>
-                            </>
-                    }
-                    {
-                        data.skills.length <= 0 ? "" :
-                            <>
-                                <View style={styles.spacer} />
-                                <View style={styles.section}>
-                                    <Text style={styles.title1}>{lang.skills}</Text>
-                                    <View style={styles.subSection}>
-                                        <Text style={styles.text1}>
-                                            {
-                                                data.skills.map((value, index) => (
-                                                    value + (index === data.skills.length - 1 ? "." : ", ")
-                                                ))
-                                            }
-                                        </Text>
-                                    </View>
-                                </View>
-                            </>
-                    }
-                </Page>
-            </Document>
-        </PDFViewer>
+                            </View>
+                        </>
+                }
+            </Page>
+        </Document>
     );
 }
