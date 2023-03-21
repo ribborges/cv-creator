@@ -226,7 +226,7 @@ export default function CvForm(props: cvFormProps) {
                 <div className="flex-1">
                     <h2>{props.lang.personalInfo}</h2>
                 </div>
-                <PersonalInfo className="flex-3" lang={props.lang} data={formData} onChange={handleChange} />
+                <PersonalInfo className="flex-3 flex-col" lang={props.lang} data={formData} onChange={handleChange} />
             </div>
 
             <Spacer />
