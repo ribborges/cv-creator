@@ -1,14 +1,24 @@
-@import "./_input.scss";
+@import "../../../style/abstract/var";
 
 fieldset {
     padding: 15px;
     border-radius: $border-radius;
-    border: 2px solid rgba($light-color, 0.2);
+    border: 2px solid rgba($light-grey-color, 0.2);
     margin: 10px;
 
     legend {
         padding: 10px;
         border-radius: $border-radius;
-        border: 2px solid rgba($light-color, 0.2);
+        border: 2px solid rgba($light-grey-color, 0.2);
+    }
+}
+
+@media (prefers-color-scheme: light) {
+    fieldset {
+        border: 2px solid rgba($dark-grey-color, 0.2);
+
+        legend {
+            border: 2px solid rgba($dark-grey-color, 0.2);
+        }
     }
 }

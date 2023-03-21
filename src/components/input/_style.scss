@@ -1,5 +1,19 @@
-@import "./style/_input.scss";
 @import "../../style/abstract/var";
+
+input,
+textarea,
+select {
+    padding: 15px;
+    background-color: transparent;
+    height: auto;
+
+    &:focus {
+        outline-color: $primary-accent-color;
+        outline-width: 3px;
+        outline-style: solid;
+        outline-offset: -1px;
+    }
+}
 
 input[type="text"],
 input[type="phone"],
@@ -74,18 +88,49 @@ input[type="range"] {
 
 select {
     option {
-        background-color: rgba($dark-color, 0.4);
-    }
+        background-color: $dark-color;
 
-    option:checked {
-        background-color: $primary-accent-color;
+        &:checked {
+            background-color: $primary-accent-color;
+        }
     }
 
     optgroup {
-        background-color: rgba($dark-color, 0.4);
+        background-color: $dark-color;
+
         option {
-            background-color: rgba($dark-color, 0.4);
+            background-color: $dark-color;
         }
+    }
+}
+
+.input-group {
+    margin: 10px;
+    position: relative;
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: stretch;
+    width: auto;
+    height: auto;
+    box-sizing: border-box;
+    border-radius: $border-radius;
+    border: 2px solid rgba($light-grey-color, 0.2);
+    flex: 1;
+    transition: all 1s, height 0s, width 0s;
+
+    &:hover {
+        box-shadow: 0 0 100px 0 rgba($light-color, 0.2);
+    }
+
+    .input-addon {
+        background-color: transparent;
+        padding: 15px;
+        display: flex;
+        align-items: center;
+    }
+
+    input {
+        flex: auto;
     }
 }
 
@@ -116,58 +161,88 @@ select {
     flex-direction: column;
     width: 100%;
     height: auto;
+    border-radius: $border-radius;
+    border: 2px solid rgba($light-grey-color, 0.2);
+    transition: all 1s, height 0s, width 0s;
+
+    &:hover {
+        box-shadow: 0 0 100px 0 rgba($light-color, 0.2);
+    }
 
     .text-area-title {
         position: relative;
         display: flex;
         flex-wrap: wrap;
         align-items: stretch;
-        border-radius: $border-radius;
-        border: 2px solid rgba($light-grey-color, 0.2);
         width: 100%;
         border-bottom-right-radius: 0;
         border-bottom-left-radius: 0;
 
         .input-addon {
-            @include input-group-child();
             padding: 15px;
             display: flex;
-
-            &:first-child {
-                border-right: 2px solid rgba($light-color, 0.2);
-            }
         }
     }
 
-    .text-box {
-        position: relative;
-
-        textarea {
-            border-radius: $border-radius;
-            border-top: 0;
-            border-top-right-radius: 0;
-            border-top-left-radius: 0;
-            resize: vertical;
-            box-sizing: border-box;
-            width: 100%;
-        }
-
-        button {
-            position: absolute;
-            bottom: 17px;
-            right: 10px;
-        }
+    textarea {
+        border-radius: $border-radius;
+        border-top: 0;
+        border-top-right-radius: 0;
+        border-top-left-radius: 0;
+        resize: vertical;
+        box-sizing: border-box;
+        width: 100%;
     }
 }
 
 @media screen and (max-width: 700px) {
-    .text-area {
+    input,
+    textarea,
+    select {
+        padding: 10px;
+    }
+
+    .input-group {
         margin: 5px;
 
-        .text-area-title {
-            .input-addon {
-                padding: 10px;
+        .input-addon {
+            padding: 10px;
+        }
+    }
+
+    .text-area {
+        margin: 5px;
+    }
+}
+
+@media (prefers-color-scheme: light) {
+    select {
+        option {
+            background-color: $light-color;
+        }
+
+        optgroup {
+            background-color: $light-color;
+
+            option {
+                background-color: $light-color;
             }
+        }
+    }
+
+    .input-group {
+        border: 2px solid rgba($dark-grey-color, 0.2);
+
+        &:hover {
+            box-shadow: 0 0 100px 0 rgba($dark-color, 0.5);
+        }
+    }
+
+    .text-area {
+        border: 2px solid rgba($dark-grey-color, 0.2);
+
+        &:hover {
+            box-shadow: 0 0 100px 0 rgba($dark-color, 0.5);
         }
     }
 }

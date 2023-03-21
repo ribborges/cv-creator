@@ -27,15 +27,13 @@ export function Input(Props: inputProps) {
                         <span className={Props.icon + " input-addon"} />
                         <span className="input-addon">{Props.title}</span>
                     </div>
-                    <div className="text-box">
-                        <textarea
-                            id={Props.id}
-                            name={Props.name}
-                            value={Props.value}
-                            onChange={Props.onChange}
-                            placeholder={Props.placeholder}
-                        />
-                    </div>
+                    <textarea
+                        id={Props.id}
+                        name={Props.name}
+                        value={Props.value}
+                        onChange={Props.onChange}
+                        placeholder={Props.placeholder}
+                    />
                 </div>
             );
             break;
