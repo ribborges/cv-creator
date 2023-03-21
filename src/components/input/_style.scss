@@ -160,7 +160,6 @@ select {
     margin: 10px;
     display: flex;
     flex-direction: column;
-    width: 100%;
     height: auto;
     border-radius: $border-radius;
     border: 2px solid rgba($light-grey-color, 0.2);
@@ -191,7 +190,6 @@ select {
         border-top-right-radius: 0;
         border-top-left-radius: 0;
         resize: vertical;
-        box-sizing: border-box;
         width: 100%;
     }
 }
