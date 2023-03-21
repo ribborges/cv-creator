@@ -6,12 +6,13 @@ select {
     padding: 15px;
     background-color: transparent;
     height: auto;
+    transition: all 1s, height 0s, width 0s;
 
     &:focus {
-        outline-color: $primary-accent-color;
-        outline-width: 3px;
+        outline-color: rgba($primary-accent-color, 0.4);
+        outline-width: 5px;
         outline-style: solid;
-        outline-offset: -1px;
+        border-radius: $border-radius;
     }
 }
 
@@ -116,7 +117,7 @@ select {
     border-radius: $border-radius;
     border: 2px solid rgba($light-grey-color, 0.2);
     flex: 1;
-    transition: all 1s, height 0s, width 0s;
+    transition: 1s;
 
     &:hover {
         box-shadow: 0 0 100px 0 rgba($light-color, 0.2);
@@ -163,7 +164,7 @@ select {
     height: auto;
     border-radius: $border-radius;
     border: 2px solid rgba($light-grey-color, 0.2);
-    transition: all 1s, height 0s, width 0s;
+    transition: 1s;
 
     &:hover {
         box-shadow: 0 0 100px 0 rgba($light-color, 0.2);
