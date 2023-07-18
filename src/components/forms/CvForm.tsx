@@ -19,6 +19,7 @@ export interface FormData {
     address: string,
     linkedinUrl: string,
     githubUrl: string,
+    portfolioUrl: string,
     summary: string,
     eduHistory: Array<{
         schoolName: string,
@@ -57,6 +58,7 @@ export default function CvForm(props: cvFormProps) {
         address: '',
         linkedinUrl: '',
         githubUrl: '',
+        portfolioUrl: '',
         summary: '',
         eduHistory: [],
         workExp: [],
@@ -169,6 +171,7 @@ export default function CvForm(props: cvFormProps) {
             address: formData.address,
             linkedinUrl: formData.linkedinUrl,
             githubUrl: formData.githubUrl,
+            portfolioUrl: formData.portfolioUrl,
             summary: formData.summary,
             eduHistory: formData.eduHistory,
             workExp: formData.workExp,

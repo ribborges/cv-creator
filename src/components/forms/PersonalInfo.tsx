@@ -67,6 +67,15 @@ export default function PersonalInfo(props: personalInfoProps) {
                     icon="bi bi-github"
                     placeholder="GitHub"
                 />
+                <Input
+                    type="url"
+                    id="portfolioUrl"
+                    name="portfolioUrl"
+                    value={props.data.portfolioUrl}
+                    onChange={props.onChange}
+                    icon="bi bi-globe2"
+                    placeholder="Portfolio"
+                />
             </div>
             <Input type="textarea" id="summary" name="summary" value={props.data.summary} onChange={props.onChange} icon="bi bi-card-text" title={props.lang.summary} />
         </div>

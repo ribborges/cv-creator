@@ -3,25 +3,42 @@ import { displayText } from "../../App";
 import { FormData } from '../forms/CvForm';
 import { isMobile } from "react-device-detect";
 
-import FontRobotoSlabBlack from './RobotoSlab/RobotoSlab-Black.ttf';
 import FontRobotoSlabBold from './RobotoSlab/RobotoSlab-Bold.ttf';
 import FontRobotoSlabRegular from './RobotoSlab/RobotoSlab-Regular.ttf';
+import FontRobotoSlabLight from './RobotoSlab/RobotoSlab-Light.ttf';
+import FontRobotoSlabThin from './RobotoSlab/RobotoSlab-Thin.ttf';
+
+import FontMavenProBlack from './MavenPro/MavenPro-Black.ttf';
+import FontMavenProBold from './MavenPro/MavenPro-Bold.ttf';
+import FontMavenProMedium from './MavenPro/MavenPro-Medium.ttf';
+import FontMavenProRegular from './MavenPro/MavenPro-Regular.ttf';
+
+Font.register({
+    family: 'Maven-Pro',
+    src: FontMavenProRegular,
+    fontStyle: 'normal',
+    fontWeight: 'normal',
+    fonts: [{
+        src: FontMavenProMedium, fontStyle: 'normal', fontWeight: 'medium'
+    },{
+        src: FontMavenProBold, fontStyle: 'normal', fontWeight: 'bold'
+    },{
+        src: FontMavenProBlack, fontStyle: 'normal', fontWeight: 'ultrabold'
+    }]
+});
 
 Font.register({
     family: 'Roboto-Slab',
-    fonts: [
-        {
-            src: FontRobotoSlabRegular,
-        },
-        {
-            src: FontRobotoSlabBold,
-            fontWeight: 'bold',
-        },
-        {
-            src: FontRobotoSlabBlack,
-            fontWeight: 'black',
-        },
-    ],
+    src: FontRobotoSlabThin,
+    fontStyle: 'normal',
+    fontWeight: 'normal',
+    fonts: [{
+        src: FontRobotoSlabLight, fontStyle: 'normal', fontWeight: 'medium'
+    },{
+        src: FontRobotoSlabRegular, fontStyle: 'normal', fontWeight: 'bold'
+    },{
+        src: FontRobotoSlabBold, fontStyle: 'normal', fontWeight: 'ultrabold'
+    }]
 });
 
 const styles = StyleSheet.create({
@@ -32,8 +49,8 @@ const styles = StyleSheet.create({
     section: {
         marginLeft: 30,
         marginRight: 30,
-        marginTop: 20,
-        marginBottom: 20,
+        marginTop: 10,
+        marginBottom: 10,
     },
     subSection: {
         margin: 10,
@@ -46,7 +63,7 @@ const styles = StyleSheet.create({
         color: "#9500ff",
         fontSize: "30",
         fontFamily: 'Roboto-Slab',
-        fontWeight: 'black',
+        fontWeight: 'ultrabold',
     },
     info1: {
         color: "#1a1a1a",
@@ -75,7 +92,7 @@ const styles = StyleSheet.create({
     },
     title2: {
         color: "#1a1a1a",
-        fontSize: "15",
+        fontSize: "14",
         fontFamily: 'Roboto-Slab',
         fontWeight: 'bold',
     },
@@ -121,7 +138,7 @@ function DocCv({ data, lang }: pdfProps) {
                 <View style={styles.section}>
                     <Text style={styles.name}>{data.name}</Text>
                     <Text style={styles.info1}>{data.email} {data.phone === "" ? "" : "|"} {data.phone} {data.address === "" ? "" : "|"} {data.address}</Text>
-                    <Text style={styles.info1}><Link style={styles.link} src={data.linkedinUrl}>{data.linkedinUrl}</Link> {data.githubUrl === "" ? "" : "|"} <Link style={styles.link} src={data.githubUrl}>{data.githubUrl}</Link></Text>
+                    <Text style={styles.info1}><Link style={styles.link} src={data.linkedinUrl}>{data.linkedinUrl}</Link> {data.githubUrl === "" ? "" : "|"} <Link style={styles.link} src={data.githubUrl}>{data.githubUrl}</Link> {data.portfolioUrl === "" ? "" : "|"} <Link style={styles.link} src={data.portfolioUrl}>{data.portfolioUrl}</Link></Text>
                     {
                         data.summary === "" ? "" :
                             <View style={styles.subSection}>
@@ -169,23 +186,6 @@ function DocCv({ data, lang }: pdfProps) {
                         </>
                 }
                 {
-                    data.licensesCertif.length <= 0 ? "" :
-                        <>
-                            <View style={styles.spacer} />
-                            <View style={styles.section}>
-                                <Text style={styles.title1}>{lang.licensesCertif}</Text>
-                                {
-                                    data.licensesCertif.map((value, index) => (
-                                        <View key={index} style={styles.subSection}>
-                                            <Text style={styles.title2}>{value.licensesCertifName}</Text>
-                                            <Text style={styles.text1}>{value.licensesCertifOrg}</Text>
-                                        </View>
-                                    ))
-                                }
-                            </View>
-                        </>
-                }
-                {
                     data.skills.length <= 0 ? "" :
                         <>
                             <View style={styles.spacer} />
@@ -200,6 +200,23 @@ function DocCv({ data, lang }: pdfProps) {
                                         }
                                     </Text>
                                 </View>
+                            </View>
+                        </>
+                }
+                {
+                    data.licensesCertif.length <= 0 ? "" :
+                        <>
+                            <View style={styles.spacer} />
+                            <View style={styles.section}>
+                                <Text style={styles.title1}>{lang.licensesCertif}</Text>
+                                {
+                                    data.licensesCertif.map((value, index) => (
+                                        <View key={index} style={styles.subSection}>
+                                            <Text style={styles.title2}>{value.licensesCertifName}</Text>
+                                            <Text style={styles.text1}>{value.licensesCertifOrg}</Text>
+                                        </View>
+                                    ))
+                                }
                             </View>
                         </>
                 }
