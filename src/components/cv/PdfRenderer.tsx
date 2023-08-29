@@ -43,6 +43,8 @@ Font.register({
 
 const styles = StyleSheet.create({
     page: {
+        paddingTop: 25,
+        paddingBottom: 25,
         backgroundColor: "#eeeeee",
         color: "#1a1a1a",
     },
@@ -53,7 +55,7 @@ const styles = StyleSheet.create({
         marginBottom: 10,
     },
     subSection: {
-        margin: 10,
+        margin: 5,
     },
     viewer: {
         width: "100%",
@@ -189,7 +191,7 @@ function DocCv({ data, lang }: pdfProps) {
                     data.skills.length <= 0 ? "" :
                         <>
                             <View style={styles.spacer} />
-                            <View style={styles.section}>
+                            <View style={styles.section} wrap={false}>
                                 <Text style={styles.title1}>{lang.skills}</Text>
                                 <View style={styles.subSection}>
                                     <Text style={styles.text1}>
