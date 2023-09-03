@@ -8,25 +8,6 @@ import FontRobotoSlabRegular from './RobotoSlab/RobotoSlab-Regular.ttf';
 import FontRobotoSlabLight from './RobotoSlab/RobotoSlab-Light.ttf';
 import FontRobotoSlabThin from './RobotoSlab/RobotoSlab-Thin.ttf';
 
-import FontMavenProBlack from './MavenPro/MavenPro-Black.ttf';
-import FontMavenProBold from './MavenPro/MavenPro-Bold.ttf';
-import FontMavenProMedium from './MavenPro/MavenPro-Medium.ttf';
-import FontMavenProRegular from './MavenPro/MavenPro-Regular.ttf';
-
-Font.register({
-    family: 'Maven-Pro',
-    src: FontMavenProRegular,
-    fontStyle: 'normal',
-    fontWeight: 'normal',
-    fonts: [{
-        src: FontMavenProMedium, fontStyle: 'normal', fontWeight: 'medium'
-    }, {
-        src: FontMavenProBold, fontStyle: 'normal', fontWeight: 'bold'
-    }, {
-        src: FontMavenProBlack, fontStyle: 'normal', fontWeight: 'ultrabold'
-    }]
-});
-
 Font.register({
     family: 'Roboto-Slab',
     src: FontRobotoSlabThin,
@@ -49,13 +30,14 @@ const styles = StyleSheet.create({
         color: "#1a1a1a",
     },
     section: {
-        marginLeft: 30,
-        marginRight: 30,
-        marginTop: 10,
-        marginBottom: 10,
+        paddingLeft: 30,
+        paddingRight: 30,
     },
     subSection: {
-        margin: 5,
+        paddingLeft: 5,
+        paddingRight: 5,
+        paddingTop: 5,
+        paddingBottom: 5,
     },
     viewer: {
         width: "100%",
@@ -63,44 +45,47 @@ const styles = StyleSheet.create({
     },
     name: {
         color: "#9500ff",
-        fontSize: "30",
+        fontSize: "22",
         fontFamily: 'Roboto-Slab',
         fontWeight: 'ultrabold',
     },
     info1: {
         color: "#1a1a1a",
-        fontSize: "10",
+        fontSize: "8",
         fontFamily: 'Roboto-Slab',
         fontWeight: 'bold',
     },
     info2: {
         color: "#1a1a1a",
-        fontSize: "10",
+        fontSize: "9",
         fontFamily: 'Roboto-Slab',
         textAlign: 'justify',
+        fontWeight: 'medium',
     },
     spacer: {
         borderBottomColor: "#333333",
         borderBottomWidth: "1px",
+        marginTop: 10,
+        marginBottom: 10,
     },
     link: {
         color: "#ea00ff",
     },
     title1: {
         color: "#1a1a1a",
-        fontSize: "20",
+        fontSize: "12",
         fontFamily: 'Roboto-Slab',
-        fontWeight: 'bold',
+        fontWeight: 'ultrabold',
     },
     title2: {
         color: "#1a1a1a",
-        fontSize: "14",
+        fontSize: "12",
         fontFamily: 'Roboto-Slab',
         fontWeight: 'bold',
     },
     text1: {
         color: "#1a1a1a",
-        fontSize: "12",
+        fontSize: "11",
         fontFamily: 'Roboto-Slab',
     },
     text2: {
@@ -109,6 +94,7 @@ const styles = StyleSheet.create({
         fontFamily: 'Roboto-Slab',
         marginLeft: 15,
         textAlign: 'justify',
+        fontWeight: 'medium',
     },
 });
 

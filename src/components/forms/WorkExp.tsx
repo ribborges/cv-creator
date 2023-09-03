@@ -20,7 +20,7 @@ interface workExpProps {
 
 export default function WorkExp(props: workExpProps) {
     return (
-        <Fieldset className={props.className} legend="Work experience">
+        <Fieldset className={props.className} legend={props.lang.workExp}>
             <div className="flex-container">
                 <Input
                     type="text"

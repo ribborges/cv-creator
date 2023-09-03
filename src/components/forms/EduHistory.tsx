@@ -21,7 +21,7 @@ interface eduHistoryProps {
 
 export default function EduHistory(props: eduHistoryProps) {
     return (
-        <Fieldset className={props.className} legend="Education history">
+        <Fieldset className={props.className} legend={props.lang.eduHistory}>
             <div className="flex-container">
                 <Input
                     type="text"
