@@ -6,17 +6,17 @@ import { FormData } from './CvForm';
 interface eduHistoryProps {
     id: number,
     value?: {
-        schoolName: string,
-        schoolDegree: string,
-        schoolFieldStudy: string,
-        schoolLocation: string,
-        schoolBgDate: string,
-        schoolEdDate: string,
-        schoolDetails: string;
+        schoolName?: string,
+        schoolDegree?: string,
+        schoolFieldStudy?: string,
+        schoolLocation?: string,
+        schoolBgDate?: string,
+        schoolEdDate?: string,
+        schoolDetails?: string;
     },
     lang: displayText,
     className?: string,
-    onChange: (event: React.ChangeEvent<HTMLInputElement>, index: number, key: keyof FormData["eduHistory"][number]) => void;
+    onChange: (event: React.ChangeEvent<HTMLInputElement>, index: number, key: "schoolName" | "schoolDegree" | "schoolFieldStudy" | "schoolLocation" | "schoolBgDate" | "schoolEdDate" | "schoolDetails") => void;
 }
 
 export default function EduHistory(props: eduHistoryProps) {

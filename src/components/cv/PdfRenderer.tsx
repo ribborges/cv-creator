@@ -20,9 +20,9 @@ Font.register({
     fontWeight: 'normal',
     fonts: [{
         src: FontMavenProMedium, fontStyle: 'normal', fontWeight: 'medium'
-    },{
+    }, {
         src: FontMavenProBold, fontStyle: 'normal', fontWeight: 'bold'
-    },{
+    }, {
         src: FontMavenProBlack, fontStyle: 'normal', fontWeight: 'ultrabold'
     }]
 });
@@ -34,9 +34,9 @@ Font.register({
     fontWeight: 'normal',
     fonts: [{
         src: FontRobotoSlabLight, fontStyle: 'normal', fontWeight: 'medium'
-    },{
+    }, {
         src: FontRobotoSlabRegular, fontStyle: 'normal', fontWeight: 'bold'
-    },{
+    }, {
         src: FontRobotoSlabBold, fontStyle: 'normal', fontWeight: 'ultrabold'
     }]
 });
@@ -138,9 +138,37 @@ function DocCv({ data, lang }: pdfProps) {
         <Document>
             <Page size="A4" style={styles.page}>
                 <View style={styles.section}>
-                    <Text style={styles.name}>{data.name}</Text>
-                    <Text style={styles.info1}>{data.email} {data.phone === "" ? "" : "|"} {data.phone} {data.address === "" ? "" : "|"} {data.address}</Text>
-                    <Text style={styles.info1}><Link style={styles.link} src={data.linkedinUrl}>{data.linkedinUrl}</Link> {data.githubUrl === "" ? "" : "|"} <Link style={styles.link} src={data.githubUrl}>{data.githubUrl}</Link> {data.portfolioUrl === "" ? "" : "|"} <Link style={styles.link} src={data.portfolioUrl}>{data.portfolioUrl}</Link></Text>
+                    {
+                        data.name && (
+                            <Text style={styles.name}>{data.name}</Text>
+                        )
+                    }
+                    <Text style={styles.info1}>
+                        {data.email && data.email !== "" ? data.email : ""}
+                        {data.phone && data.phone !== "" ? " | " : ""}
+                        {data.phone && data.phone !== "" ? data.phone : ""}
+                        {data.address && data.address !== "" ? " | " : ""}
+                        {data.address && data.address !== "" ? data.address : ""}
+                    </Text>
+                    <Text style={styles.info1}>
+                        {
+                            data.linkedinUrl && (
+                                <Link style={styles.link} src={data.linkedinUrl}>{data.linkedinUrl}</Link>
+                            )
+                        }
+                        {data.githubUrl && data.githubUrl !== "" ? " | " : ""}
+                        {
+                            data.githubUrl && (
+                                <Link style={styles.link} src={data.githubUrl}>{data.githubUrl}</Link>
+                            )
+                        }
+                        {data.portfolioUrl && data.portfolioUrl !== "" ? " | " : ""}
+                        {
+                            data.portfolioUrl && (
+                                <Link style={styles.link} src={data.portfolioUrl}>{data.portfolioUrl}</Link>
+                            )
+                        }
+                    </Text>
                     {
                         data.summary === "" ? "" :
                             <View style={styles.subSection}>
@@ -150,77 +178,101 @@ function DocCv({ data, lang }: pdfProps) {
                     }
                 </View>
                 {
-                    data.workExp.length <= 0 ? "" :
+                    data.workExp && data.workExp.length > 0 ?
                         <>
                             <View style={styles.spacer} />
                             <View style={styles.section}>
                                 <Text style={styles.title1}>{lang.workExp}</Text>
                                 {
-                                    data.workExp.map((value, index) => (
+                                    data.workExp && data.workExp.map((value, index) => (
                                         <View key={index} style={styles.subSection}>
                                             <Text style={styles.title2}>{value.workJobTitle}</Text>
                                             <Text style={styles.text1}>{value.workCompanyName}</Text>
-                                            <Text style={styles.text1}>{value.workLocation} {value.workBgDate === "" ? "" : "| " + value.workBgDate + (value.workEdDate == undefined || " " ? " - " + lang.today : " - " + value.workEdDate)}</Text>
+                                            <Text style={styles.text1}>{value.workLocation} {value.workBgDate === "" ? "" : "| " + value.workBgDate?.split("-")[1] + "/" + value.workBgDate?.split("-")[0] + (value.workEdDate == undefined || " " ? " - " + lang.today : " - " + value.workEdDate?.split("-")[1] + "/" + value.workEdDate?.split("-")[0])}</Text>
                                             <Text style={styles.text2}>{value.workDetails}</Text>
                                         </View>
                                     ))
                                 }
                             </View>
-                        </>
+                        </> : ""
                 }
                 {
-                    data.eduHistory.length <= 0 ? "" :
+                    data.eduHistory && data.eduHistory.length > 0 ?
                         <>
                             <View style={styles.spacer} />
                             <View style={styles.section}>
                                 <Text style={styles.title1}>{lang.eduHistory}</Text>
                                 {
-                                    data.eduHistory.map((value, index) => (
+                                    data.eduHistory && data.eduHistory.map((value, index) => (
                                         <View key={index} style={styles.subSection}>
                                             <Text style={styles.title2}>{value.schoolDegree} {value.schoolFieldStudy === "" ? "" : "|"} {value.schoolFieldStudy}</Text>
                                             <Text style={styles.text1}>{value.schoolName}</Text>
-                                            <Text style={styles.text1}>{value.schoolLocation} {value.schoolBgDate === "" ? "" : "| " + value.schoolBgDate + (value.schoolEdDate === "" ? " - " + lang.today : " - " + value.schoolEdDate)}</Text>
+                                            <Text style={styles.text1}>{value.schoolLocation} {value.schoolBgDate === "" ? "" : "| " + value.schoolBgDate?.split("-")[1] + "/" + value.schoolBgDate?.split("-")[0] + (value.schoolEdDate === "" ? " - " + lang.today : " - " + value.schoolEdDate?.split("-")[1] + "/" + value.schoolEdDate?.split("-")[0])}</Text>
                                             <Text style={styles.text2}>{value.schoolDetails}</Text>
                                         </View>
                                     ))
                                 }
                             </View>
-                        </>
+                        </> : ""
                 }
                 {
-                    data.skills.length <= 0 ? "" :
+                    data.skills && data.skills.length > 0 ?
                         <>
                             <View style={styles.spacer} />
                             <View style={styles.section} wrap={false}>
                                 <Text style={styles.title1}>{lang.skills}</Text>
                                 <View style={styles.subSection}>
-                                    <Text style={styles.text1}>
+                                    <Text style={styles.text2}>
                                         {
-                                            data.skills.map((value, index) => (
-                                                value + (index === data.skills.length - 1 ? "." : ", ")
+                                            data.skills && data.skills.map((value, index) => (
+                                                value + (data.skills && index === data.skills.length - 1 ? "." : ", ")
                                             ))
                                         }
                                     </Text>
                                 </View>
                             </View>
-                        </>
+                        </> : ""
                 }
                 {
-                    data.licensesCertif.length <= 0 ? "" :
+                    data.languages && data.languages.length > 0 ?
+                        <>
+                            <View style={styles.spacer} />
+                            <View style={styles.section}>
+                                <Text style={styles.title1}>{lang.languages}</Text>
+                                {
+                                    data.languages && data.languages.map((value, index) => (
+                                        <View key={index} style={styles.subSection}>
+                                            <Text style={styles.text1}>{value.language}</Text>
+                                            <Text style={styles.text2}>
+                                                {value.level === "select" ? "" : ""}
+                                                {value.level === "elementary" ? lang.elementary : ""}
+                                                {value.level === "limited" ? lang.limited : ""}
+                                                {value.level === "professional" ? lang.professional : ""}
+                                                {value.level === "full" ? lang.full : ""}
+                                                {value.level === "native" ? lang.native : ""}
+                                            </Text>
+                                        </View>
+                                    ))
+                                }
+                            </View>
+                        </> : ""
+                }
+                {
+                    data.licensesCertif && data.licensesCertif.length > 0 ?
                         <>
                             <View style={styles.spacer} />
                             <View style={styles.section}>
                                 <Text style={styles.title1}>{lang.licensesCertif}</Text>
                                 {
-                                    data.licensesCertif.map((value, index) => (
+                                    data.licensesCertif && data.licensesCertif.map((value, index) => (
                                         <View key={index} style={styles.subSection}>
-                                            <Text style={styles.title2}>{value.licensesCertifName}</Text>
-                                            <Text style={styles.text1}>{value.licensesCertifOrg}</Text>
+                                            <Text style={styles.text1}>{value.licensesCertifName}</Text>
+                                            <Text style={styles.text2}>{value.licensesCertifOrg}</Text>
                                         </View>
                                     ))
                                 }
                             </View>
-                        </>
+                        </> : ""
                 }
             </Page>
         </Document>

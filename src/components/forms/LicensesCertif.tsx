@@ -5,12 +5,12 @@ import { FormData } from './CvForm';
 interface licensesCertifProps {
     id: number,
     value?: {
-        licensesCertifName: string,
-        licensesCertifOrg: string;
+        licensesCertifName?: string,
+        licensesCertifOrg?: string;
     },
     lang: displayText,
     className?: string,
-    onChange: (event: React.ChangeEvent<HTMLInputElement>, index: number, key: keyof FormData["licensesCertif"][number]) => void;
+    onChange: (event: React.ChangeEvent<HTMLInputElement>, index: number, key: "licensesCertifName" | "licensesCertifOrg") => void;
 }
 
 export default function Skill(props: licensesCertifProps) {

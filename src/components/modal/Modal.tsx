@@ -8,6 +8,7 @@ interface modalProps {
     buttonText?: string,
     title?: string,
     className?: string,
+    disabled?: boolean,
     children?: ReactNode,
 }
 
@@ -24,7 +25,7 @@ export default function Modal(props: modalProps) {
 
     return (
         <>
-            <Button className={props.className} onClick={openModal}>{props.buttonText}</Button>
+            <Button className={props.className} onClick={openModal} disabled={props.disabled == undefined ? false : props.disabled}>{props.buttonText}</Button>
 
             {isOpen && (
                 <div className="modal">

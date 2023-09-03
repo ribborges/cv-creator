@@ -11,38 +11,43 @@ import { displayText } from '../../App';
 import Skill from './Skill';
 import LicensesCertif from './LicensesCertif';
 import { Input } from '../input/Input';
+import Languages from './Languages';
 
 export interface FormData {
-    name: string,
-    phone: string,
-    email: string,
-    address: string,
-    linkedinUrl: string,
-    githubUrl: string,
-    portfolioUrl: string,
-    summary: string,
-    eduHistory: Array<{
-        schoolName: string,
-        schoolDegree: string,
-        schoolFieldStudy: string,
-        schoolLocation: string,
-        schoolBgDate: string,
-        schoolEdDate: string,
-        schoolDetails: string;
+    name?: string,
+    phone?: string,
+    email?: string,
+    address?: string,
+    linkedinUrl?: string,
+    githubUrl?: string,
+    portfolioUrl?: string,
+    summary?: string,
+    eduHistory?: Array<{
+        schoolName?: string,
+        schoolDegree?: string,
+        schoolFieldStudy?: string,
+        schoolLocation?: string,
+        schoolBgDate?: string,
+        schoolEdDate?: string,
+        schoolDetails?: string;
     }>,
-    workExp: Array<{
-        workCompanyName: string,
-        workJobTitle: string,
-        workLocation: string,
-        workBgDate: string,
-        workEdDate: string,
-        workDetails: string;
+    workExp?: Array<{
+        workCompanyName?: string,
+        workJobTitle?: string,
+        workLocation?: string,
+        workBgDate?: string,
+        workEdDate?: string,
+        workDetails?: string;
     }>,
-    licensesCertif: Array<{
-        licensesCertifName: string,
-        licensesCertifOrg: string;
+    licensesCertif?: Array<{
+        licensesCertifName?: string,
+        licensesCertifOrg?: string;
     }>,
-    skills: Array<string>;
+    skills?: Array<string>,
+    languages?: Array<{
+        language?: string,
+        level?: string;
+    }>;
 }
 
 interface cvFormProps {
@@ -63,21 +68,24 @@ export default function CvForm(props: cvFormProps) {
         eduHistory: [],
         workExp: [],
         licensesCertif: [],
-        skills: []
+        skills: [],
+        languages: []
     });
+
+    const [disableBtns, setDisableBtns] = useState(false);
 
     const handleChange = (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         setFormData({ ...formData, [event.target.name]: event.target.value });
     };
 
-    const handleEduHistoryChange = (event: React.ChangeEvent<HTMLInputElement>, index: number, key: keyof FormData["eduHistory"][number]) => {
-        const newEduHistory = [...formData.eduHistory];
+    const handleEduHistoryChange = (event: React.ChangeEvent<HTMLInputElement>, index: number, key: "schoolName" | "schoolDegree" | "schoolFieldStudy" | "schoolLocation" | "schoolBgDate" | "schoolEdDate" | "schoolDetails") => {
+        const newEduHistory = [...(formData.eduHistory || [])];
         newEduHistory[index][key] = event.target.value;
         setFormData({ ...formData, eduHistory: newEduHistory });
     };
 
     const handleAddEduHistory = () => {
-        const newEduHistory = [...formData.eduHistory, {
+        const newEduHistory = [...(formData.eduHistory || []), {
             schoolName: '',
             schoolDegree: '',
             schoolFieldStudy: '',
@@ -91,19 +99,19 @@ export default function CvForm(props: cvFormProps) {
     };
 
     const handleRemoveEduHistory = (index: number) => {
-        const newEduHistory = [...formData.eduHistory];
+        const newEduHistory = [...(formData.eduHistory || [])];
         newEduHistory.splice(index, 1);
         setFormData({ ...formData, eduHistory: newEduHistory });
     };
 
-    const handleWorkExpChange = (event: React.ChangeEvent<HTMLInputElement>, index: number, key: keyof FormData["workExp"][number]) => {
-        const newWorkExp = [...formData.workExp];
+    const handleWorkExpChange = (event: React.ChangeEvent<HTMLInputElement>, index: number, key: "workCompanyName" | "workJobTitle" | "workLocation" | "workBgDate" | "workEdDate" | "workDetails") => {
+        const newWorkExp = [...(formData.workExp || [])];
         newWorkExp[index][key] = event.target.value;
         setFormData({ ...formData, workExp: newWorkExp });
     };
 
     const handleAddWorkExp = () => {
-        const newWorkExp = [...formData.workExp, {
+        const newWorkExp = [...(formData.workExp || []), {
             workCompanyName: '',
             workJobTitle: '',
             workLocation: '',
@@ -116,19 +124,19 @@ export default function CvForm(props: cvFormProps) {
     };
 
     const handleRemoveWorkExp = (index: number) => {
-        const newWorkExp = [...formData.workExp];
+        const newWorkExp = [...(formData.workExp || [])];
         newWorkExp.splice(index, 1);
         setFormData({ ...formData, workExp: newWorkExp });
     };
 
-    const handleLicensesCertifChange = (event: React.ChangeEvent<HTMLInputElement>, index: number, key: keyof FormData["licensesCertif"][number]) => {
-        const newLicensesCertif = [...formData.licensesCertif];
+    const handleLicensesCertifChange = (event: React.ChangeEvent<HTMLInputElement>, index: number, key: "licensesCertifName" | "licensesCertifOrg") => {
+        const newLicensesCertif = [...(formData.licensesCertif || [])];
         newLicensesCertif[index][key] = event.target.value;
         setFormData({ ...formData, licensesCertif: newLicensesCertif });
     };
 
     const handleAddLicensesCertif = () => {
-        const newLicensesCertif = [...formData.licensesCertif, {
+        const newLicensesCertif = [...(formData.licensesCertif || []), {
             licensesCertifName: '',
             licensesCertifOrg: ''
         }];
@@ -136,24 +144,44 @@ export default function CvForm(props: cvFormProps) {
     };
 
     const handleRemoveLicensesCertif = (index: number) => {
-        const newLicensesCertif = [...formData.licensesCertif];
+        const newLicensesCertif = [...(formData.licensesCertif || [])];
         newLicensesCertif.splice(index, 1);
         setFormData({ ...formData, licensesCertif: newLicensesCertif });
     };
 
+    const handleLanguagesChange = (event: React.ChangeEvent<HTMLInputElement>, index: number, key: "language" | "level") => {
+        const newLanguage = [...formData.languages || []];
+        newLanguage[index][key] = event.target.value;
+        setFormData({ ...formData, languages: newLanguage });
+    };
+
+    const handleAddLanguages = () => {
+        const newLanguage = [...(formData.languages || []), {
+            language: '',
+            level: ''
+        }];
+        setFormData({ ...formData, languages: newLanguage });
+    };
+
+    const handleRemoveLanguages = (index: number) => {
+        const newLanguage = [...(formData.languages || [])];
+        newLanguage.splice(index, 1);
+        setFormData({ ...formData, languages: newLanguage });
+    };
+
     const handleSkillsChange = (event: React.ChangeEvent<HTMLInputElement>, index: number) => {
-        const newSkills = [...formData.skills];
+        const newSkills = [...(formData.skills || [])];
         newSkills[index] = event.target.value;
         setFormData({ ...formData, skills: newSkills });
     };
 
     const handleAddSkills = () => {
-        const newSkills = [...formData.skills, ''];
+        const newSkills = [...(formData.skills || []), ''];
         setFormData({ ...formData, skills: newSkills });
     };
 
     const handleRemoveSkills = (index: number) => {
-        const newSkills = [...formData.skills];
+        const newSkills = [...(formData.skills || [])];
         newSkills.splice(index, 1);
         setFormData({ ...formData, skills: newSkills });
     };
@@ -176,12 +204,12 @@ export default function CvForm(props: cvFormProps) {
             eduHistory: formData.eduHistory,
             workExp: formData.workExp,
             licensesCertif: formData.licensesCertif,
+            languages: formData.languages,
             skills: formData.skills
         };
 
         switch (name) {
             case "export":
-                //const form = new FormData(event.currentTarget);
                 const jsonString = JSON.stringify(data, null, 2);
                 const blob = new Blob([jsonString], { type: "application/json" });
                 const url = URL.createObjectURL(blob);
@@ -240,7 +268,7 @@ export default function CvForm(props: cvFormProps) {
                 </div>
                 <div className="flex-container flex-3 flex-col">
                     {
-                        formData.eduHistory.map((value, index) => (
+                        formData.eduHistory?.map((value, index) => (
                             <div key={index} className="flex-container flex-col">
                                 <EduHistory className="flex-1" lang={props.lang} id={index} value={value} onChange={handleEduHistoryChange} />
                                 <Button type="button" onClick={() => handleRemoveEduHistory(index)}><i className="bi bi-trash-fill" /></Button>
@@ -259,7 +287,7 @@ export default function CvForm(props: cvFormProps) {
                 </div>
                 <div className="flex-container flex-3 flex-col">
                     {
-                        formData.workExp.map((value, index) => (
+                        formData.workExp?.map((value, index) => (
                             <div key={index} className="flex-container flex-col">
                                 <WorkExp className="flex-1" lang={props.lang} id={index} value={value} onChange={handleWorkExpChange} />
                                 <Button type="button" onClick={() => handleRemoveWorkExp(index)}><i className="bi bi-trash-fill" /></Button>
@@ -278,8 +306,8 @@ export default function CvForm(props: cvFormProps) {
                 </div>
                 <div className="flex-container flex-3 flex-col">
                     {
-                        formData.licensesCertif.map((value, index) => (
-                            <div className="flex-container">
+                        formData.licensesCertif?.map((value, index) => (
+                            <div key={index} className="flex-container">
                                 <LicensesCertif className="flex-1" lang={props.lang} id={index} value={value} onChange={handleLicensesCertifChange} />
                                 <Button type="button" onClick={() => handleRemoveLicensesCertif(index)}><i className="bi bi-trash-fill" /></Button>
                             </div>
@@ -293,12 +321,31 @@ export default function CvForm(props: cvFormProps) {
 
             <div className="flex-container">
                 <div className="flex-1">
+                    <h2>{props.lang.languages}</h2>
+                </div>
+                <div className="flex-container flex-3 flex-col">
+                    {
+                        formData.languages?.map((value, index) => (
+                            <div key={index} className="flex-container">
+                                <Languages onSelect={setDisableBtns} className="flex-1" lang={props.lang} id={index} value={value} onChange={handleLanguagesChange} />
+                                <Button type="button" onClick={() => handleRemoveLanguages(index)}><i className="bi bi-trash-fill" /></Button>
+                            </div>
+                        ))
+                    }
+                    <Button type="button" onClick={handleAddLanguages}><i className="bi bi-plus-lg" /></Button>
+                </div>
+            </div>
+
+            <Spacer />
+
+            <div className="flex-container">
+                <div className="flex-1">
                     <h2>{props.lang.skills}</h2>
                 </div>
                 <div className="flex-container flex-3 flex-col">
                     {
-                        formData.skills.map((value, index) => (
-                            <div className="flex-container">
+                        formData.skills?.map((value, index) => (
+                            <div key={index} className="flex-container">
                                 <Skill className="flex-1" lang={props.lang} id={index} value={value} onChange={handleSkillsChange} />
                                 <Button type="button" onClick={() => handleRemoveSkills(index)}><i className="bi bi-trash-fill" /></Button>
                             </div>
@@ -311,14 +358,12 @@ export default function CvForm(props: cvFormProps) {
             <Spacer />
 
             <div className="flex-container">
-                <Button className="flex-1" type="button" name="export" onClick={handleSubmit} >{props.lang.export} .json</Button>
-                <div className="flex-1 flex-container flex-col button" style={{ textAlign: 'center' }}>{props.lang.import} .json <Input icon="bi-filetype-json" accept=".json" type="file" placeholder="Importar .json" onChange={readFile} /></div>
-                <Modal className="flex-1" title={props.lang.viewTitle} buttonText={props.lang.view + " .pdf"}>
+                <Button className="flex-1" type="button" name="export" onClick={handleSubmit} disabled={disableBtns} >{props.lang.export} .json</Button>
+                <div className="flex-1 flex-container flex-col button" style={{ textAlign: 'center' }}>{props.lang.import} .json <Input disabled={disableBtns} icon="bi-filetype-json" accept=".json" type="file" placeholder="Importar .json" onChange={readFile} /></div>
+                <Modal className="flex-1" title={props.lang.viewTitle} buttonText={props.lang.view + " .pdf"} disabled={disableBtns}>
                     <PdfRenderer lang={props.lang} data={formData} />
                 </Modal>
             </div>
         </form>
     );
 }
-
-// <Button className="flex-1" type="button" name="import" onClick={handleSubmit} disabled>{props.lang.import} .json</Button>

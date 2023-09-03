@@ -6,16 +6,16 @@ import { FormData } from './CvForm';
 interface workExpProps {
     id: number,
     value?: {
-        workCompanyName: string,
-        workJobTitle: string,
-        workLocation: string,
-        workBgDate: string,
-        workEdDate: string,
-        workDetails: string;
+        workCompanyName?: string,
+        workJobTitle?: string,
+        workLocation?: string,
+        workBgDate?: string,
+        workEdDate?: string,
+        workDetails?: string;
     },
     lang: displayText,
     className?: string,
-    onChange: (event: React.ChangeEvent<HTMLInputElement>, index: number, key: keyof FormData["workExp"][number]) => void;
+    onChange: (event: React.ChangeEvent<HTMLInputElement>, index: number, key: "workCompanyName" | "workJobTitle" | "workLocation" | "workBgDate" | "workEdDate" | "workDetails") => void;
 }
 
 export default function WorkExp(props: workExpProps) {

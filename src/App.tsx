@@ -30,6 +30,13 @@ export interface displayText {
   today: string,
   licensesCertif: string,
   licensesCertifOrg: string,
+  languages: string,
+  select: string,
+  elementary: string,
+  limited: string,
+  professional: string,
+  full: string,
+  native: string,
   skills: string,
   skill: string;
 }
@@ -60,6 +67,13 @@ export default function App() {
     today: "Today",
     licensesCertif: "Licenses & Certifications",
     licensesCertifOrg: "Organization",
+    languages: "Languages",
+    select: "Select",
+    elementary: "Elementary proficiency",
+    limited: "Limited proficiency",
+    professional: "Professional proficiency",
+    full: "Full professional proficiency",
+    native: "Native or bilingual proficiency",
     skills: "Skills",
     skill: "Skill"
   });
@@ -94,6 +108,13 @@ export default function App() {
           today: "Today",
           licensesCertif: "Licenses & Certifications",
           licensesCertifOrg: "Organization",
+          languages: "Languages",
+          select: "Select",
+          elementary: "Elementary proficiency",
+          limited: "Limited proficiency",
+          professional: "Professional proficiency",
+          full: "Full professional proficiency",
+          native: "Native or bilingual proficiency",
           skills: "Skills",
           skill: "Skill"
         })
@@ -124,6 +145,13 @@ export default function App() {
           today: "Hoje",
           licensesCertif: "Licenças & Certificações",
           licensesCertifOrg: "Organização",
+          languages: "Idiomas",
+          select: "Selecione",
+          elementary: "Nível básico",
+          limited: "Nível básico a intermediário",
+          professional: "Nível intermediário",
+          full: "Nível avançado",
+          native: "Fluente ou nativo",
           skills: "Habilidades",
           skill: "Habilidade"
         })
