@@ -1,6 +1,7 @@
-import { displayText } from '../../App';
+import { AwardFill, BuildingFill } from 'react-bootstrap-icons';
+
+import { displayText } from '../../types/lang';
 import { Input } from '../input/Input';
-import { FormData } from './CvForm';
 
 interface licensesCertifProps {
     id: number,
@@ -22,7 +23,7 @@ export default function Skill(props: licensesCertifProps) {
                 name={"skill" + props.id}
                 value={props.value?.licensesCertifName}
                 onChange={(e: React.ChangeEvent<HTMLInputElement>) => props.onChange(e, props.id, "licensesCertifName")}
-                icon="bi bi-award-fill"
+                icon={<AwardFill />}
                 placeholder={props.lang.name}
             />
             <Input
@@ -31,7 +32,7 @@ export default function Skill(props: licensesCertifProps) {
                 name={"skill" + props.id}
                 value={props.value?.licensesCertifOrg}
                 onChange={(e: React.ChangeEvent<HTMLInputElement>) => props.onChange(e, props.id, "licensesCertifOrg")}
-                icon="bi bi-building-fill"
+                icon={<BuildingFill />}
                 placeholder={props.lang.licensesCertifOrg}
             />
         </div>

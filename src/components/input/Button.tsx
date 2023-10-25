@@ -15,6 +15,6 @@ interface ButtonProps {
 
 export function Button({type = "button", autofocus, disabled, id, name, value, onClick, children, className}: ButtonProps) {
     return (
-        <button className={className + " button"} type={type} id={id} name={name} value={value} autoFocus={autofocus} disabled={disabled} onClick={onClick}>{children}</button>
+        <button className={"button" + (className ? " " + className : "")} type={type} id={id} name={name} value={value} autoFocus={autofocus} disabled={disabled} onClick={onClick}>{children}</button>
     );
 }

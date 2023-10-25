@@ -5,14 +5,18 @@
     font-weight: 400;
 
     color-scheme: dark;
-    color: $light-color;
-    background-color: $dark-grey-color;
+    color: $secondary-light-color;
+    background-color: $secondary-dark-color;
 
     font-synthesis: none;
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     -webkit-text-size-adjust: 100%;
+}
+
+#root {
+    overflow: auto;
 }
 
 h1 {
@@ -93,7 +97,7 @@ a {
 
 @media (prefers-color-scheme: light) {
     :root {
-        color: $dark-color;
-        background-color: $light-grey-color;
+        color: $primary-dark-color;
+        background-color: $primary-light-color;
     }
 }

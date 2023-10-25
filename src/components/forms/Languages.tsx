@@ -1,6 +1,7 @@
-import { displayText } from '../../App';
+import { BarChartFill, Translate } from 'react-bootstrap-icons';
+
+import { displayText } from '../../types/lang';
 import { Input } from '../input/Input';
-import { FormData } from './CvForm';
 
 interface languagesProps {
     id: number,
@@ -23,7 +24,7 @@ export default function Languages(props: languagesProps) {
                 name={"language" + props.id}
                 value={props.value?.language}
                 onChange={(e: React.ChangeEvent<HTMLInputElement>) => props.onChange(e, props.id, "language")}
-                icon="bi bi-translate"
+                icon={<Translate />}
                 placeholder={props.lang.language}
             />
             <Input
@@ -32,7 +33,7 @@ export default function Languages(props: languagesProps) {
                 name={"language" + props.id}
                 value={props.value?.level}
                 onChange={(e: React.ChangeEvent<HTMLInputElement>) => props.onChange(e, props.id, "level")}
-                icon="bi bi-bar-chart-fill"
+                icon={<BarChartFill />}
             >
                 <option value="select" onSelect={() => props.onSelect(true)}>{props.lang.select}</option>
                 <option value="elementary" onSelect={() => props.onSelect(false)}>{props.lang.elementary}</option>

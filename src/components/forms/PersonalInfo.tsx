@@ -1,11 +1,13 @@
-import { displayText } from '../../App';
+import { EnvelopeFill, Fonts, GeoAltFill, Github, Globe, Linkedin, PencilFill, TelephoneFill } from 'react-bootstrap-icons';
+
+import { cvData } from '../../types/cvData';
+import { displayText } from '../../types/lang';
 import { Input } from '../input/Input';
-import { FormData } from './CvForm';
 
 interface personalInfoProps {
     className?: string,
     lang: displayText,
-    data: FormData,
+    data: cvData,
     onChange?: React.ChangeEventHandler<HTMLInputElement>,
 }
 
@@ -19,7 +21,7 @@ export default function PersonalInfo(props: personalInfoProps) {
                     name="name"
                     value={props.data.name}
                     onChange={props.onChange}
-                    icon="bi bi-fonts"
+                    icon={<Fonts />}
                     placeholder={props.lang.name}
                 />
                 <Input
@@ -28,7 +30,7 @@ export default function PersonalInfo(props: personalInfoProps) {
                     name="phone"
                     value={props.data.phone}
                     onChange={props.onChange}
-                    icon="bi bi-telephone"
+                    icon={<TelephoneFill />}
                     placeholder={props.lang.phone}
                 />
                 <Input
@@ -37,7 +39,7 @@ export default function PersonalInfo(props: personalInfoProps) {
                     name="email"
                     value={props.data.email}
                     onChange={props.onChange}
-                    icon="bi bi-envelope"
+                    icon={<EnvelopeFill />}
                     placeholder="Email"
                 />
                 <Input
@@ -46,7 +48,7 @@ export default function PersonalInfo(props: personalInfoProps) {
                     name="address"
                     value={props.data.address}
                     onChange={props.onChange}
-                    icon="bi bi-geo-alt"
+                    icon={<GeoAltFill />}
                     placeholder={props.lang.address}
                 />
                 <Input
@@ -55,7 +57,7 @@ export default function PersonalInfo(props: personalInfoProps) {
                     name="linkedinUrl"
                     value={props.data.linkedinUrl}
                     onChange={props.onChange}
-                    icon="bi bi-linkedin"
+                    icon={<Linkedin />}
                     placeholder="LinkedIn"
                 />
                 <Input
@@ -64,7 +66,7 @@ export default function PersonalInfo(props: personalInfoProps) {
                     name="githubUrl"
                     value={props.data.githubUrl}
                     onChange={props.onChange}
-                    icon="bi bi-github"
+                    icon={<Github />}
                     placeholder="GitHub"
                 />
                 <Input
@@ -73,11 +75,11 @@ export default function PersonalInfo(props: personalInfoProps) {
                     name="portfolioUrl"
                     value={props.data.portfolioUrl}
                     onChange={props.onChange}
-                    icon="bi bi-globe2"
+                    icon={<Globe />}
                     placeholder="Portfolio"
                 />
             </div>
-            <Input type="textarea" id="summary" name="summary" value={props.data.summary} onChange={props.onChange} icon="bi bi-card-text" title={props.lang.summary} />
+            <Input type="textarea" id="summary" name="summary" value={props.data.summary} onChange={props.onChange} icon={<PencilFill />} title={props.lang.summary} />
         </div>
     );
 }

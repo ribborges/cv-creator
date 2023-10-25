@@ -5,7 +5,7 @@
 	border-bottom: none;
 	border-top-width: 1px;
 	border-top-style: solid;
-	border-top-color: $dark-grey-color;
+	border-top-color: $secondary-dark-color;
 }
 
 .blankspace {
@@ -14,6 +14,6 @@
 
 @media (prefers-color-scheme: light) {
 	.spacer {
-		border-top-color: $light-grey-color;
+		border-top-color: $primary-light-color;
 	}
 }

@@ -1,4 +1,5 @@
 import { ReactNode } from 'react';
+
 import './_style.scss';
 
 export interface inputProps {
@@ -12,7 +13,7 @@ export interface inputProps {
     accept?: string,
     value?: string,
     className?: string,
-    icon?: string,
+    icon?: ReactNode,
     placeholder?: string,
     title?: string,
     children?: ReactNode,
@@ -24,7 +25,9 @@ export function Input(Props: inputProps) {
             return (
                 <div className="text-area">
                     <div className="text-area-title">
-                        <span className={Props.icon + " input-addon"} />
+                        <span className="input-addon">
+                            {Props.icon}
+                        </span>
                         <span className="input-addon">{Props.title}</span>
                     </div>
                     <textarea
@@ -40,7 +43,7 @@ export function Input(Props: inputProps) {
 
         case "checkbox": case "radius":
             return (
-                <label className={Props.className + " label-container"}>
+                <label className={"label-container" + (Props.className ? " " + Props.className : "")}>
                     <input
                         type={Props.type}
                         id={Props.id}
@@ -57,7 +60,9 @@ export function Input(Props: inputProps) {
         case "range":
             return (
                 <div className="input-group">
-                    <span className={Props.icon + " input-addon"} />
+                    <span className="input-addon">
+                        {Props.icon}
+                    </span>
                     <div className="input-addon">
                         <input
                             type={Props.type}
@@ -75,7 +80,9 @@ export function Input(Props: inputProps) {
         case "option":
             return (
                 <div className="input-group">
-                    <span className={Props.icon + " input-addon"} />
+                    <span className="input-addon">
+                        {Props.icon}
+                    </span>
                     <select id={Props.id} name={Props.name} value={Props.value} onChange={Props.onChange}>
                         {Props.children}
                     </select>
@@ -86,7 +93,9 @@ export function Input(Props: inputProps) {
         default:
             return (
                 <div className={Props.className + " input-group"}>
-                    <span className={Props.icon + " input-addon"} />
+                    <span className="input-addon">
+                        {Props.icon}
+                    </span>
                     <input
                         type={Props.type}
                         id={Props.id}

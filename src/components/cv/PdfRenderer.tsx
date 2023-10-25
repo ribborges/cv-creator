@@ -1,12 +1,12 @@
 import { Document, Page, Text, View, StyleSheet, Font, PDFViewer, Link, PDFDownloadLink } from "@react-pdf/renderer";
-import { displayText } from "../../App";
-import { FormData } from '../forms/CvForm';
 import { isMobile } from "react-device-detect";
 
 import FontRobotoSlabBold from './RobotoSlab/RobotoSlab-Bold.ttf';
 import FontRobotoSlabRegular from './RobotoSlab/RobotoSlab-Regular.ttf';
 import FontRobotoSlabLight from './RobotoSlab/RobotoSlab-Light.ttf';
 import FontRobotoSlabThin from './RobotoSlab/RobotoSlab-Thin.ttf';
+import { displayText } from "../../types/lang";
+import { cvData } from "../../types/cvData";
 
 Font.register({
     family: 'Roboto-Slab',
@@ -99,7 +99,7 @@ const styles = StyleSheet.create({
 });
 
 interface pdfProps {
-    data: FormData,
+    data: cvData,
     lang: displayText;
 }
 

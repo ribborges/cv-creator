@@ -1,7 +1,9 @@
-import { displayText } from '../../App';
+import { ReactNode } from 'react';
+import { AwardFill, BinocularsFill, CalendarFill, CardText, GeoAltFill, MortarboardFill } from "react-bootstrap-icons";
+
+import { displayText } from '../../types/lang';
 import { Fieldset } from '../input/Fieldset';
 import { Input } from '../input/Input';
-import { FormData } from './CvForm';
 
 interface eduHistoryProps {
     id: number,
@@ -16,7 +18,8 @@ interface eduHistoryProps {
     },
     lang: displayText,
     className?: string,
-    onChange: (event: React.ChangeEvent<HTMLInputElement>, index: number, key: "schoolName" | "schoolDegree" | "schoolFieldStudy" | "schoolLocation" | "schoolBgDate" | "schoolEdDate" | "schoolDetails") => void;
+    onChange: (event: React.ChangeEvent<HTMLInputElement>, index: number, key: "schoolName" | "schoolDegree" | "schoolFieldStudy" | "schoolLocation" | "schoolBgDate" | "schoolEdDate" | "schoolDetails") => void,
+    children: ReactNode
 }
 
 export default function EduHistory(props: eduHistoryProps) {
@@ -29,7 +32,7 @@ export default function EduHistory(props: eduHistoryProps) {
                     name={"schoolName" + props.id}
                     value={props.value?.schoolName}
                     onChange={(e: React.ChangeEvent<HTMLInputElement>) => props.onChange(e, props.id, "schoolName")}
-                    icon="bi bi-mortarboard-fill"
+                    icon={<MortarboardFill />}
                     placeholder={props.lang.schoolName}
                 />
                 <Input
@@ -38,7 +41,7 @@ export default function EduHistory(props: eduHistoryProps) {
                     name={"schoolDegree" + props.id}
                     value={props.value?.schoolDegree}
                     onChange={(e: React.ChangeEvent<HTMLInputElement>) => props.onChange(e, props.id, "schoolDegree")}
-                    icon="bi bi-award-fill"
+                    icon={<AwardFill />}
                     placeholder={props.lang.schoolDegree}
                 />
                 <Input
@@ -47,7 +50,7 @@ export default function EduHistory(props: eduHistoryProps) {
                     name={"schoolFieldStudy" + props.id}
                     value={props.value?.schoolFieldStudy}
                     onChange={(e: React.ChangeEvent<HTMLInputElement>) => props.onChange(e, props.id, "schoolFieldStudy")}
-                    icon="bi bi-binoculars-fill"
+                    icon={<BinocularsFill />}
                     placeholder={props.lang.schoolFieldStudy}
                 />
                 <Input
@@ -56,7 +59,7 @@ export default function EduHistory(props: eduHistoryProps) {
                     name={"schoolLocation" + props.id}
                     value={props.value?.schoolLocation}
                     onChange={(e: React.ChangeEvent<HTMLInputElement>) => props.onChange(e, props.id, "schoolLocation")}
-                    icon="bi bi-geo-alt-fill"
+                    icon={<GeoAltFill />}
                     placeholder={props.lang.location}
                 />
             </div>
@@ -67,7 +70,7 @@ export default function EduHistory(props: eduHistoryProps) {
                     name={"schoolBgDate" + props.id}
                     value={props.value?.schoolBgDate}
                     onChange={(e: React.ChangeEvent<HTMLInputElement>) => props.onChange(e, props.id, "schoolBgDate")}
-                    icon="bi bi-calendar-fill"
+                    icon={<CalendarFill />}
                 />
                 <Input
                     type="month"
@@ -75,7 +78,7 @@ export default function EduHistory(props: eduHistoryProps) {
                     name={"schoolEdDate" + props.id}
                     value={props.value?.schoolEdDate}
                     onChange={(e: React.ChangeEvent<HTMLInputElement>) => props.onChange(e, props.id, "schoolEdDate")}
-                    icon="bi bi-calendar-fill"
+                    icon={<CalendarFill />}
                 />
             </div>
             <Input
@@ -84,9 +87,12 @@ export default function EduHistory(props: eduHistoryProps) {
                 name={"schoolDetails" + props.id}
                 value={props.value?.schoolDetails}
                 onChange={(e: React.ChangeEvent<HTMLInputElement>) => props.onChange(e, props.id, "schoolDetails")}
-                icon="bi bi-card-text"
+                icon={<CardText />}
                 title={props.lang.details}
             />
+            <div className="flex-container">
+                {props.children}
+            </div>
         </Fieldset>
     );
 }

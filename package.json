@@ -1,8 +1,11 @@
 {
   "name": "cv-creator",
   "private": true,
-  "version": "0.0.0",
+  "version": "1.0.4",
   "type": "module",
+  "author": "Richard",
+  "license": "Mozilla Public License Version 2.0",
+  "description": "Create your CV/Resume with this simple tool developed using React, TypeScript, Vite, SCSS and ReactPDF",
   "scripts": {
     "start": "vite",
     "build": "tsc && vite build",
@@ -10,7 +13,9 @@
   },
   "dependencies": {
     "@react-pdf/renderer": "^3.1.12",
+    "css-total-reset": "^0.0.2",
     "react": "^18.2.0",
+    "react-bootstrap-icons": "^1.10.3",
     "react-device-detect": "^2.2.3",
     "react-dom": "^18.2.0",
     "sass": "^1.58.3",

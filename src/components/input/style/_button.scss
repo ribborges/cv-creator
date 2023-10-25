@@ -1,22 +1,22 @@
 @import '../../../style/abstract/var';
 
 .button {
-    color: $light-color;
+    color: $secondary-light-color;
     background-color: transparent;
     display: inline-block;
     border-radius: $border-radius;
     border: 2px solid $primary-accent-color;
     padding: 15px;
-    margin: 15px;
+    margin: 5px;
     transition: 1s;
 
     &:hover, &:focus {
         background-color: $primary-accent-color;
-        box-shadow: 0 0 100px 0 rgba($light-color, 0.2);
+        box-shadow: 0 0 100px 0 rgba($secondary-light-color, 0.3);
     }
 
     &:disabled {
-        color: rgba($light-color, 0.2);
+        color: rgba($secondary-light-color, 0.2);
         border: 2px solid rgba($primary-accent-color, 0.2);
 
         &:hover, &:focus {
@@ -35,14 +35,15 @@
 
 @media (prefers-color-scheme: light) {
     .button {
-        color: $dark-color;
+        color: $primary-dark-color;
 
         &:hover, &:focus {
-            color: $dark-color;
+            color: $primary-dark-color;
+            box-shadow: 0 0 100px 0 rgba($primary-dark-color, 0.5);
         }
 
         &:disabled {
-            color: rgba($dark-color, 0.2);
+            color: rgba($primary-dark-color, 0.2);
             border: 2px solid rgba($primary-accent-color, 0.2);
         }
     }

@@ -4,7 +4,7 @@
 	padding: 2vw;
 	max-width: 1280px;
 	margin: 2vw auto;
-	background-color: $dark-color;
+	background-color: $primary-dark-color;
 	border-radius: $border-radius;
 	left: 0;
 	bottom: 0;
@@ -35,6 +35,6 @@
 
 @media (prefers-color-scheme: light) {
 	.footer {
-		background-color: $light-color;
+		background-color: $secondary-light-color;
 	}
 }

@@ -1,6 +1,7 @@
-import { displayText } from '../../App';
+import { PersonFillGear } from 'react-bootstrap-icons';
+
+import { displayText } from '../../types/lang';
 import { Input } from '../input/Input';
-import { FormData } from './CvForm';
 
 interface skillProps {
     id: number,
@@ -19,7 +20,7 @@ export default function Skill(props: skillProps) {
             name={"skill" + props.id}
             value={props.value}
             onChange={(e: React.ChangeEvent<HTMLInputElement>) => props.onChange(e, props.id)}
-            icon="bi bi-person-fill-gear"
+            icon={<PersonFillGear />}
             placeholder={props.lang.skill}
         />
     );

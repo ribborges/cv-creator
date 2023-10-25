@@ -11,17 +11,17 @@
     width: 100vw;
     height: 100vh;
     overflow: hidden;
-    background-color: rgba($dark-grey-color, 0.7);
+    background-color: rgba($secondary-dark-color, 0.7);
     @include acrylic;
 }
 
 .modal-content {
-    background-color: $dark-color;
+    background-color: $primary-dark-color;
     box-sizing: border-box;
     margin: auto;
     padding: 20px;
     border-radius: $border-radius;
-    box-shadow: 0 0 100px 0 rgba($light-color, 0.2);
+    box-shadow: 0 0 100px 0 rgba($secondary-light-color, 0.2);
     width: 80%;
     height: 80%;
 }
@@ -45,11 +45,11 @@
 
 @media (prefers-color-scheme: light) {
     .modal {
-        background-color: rgba($light-grey-color, 0.7);;
+        background-color: rgba($primary-light-color, 0.7);;
     }
 
     .modal-content {
-        background-color: $light-color;
-        box-shadow: 0 0 100px 0 rgba($dark-color, 0.2);
+        background-color: $secondary-light-color;
+        box-shadow: 0 0 100px 0 rgba($primary-dark-color, 0.2);
     }
 }

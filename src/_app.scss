@@ -1,21 +1,21 @@
 //Import variables
 @import "./style/abstract/var";
 
-#root {
+.app {
   max-width: 1280px;
   margin: 2vw auto;
   padding: 2rem;
 }
 
 .section {
-  background-color: $dark-color;
+  background-color: $primary-dark-color;
   border-radius: $border-radius;
   margin: 2vw auto;
   padding: 2rem;
 }
 
 @media screen and (max-width: 700px) {
-  #root {
+  .app {
     padding: 0;
   }
 
@@ -31,6 +31,6 @@
 
 @media (prefers-color-scheme: light) {
   .section {
-    background-color: $light-color;
+    background-color: $secondary-light-color;
   }
 }

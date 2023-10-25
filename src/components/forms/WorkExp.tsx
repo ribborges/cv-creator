@@ -1,7 +1,9 @@
-import { displayText } from '../../App';
+import { ReactNode } from 'react';
+import { BriefcaseFill, BuildingsFill, CalendarFill, CardText, GeoAltFill } from 'react-bootstrap-icons';
+
+import { displayText } from '../../types/lang';
 import { Fieldset } from '../input/Fieldset';
 import { Input } from '../input/Input';
-import { FormData } from './CvForm';
 
 interface workExpProps {
     id: number,
@@ -15,7 +17,8 @@ interface workExpProps {
     },
     lang: displayText,
     className?: string,
-    onChange: (event: React.ChangeEvent<HTMLInputElement>, index: number, key: "workCompanyName" | "workJobTitle" | "workLocation" | "workBgDate" | "workEdDate" | "workDetails") => void;
+    onChange: (event: React.ChangeEvent<HTMLInputElement>, index: number, key: "workCompanyName" | "workJobTitle" | "workLocation" | "workBgDate" | "workEdDate" | "workDetails") => void,
+    children: ReactNode
 }
 
 export default function WorkExp(props: workExpProps) {
@@ -28,7 +31,7 @@ export default function WorkExp(props: workExpProps) {
                     name={"workCompanyName" + props.id}
                     value={props.value?.workCompanyName}
                     onChange={(e: React.ChangeEvent<HTMLInputElement>) => props.onChange(e, props.id, "workCompanyName")}
-                    icon="bi bi-buildings-fill"
+                    icon={<BuildingsFill />}
                     placeholder={props.lang.workCompanyName}
                 />
                 <Input
@@ -37,7 +40,7 @@ export default function WorkExp(props: workExpProps) {
                     name={"workJobTitle" + props.id}
                     value={props.value?.workJobTitle}
                     onChange={(e: React.ChangeEvent<HTMLInputElement>) => props.onChange(e, props.id, "workJobTitle")}
-                    icon="bi bi-briefcase-fill"
+                    icon={<BriefcaseFill />}
                     placeholder={props.lang.workJobTitle}
                 />
                 <Input
@@ -46,7 +49,7 @@ export default function WorkExp(props: workExpProps) {
                     name={"workLocation" + props.id}
                     value={props.value?.workLocation}
                     onChange={(e: React.ChangeEvent<HTMLInputElement>) => props.onChange(e, props.id, "workLocation")}
-                    icon="bi bi-geo-alt-fill"
+                    icon={<GeoAltFill />}
                     placeholder={props.lang.location}
                 />
             </div>
@@ -57,7 +60,7 @@ export default function WorkExp(props: workExpProps) {
                     name={"workBgDate" + props.id}
                     value={props.value?.workBgDate}
                     onChange={(e: React.ChangeEvent<HTMLInputElement>) => props.onChange(e, props.id, "workBgDate")}
-                    icon="bi bi-calendar-fill"
+                    icon={<CalendarFill />}
                 />
                 <Input
                     type="month"
@@ -65,7 +68,7 @@ export default function WorkExp(props: workExpProps) {
                     name={"workEdDate" + props.id}
                     value={props.value?.workEdDate}
                     onChange={(e: React.ChangeEvent<HTMLInputElement>) => props.onChange(e, props.id, "workEdDate")}
-                    icon="bi bi-calendar-fill"
+                    icon={<CalendarFill />}
                 />
             </div>
             <Input
@@ -74,9 +77,12 @@ export default function WorkExp(props: workExpProps) {
                 name={"workDetails" + props.id}
                 value={props.value?.workDetails}
                 onChange={(e: React.ChangeEvent<HTMLInputElement>) => props.onChange(e, props.id, "workDetails")}
-                icon="bi bi-card-text"
+                icon={<CardText />}
                 title={props.lang.details}
             />
+            <div className="flex-container">
+                {props.children}
+            </div>
         </Fieldset>
     );
 }

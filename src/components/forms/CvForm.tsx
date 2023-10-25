@@ -1,76 +1,27 @@
 import { useRef, useState } from 'react';
-import { Button } from '../input/Button';
+import { PlusLg, TrashFill } from "react-bootstrap-icons";
 
+import { Button } from '../input/Button';
 import PersonalInfo from './PersonalInfo';
 import EduHistory from './EduHistory';
 import WorkExp from './WorkExp';
 import Spacer from '../separator/Spacer';
 import PdfRenderer from '../cv/PdfRenderer';
 import Modal from '../modal/Modal';
-import { displayText } from '../../App';
 import Skill from './Skill';
 import LicensesCertif from './LicensesCertif';
-import { Input } from '../input/Input';
 import Languages from './Languages';
-
-export interface FormData {
-    name?: string,
-    phone?: string,
-    email?: string,
-    address?: string,
-    linkedinUrl?: string,
-    githubUrl?: string,
-    portfolioUrl?: string,
-    summary?: string,
-    eduHistory?: Array<{
-        schoolName?: string,
-        schoolDegree?: string,
-        schoolFieldStudy?: string,
-        schoolLocation?: string,
-        schoolBgDate?: string,
-        schoolEdDate?: string,
-        schoolDetails?: string;
-    }>,
-    workExp?: Array<{
-        workCompanyName?: string,
-        workJobTitle?: string,
-        workLocation?: string,
-        workBgDate?: string,
-        workEdDate?: string,
-        workDetails?: string;
-    }>,
-    licensesCertif?: Array<{
-        licensesCertifName?: string,
-        licensesCertifOrg?: string;
-    }>,
-    skills?: Array<string>,
-    languages?: Array<{
-        language?: string,
-        level?: string;
-    }>;
-}
+import Upload from '../input/Upload';
+import { displayText } from '../../types/lang';
+import { cleanData, cvData } from '../../types/cvData';
+import Collapse from '../Collapse';
 
 interface cvFormProps {
     lang: displayText,
-    onChange: any,
 }
 
 export default function CvForm(props: cvFormProps) {
-    const [formData, setFormData] = useState<FormData>({
-        name: '',
-        phone: '',
-        email: '',
-        address: '',
-        linkedinUrl: '',
-        githubUrl: '',
-        portfolioUrl: '',
-        summary: '',
-        eduHistory: [],
-        workExp: [],
-        licensesCertif: [],
-        skills: [],
-        languages: []
-    });
+    const [formData, setFormData] = useState<cvData>(cleanData);
 
     const [disableBtns, setDisableBtns] = useState(false);
 
@@ -262,104 +213,111 @@ export default function CvForm(props: cvFormProps) {
 
             <Spacer />
 
-            <div className="flex-container">
-                <div className="flex-1">
-                    <h2>{props.lang.eduHistory}</h2>
+            <Collapse title={<h2>{props.lang.eduHistory}</h2>}>
+                <div className="flex-container">
+                    <div className="flex-1">
+                    </div>
+                    <div className="flex-container flex-3 flex-col">
+                        {
+                            formData.eduHistory?.map((value, index) => (
+                                <div key={index} className="flex-container flex-col">
+                                    <EduHistory className="flex-1" lang={props.lang} id={index} value={value} onChange={handleEduHistoryChange}>
+                                        <Button className="flex-1" type="button" onClick={() => handleRemoveEduHistory(index)}><TrashFill /></Button>
+                                    </EduHistory>
+                                </div>
+                            ))
+                        }
+                        <Button type="button" onClick={handleAddEduHistory}><PlusLg /></Button>
+                    </div>
                 </div>
-                <div className="flex-container flex-3 flex-col">
-                    {
-                        formData.eduHistory?.map((value, index) => (
-                            <div key={index} className="flex-container flex-col">
-                                <EduHistory className="flex-1" lang={props.lang} id={index} value={value} onChange={handleEduHistoryChange} />
-                                <Button type="button" onClick={() => handleRemoveEduHistory(index)}><i className="bi bi-trash-fill" /></Button>
-                            </div>
-                        ))
-                    }
-                    <Button type="button" onClick={handleAddEduHistory}><i className="bi bi-plus-lg" /></Button>
-                </div>
-            </div>
+            </Collapse>
 
             <Spacer />
 
-            <div className="flex-container">
-                <div className="flex-1">
-                    <h2>{props.lang.workExp}</h2>
+            <Collapse title={<h2>{props.lang.workExp}</h2>}>
+                <div className="flex-container">
+                    <div className="flex-1">
+                    </div>
+                    <div className="flex-container flex-3 flex-col">
+                        {
+                            formData.workExp?.map((value, index) => (
+                                <div key={index} className="flex-container flex-col">
+                                    <WorkExp className="flex-1" lang={props.lang} id={index} value={value} onChange={handleWorkExpChange}>
+                                        <Button className="flex-1" type="button" onClick={() => handleRemoveWorkExp(index)}><TrashFill /></Button>
+                                    </WorkExp>
+                                </div>
+                            ))
+                        }
+                        <Button type="button" onClick={handleAddWorkExp}><PlusLg /></Button>
+                    </div>
                 </div>
-                <div className="flex-container flex-3 flex-col">
-                    {
-                        formData.workExp?.map((value, index) => (
-                            <div key={index} className="flex-container flex-col">
-                                <WorkExp className="flex-1" lang={props.lang} id={index} value={value} onChange={handleWorkExpChange} />
-                                <Button type="button" onClick={() => handleRemoveWorkExp(index)}><i className="bi bi-trash-fill" /></Button>
-                            </div>
-                        ))
-                    }
-                    <Button type="button" onClick={handleAddWorkExp}><i className="bi bi-plus-lg" /></Button>
-                </div>
-            </div>
+            </Collapse>
 
             <Spacer />
 
-            <div className="flex-container">
-                <div className="flex-1">
-                    <h2>{props.lang.licensesCertif}</h2>
+            <Collapse title={<h2>{props.lang.licensesCertif}</h2>}>
+                <div className="flex-container">
+                    <div className="flex-1">
+                    </div>
+                    <div className="flex-container flex-3 flex-col">
+                        {
+                            formData.licensesCertif?.map((value, index) => (
+                                <div key={index} className="flex-container">
+                                    <LicensesCertif className="flex-1" lang={props.lang} id={index} value={value} onChange={handleLicensesCertifChange} />
+                                    <Button type="button" onClick={() => handleRemoveLicensesCertif(index)}><TrashFill /></Button>
+                                </div>
+                            ))
+                        }
+                        <Button type="button" onClick={handleAddLicensesCertif}><PlusLg /></Button>
+                    </div>
                 </div>
-                <div className="flex-container flex-3 flex-col">
-                    {
-                        formData.licensesCertif?.map((value, index) => (
-                            <div key={index} className="flex-container">
-                                <LicensesCertif className="flex-1" lang={props.lang} id={index} value={value} onChange={handleLicensesCertifChange} />
-                                <Button type="button" onClick={() => handleRemoveLicensesCertif(index)}><i className="bi bi-trash-fill" /></Button>
-                            </div>
-                        ))
-                    }
-                    <Button type="button" onClick={handleAddLicensesCertif}><i className="bi bi-plus-lg" /></Button>
-                </div>
-            </div>
+            </Collapse>
 
             <Spacer />
 
-            <div className="flex-container">
-                <div className="flex-1">
-                    <h2>{props.lang.languages}</h2>
+            <Collapse title={<h2>{props.lang.languages}</h2>}>
+                <div className="flex-container">
+                    <div className="flex-1">
+                    </div>
+                    <div className="flex-container flex-3 flex-col">
+                        {
+                            formData.languages?.map((value, index) => (
+                                <div key={index} className="flex-container">
+                                    <Languages onSelect={setDisableBtns} className="flex-1" lang={props.lang} id={index} value={value} onChange={handleLanguagesChange} />
+                                    <Button type="button" onClick={() => handleRemoveLanguages(index)}><TrashFill /></Button>
+                                </div>
+                            ))
+                        }
+                        <Button type="button" onClick={handleAddLanguages}><PlusLg /></Button>
+                    </div>
                 </div>
-                <div className="flex-container flex-3 flex-col">
-                    {
-                        formData.languages?.map((value, index) => (
-                            <div key={index} className="flex-container">
-                                <Languages onSelect={setDisableBtns} className="flex-1" lang={props.lang} id={index} value={value} onChange={handleLanguagesChange} />
-                                <Button type="button" onClick={() => handleRemoveLanguages(index)}><i className="bi bi-trash-fill" /></Button>
-                            </div>
-                        ))
-                    }
-                    <Button type="button" onClick={handleAddLanguages}><i className="bi bi-plus-lg" /></Button>
-                </div>
-            </div>
+            </Collapse>
 
             <Spacer />
 
-            <div className="flex-container">
-                <div className="flex-1">
-                    <h2>{props.lang.skills}</h2>
+            <Collapse title={<h2>{props.lang.skills}</h2>}>
+                <div className="flex-container">
+                    <div className="flex-1">
+                    </div>
+                    <div className="flex-container flex-3 flex-col">
+                        {
+                            formData.skills?.map((value, index) => (
+                                <div key={index} className="flex-container">
+                                    <Skill className="flex-1" lang={props.lang} id={index} value={value} onChange={handleSkillsChange} />
+                                    <Button type="button" onClick={() => handleRemoveSkills(index)}><TrashFill /></Button>
+                                </div>
+                            ))
+                        }
+                        <Button type="button" onClick={handleAddSkills}><PlusLg /></Button>
+                    </div>
                 </div>
-                <div className="flex-container flex-3 flex-col">
-                    {
-                        formData.skills?.map((value, index) => (
-                            <div key={index} className="flex-container">
-                                <Skill className="flex-1" lang={props.lang} id={index} value={value} onChange={handleSkillsChange} />
-                                <Button type="button" onClick={() => handleRemoveSkills(index)}><i className="bi bi-trash-fill" /></Button>
-                            </div>
-                        ))
-                    }
-                    <Button type="button" onClick={handleAddSkills}><i className="bi bi-plus-lg" /></Button>
-                </div>
-            </div>
+            </Collapse>
 
             <Spacer />
 
             <div className="flex-container">
                 <Button className="flex-1" type="button" name="export" onClick={handleSubmit} disabled={disableBtns} >{props.lang.export} .json</Button>
-                <div className="flex-1 flex-container flex-col button" style={{ textAlign: 'center' }}>{props.lang.import} .json <Input disabled={disableBtns} icon="bi-filetype-json" accept=".json" type="file" placeholder="Importar .json" onChange={readFile} /></div>
+                <Upload className="flex-1" accept=".json" onChange={readFile}>{props.lang.import}</Upload>
                 <Modal className="flex-1" title={props.lang.viewTitle} buttonText={props.lang.view + " .pdf"} disabled={disableBtns}>
                     <PdfRenderer lang={props.lang} data={formData} />
                 </Modal>
