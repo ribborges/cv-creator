@@ -174,7 +174,7 @@ function DocCv({ data, lang }: pdfProps) {
                                         <View key={index} style={styles.subSection}>
                                             <Text style={styles.title2}>{value.workJobTitle}</Text>
                                             <Text style={styles.text1}>{value.workCompanyName}</Text>
-                                            <Text style={styles.text1}>{value.workLocation} {value.workBgDate === "" ? "" : "| " + value.workBgDate?.split("-")[1] + "/" + value.workBgDate?.split("-")[0] + (value.workEdDate == undefined || " " ? " - " + lang.today : " - " + value.workEdDate?.split("-")[1] + "/" + value.workEdDate?.split("-")[0])}</Text>
+                                            <Text style={styles.text1}>{value.workLocation} {value.workBgDate === "" ? "" : "| " + value.workBgDate?.split("-")[1] + "/" + value.workBgDate?.split("-")[0] + (value.workEdDate === "" ? " - " + lang.today : " - " + value.workEdDate?.split("-")[1] + "/" + value.workEdDate?.split("-")[0])}</Text>
                                             <Text style={styles.text2}>{value.workDetails}</Text>
                                         </View>
                                     ))

@@ -1,6 +1,7 @@
 import React, { ReactNode, useState } from 'react';
 import { Button } from '../input/Button';
 import Spacer from '../separator/Spacer';
+import { X } from "react-bootstrap-icons";
 
 import './_style.scss';
 
@@ -32,7 +33,7 @@ export default function Modal(props: modalProps) {
                     <div className="modal-content">
                         <div className="modal-header">
                             <Button onClick={closeModal}>
-                                <i className="bi bi-x-circle-fill" />
+                                <X />
                             </Button>
                             <span className="modal-title">{props.title}</span>
                         </div>

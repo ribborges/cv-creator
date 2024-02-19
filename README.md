@@ -5,7 +5,10 @@ Create your CV/Resume with this simple tool developed using React, TypeScript, V
 
 ## Running with npm
 
-Open your terminal on the repo directory and run
+Download and install [node.js](https://nodejs.org/en).
+
+
+Open your terminal/cmd on the repo directory and run:
 
 ```bash
 > npm install
@@ -14,7 +17,7 @@ Open your terminal on the repo directory and run
 Then...
 
 ```bash
-> npm run dev
+> npm start
 ```
 
 ## Screenshots
@@ -22,4 +25,3 @@ Then...
 <img src="https://richardborges.vercel.app/static/img/projects/cv-creator-fullpage.png">
 
 <img src="https://richardborges.vercel.app/static/img/projects/cv-creator-pdfviewe.png">
-
