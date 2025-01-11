@@ -315,7 +315,7 @@ export default function CvForm(props: cvFormProps) {
 
             <Spacer />
 
-            <div className="flex-container">
+            <div className="flex gap-5">
                 <Button className="flex-1" type="button" name="export" onClick={handleSubmit} disabled={disableBtns} >{props.lang.export} .json</Button>
                 <Upload className="flex-1" accept=".json" onChange={readFile}>{props.lang.import}</Upload>
                 <Modal className="flex-1" title={props.lang.viewTitle} buttonText={props.lang.view + " .pdf"} disabled={disableBtns}>
