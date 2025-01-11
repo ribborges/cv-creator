@@ -10,14 +10,13 @@ interface languagesProps {
         level?: string;
     },
     lang: displayText,
-    className?: string,
     onSelect: React.Dispatch<React.SetStateAction<boolean>>,
     onChange: (event: React.ChangeEvent<HTMLInputElement>, index: number, key: "language" | "level") => void;
 }
 
 export default function Languages(props: languagesProps) {
     return (
-        <div className={props.className + " flex-container"}>
+        <div className="flex-1 flex gap-1">
             <Input
                 type="text"
                 id={"language" + props.id}

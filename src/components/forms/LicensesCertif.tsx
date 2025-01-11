@@ -16,7 +16,7 @@ interface licensesCertifProps {
 
 export default function Skill(props: licensesCertifProps) {
     return (
-        <div className={props.className + " flex-container"}>
+        <div className="flex-1 flex gap-1">
             <Input
                 type="text"
                 id={"skill" + props.id}

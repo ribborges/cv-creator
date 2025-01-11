@@ -204,25 +204,25 @@ export default function CvForm(props: cvFormProps) {
 
     return (
         <form ref={formRef}>
-            <div className="flex-container">
+            <div className="flex gap-5">
                 <div className="flex-1">
                     <h2>{props.lang.personalInfo}</h2>
                 </div>
-                <PersonalInfo className="flex-3 flex-col" lang={props.lang} data={formData} onChange={handleChange} />
+                <PersonalInfo lang={props.lang} data={formData} onChange={handleChange} />
             </div>
 
             <Spacer />
 
             <Collapse title={<h2>{props.lang.eduHistory}</h2>}>
-                <div className="flex-container">
+                <div className="flex gap-5">
                     <div className="flex-1">
                     </div>
-                    <div className="flex-container flex-3 flex-col">
+                    <div className="flex gap-5 flex-[3] flex-col">
                         {
                             formData.eduHistory?.map((value, index) => (
-                                <div key={index} className="flex-container flex-col">
-                                    <EduHistory className="flex-1" lang={props.lang} id={index} value={value} onChange={handleEduHistoryChange}>
-                                        <Button className="flex-1" type="button" onClick={() => handleRemoveEduHistory(index)}><TrashFill /></Button>
+                                <div key={index} className="flex flex-col">
+                                    <EduHistory lang={props.lang} id={index} value={value} onChange={handleEduHistoryChange}>
+                                        <Button type="button" onClick={() => handleRemoveEduHistory(index)}><TrashFill /></Button>
                                     </EduHistory>
                                 </div>
                             ))
@@ -235,15 +235,15 @@ export default function CvForm(props: cvFormProps) {
             <Spacer />
 
             <Collapse title={<h2>{props.lang.workExp}</h2>}>
-                <div className="flex-container">
+                <div className="flex gap-5">
                     <div className="flex-1">
                     </div>
-                    <div className="flex-container flex-3 flex-col">
+                    <div className="flex gap-5 flex-[3] flex-col">
                         {
                             formData.workExp?.map((value, index) => (
-                                <div key={index} className="flex-container flex-col">
-                                    <WorkExp className="flex-1" lang={props.lang} id={index} value={value} onChange={handleWorkExpChange}>
-                                        <Button className="flex-1" type="button" onClick={() => handleRemoveWorkExp(index)}><TrashFill /></Button>
+                                <div key={index} className="flex flex-col">
+                                    <WorkExp lang={props.lang} id={index} value={value} onChange={handleWorkExpChange}>
+                                        <Button type="button" onClick={() => handleRemoveWorkExp(index)}><TrashFill /></Button>
                                     </WorkExp>
                                 </div>
                             ))
@@ -256,14 +256,14 @@ export default function CvForm(props: cvFormProps) {
             <Spacer />
 
             <Collapse title={<h2>{props.lang.licensesCertif}</h2>}>
-                <div className="flex-container">
+                <div className="flex gap-5">
                     <div className="flex-1">
                     </div>
-                    <div className="flex-container flex-3 flex-col">
+                    <div className="flex gap-1 flex-[3] flex-col">
                         {
                             formData.licensesCertif?.map((value, index) => (
-                                <div key={index} className="flex-container">
-                                    <LicensesCertif className="flex-1" lang={props.lang} id={index} value={value} onChange={handleLicensesCertifChange} />
+                                <div key={index} className="flex gap-1">
+                                    <LicensesCertif lang={props.lang} id={index} value={value} onChange={handleLicensesCertifChange} />
                                     <Button type="button" onClick={() => handleRemoveLicensesCertif(index)}><TrashFill /></Button>
                                 </div>
                             ))
@@ -276,14 +276,14 @@ export default function CvForm(props: cvFormProps) {
             <Spacer />
 
             <Collapse title={<h2>{props.lang.languages}</h2>}>
-                <div className="flex-container">
+                <div className="flex gap-5">
                     <div className="flex-1">
                     </div>
-                    <div className="flex-container flex-3 flex-col">
+                    <div className="flex gap-5 flex-[3] flex-col">
                         {
                             formData.languages?.map((value, index) => (
-                                <div key={index} className="flex-container">
-                                    <Languages onSelect={setDisableBtns} className="flex-1" lang={props.lang} id={index} value={value} onChange={handleLanguagesChange} />
+                                <div key={index} className="flex gap-1">
+                                    <Languages onSelect={setDisableBtns} lang={props.lang} id={index} value={value} onChange={handleLanguagesChange} />
                                     <Button type="button" onClick={() => handleRemoveLanguages(index)}><TrashFill /></Button>
                                 </div>
                             ))
@@ -296,14 +296,14 @@ export default function CvForm(props: cvFormProps) {
             <Spacer />
 
             <Collapse title={<h2>{props.lang.skills}</h2>}>
-                <div className="flex-container">
+                <div className="flex gap-5">
                     <div className="flex-1">
                     </div>
-                    <div className="flex-container flex-3 flex-col">
+                    <div className="flex gap-5 flex-[3] flex-col">
                         {
                             formData.skills?.map((value, index) => (
-                                <div key={index} className="flex-container">
-                                    <Skill className="flex-1" lang={props.lang} id={index} value={value} onChange={handleSkillsChange} />
+                                <div key={index} className="flex gap-1">
+                                    <Skill lang={props.lang} id={index} value={value} onChange={handleSkillsChange} />
                                     <Button type="button" onClick={() => handleRemoveSkills(index)}><TrashFill /></Button>
                                 </div>
                             ))
