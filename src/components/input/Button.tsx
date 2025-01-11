@@ -1,5 +1,6 @@
-import { Children, ReactNode } from "react";
+import { ReactNode } from "react";
 import './style/_button.scss';
+import classConcat from "../../utils/classConcat";
 
 interface ButtonProps {
     autofocus?: boolean,
@@ -13,8 +14,32 @@ interface ButtonProps {
     children?: ReactNode,
 }
 
-export function Button({type = "button", autofocus, disabled, id, name, value, onClick, children, className}: ButtonProps) {
+export function Button({ type = "button", autofocus, disabled, id, name, value, onClick, children, className }: ButtonProps) {
     return (
-        <button className={"button" + (className ? " " + className : "")} type={type} id={id} name={name} value={value} autoFocus={autofocus} disabled={disabled} onClick={onClick}>{children}</button>
+        <button
+            className={classConcat(`
+                text-zinc-800 dark:text-zinc-200 disabled:text-zinc-600 dark:disabled:text-zinc-400
+                bg-transparent hover:bg-purple-700 focus:bg-purple-700
+                disabled:bg-transparent
+                hover:shadow-2xl focus:shadow-2xl
+                hover:shadow-zinc-950/20 focus:shadow-zinc-950/20
+                dark:hover:shadow-zinc-200/20 dark:focus:shadow-zinc-200/20
+                disabled:hover:shadow-none disabled:focus:shadow-none
+                inline-block
+                p-5 m-1
+                rounded-xl border border-solid
+                border-purple-700 disabled:border-zinc-400
+                transition duration-500
+            `, className || "")}
+            type={type}
+            id={id}
+            name={name}
+            value={value}
+            autoFocus={autofocus}
+            disabled={disabled}
+            onClick={onClick}
+        >
+            {children}
+        </button>
     );
 }
