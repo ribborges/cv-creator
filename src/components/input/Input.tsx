@@ -1,6 +1,13 @@
-import { ReactNode } from 'react';
+import { ReactNode, InputHTMLAttributes } from 'react';
 
-import './_style.scss';
+import classConcat from '../../utils/classConcat';
+
+interface inputGroup {
+    className?: string,
+    icon?: ReactNode,
+    label?: string,
+    children?: ReactNode
+}
 
 export interface inputProps {
     disabled?: boolean,
@@ -19,96 +26,129 @@ export interface inputProps {
     children?: ReactNode,
 }
 
-export function Input(Props: inputProps) {
-    switch (Props.type) {
+const inputStyle = `
+    flex-1 p-4 h-auto
+    bg-transparent
+    rounded-xl
+    outline-4 outline-none outline-offset-0 outline-purple-700/0 focus:outline-purple-700/50
+    transition duration-500
+`;
+
+function InputGroup(props: inputGroup) {
+    return (
+        <div className={classConcat(
+            props.className || "",
+            `
+            m-1
+            relative
+            flex flex-nowrap items-stretch flex-1
+            w-auto h-auto
+            box-border
+            rounded-xl border-2 border-solid border-zinc-400 dark:border-zinc-700
+            hover:shadow-2xl focus:shadow-2xl
+            hover:shadow-zinc-950/20 focus:shadow-zinc-950/20
+            dark:hover:shadow-zinc-200/20 dark:focus:shadow-zinc-200/20
+            transition duration-500
+            `
+        )}>
+            <div className="flex gap-2 items-center p-4">
+                {
+                    props.icon ?
+                        <div>
+                            {props.icon}
+                        </div> : <></>
+                }
+                {
+                    props.label ?
+                        <span>
+                            {props.label}
+                        </span> : <></>
+                }
+            </div>
+            {props.children}
+        </div>
+    );
+}
+
+export function Input(props: inputProps) {
+    switch (props.type) {
         case "textarea":
             return (
-                <div className="text-area">
-                    <div className="text-area-title">
-                        <span className="input-addon">
-                            {Props.icon}
-                        </span>
-                        <span className="input-addon">{Props.title}</span>
-                    </div>
+                <InputGroup className="flex-col" icon={props.icon} label={props.title}>
                     <textarea
-                        id={Props.id}
-                        name={Props.name}
-                        value={Props.value}
-                        onChange={Props.onChange}
-                        placeholder={Props.placeholder}
+                        className={inputStyle}
+                        id={props.id}
+                        name={props.name}
+                        value={props.value}
+                        onChange={props.onChange}
+                        placeholder={props.placeholder}
                     />
-                </div>
+                </InputGroup>
             );
             break;
 
         case "checkbox": case "radius":
             return (
-                <label className={"label-container" + (Props.className ? " " + Props.className : "")}>
+                <label className={props.className}>
                     <input
-                        type={Props.type}
-                        id={Props.id}
-                        name={Props.name}
-                        value={Props.value}
-                        onChange={Props.onChange}
-                        disabled={Props.disabled}
+                        className={inputStyle}
+                        type={props.type}
+                        id={props.id}
+                        name={props.name}
+                        value={props.value}
+                        onChange={props.onChange}
+                        disabled={props.disabled}
                     />
-                    <span>{Props.children}</span>
+                    <span>{props.children}</span>
                 </label>
             );
             break;
 
         case "range":
             return (
-                <div className="input-group">
-                    <span className="input-addon">
-                        {Props.icon}
-                    </span>
-                    <div className="input-addon">
+                <InputGroup icon={props.icon} label={props.title}>
+                    <div>
                         <input
-                            type={Props.type}
-                            id={Props.id}
-                            name={Props.name}
-                            value={Props.value}
-                            onChange={Props.onChange}
-                            disabled={Props.disabled}
+                            className={inputStyle}
+                            type={props.type}
+                            id={props.id}
+                            name={props.name}
+                            value={props.value}
+                            onChange={props.onChange}
+                            disabled={props.disabled}
                         />
                     </div>
-                </div>
+                </InputGroup>
             );
             break;
 
         case "option":
             return (
-                <div className="input-group">
-                    <span className="input-addon">
-                        {Props.icon}
-                    </span>
-                    <select id={Props.id} name={Props.name} value={Props.value} onChange={Props.onChange}>
-                        {Props.children}
+                <InputGroup icon={props.icon} label={props.title}>
+                    <select className={inputStyle} id={props.id} name={props.name} value={props.value} onChange={props.onChange}>
+                        {props.children}
                     </select>
-                </div>
+                </InputGroup>
             );
             break;
 
         default:
             return (
-                <div className={Props.className + " input-group"}>
-                    <span className="input-addon">
-                        {Props.icon}
-                    </span>
+                <InputGroup className={props.className} icon={props.icon} label={props.title}>
                     <input
-                        type={Props.type}
-                        id={Props.id}
-                        name={Props.name}
-                        value={Props.value}
-                        pattern={Props.pattern}
-                        accept={Props.accept}
-                        minLength={Props.minLength}
-                        onChange={Props.onChange}
-                        placeholder={Props.placeholder}
-                        disabled={Props.disabled}
+                        className={inputStyle}
+                        type={props.type}
+                        id={props.id}
+                        name={props.name}
+                        value={props.value}
+                        pattern={props.pattern}
+                        accept={props.accept}
+                        minLength={props.minLength}
+                        onChange={props.onChange}
+                        placeholder={props.placeholder}
+                        disabled={props.disabled}
                     />
-                </div>
+                </InputGroup>
             );
             break;
     }

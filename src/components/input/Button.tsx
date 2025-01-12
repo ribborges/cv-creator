@@ -24,11 +24,12 @@ export function Button({ type = "button", autofocus, disabled, id, name, value, 
                 hover:shadow-zinc-950/20 focus:shadow-zinc-950/20
                 dark:hover:shadow-zinc-200/20 dark:focus:shadow-zinc-200/20
                 disabled:hover:shadow-none disabled:focus:shadow-none
-                inline-block
+                flex basis-[max-content] items-center justify-center content-center gap-2
                 p-5 m-1
                 rounded-xl border border-solid
                 border-purple-700 disabled:border-zinc-400
                 transition duration-500
+                select-none
             `, className || "")}
             type={type}
             id={id}
