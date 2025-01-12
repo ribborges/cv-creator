@@ -23,12 +23,6 @@ export default function PersonalInfo(props: personalInfoProps) {
                     icon={<Fonts />}
                     placeholder={props.lang.name}
                 />
-                <Input
-                    type="number"
-                    name="name"
-                    icon={<Fonts />}
-                    placeholder="Teste"
-                />
                 <div className='flex gap-1'>
                     <div className='flex flex-col gap-1 flex-1'>
                         <Input
