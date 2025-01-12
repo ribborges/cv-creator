@@ -1,5 +1,4 @@
 import { ReactNode } from "react";
-import './style/_button.scss';
 import classConcat from "../../utils/classConcat";
 
 interface ButtonProps {

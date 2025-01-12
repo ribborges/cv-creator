@@ -82,8 +82,8 @@ export default function Upload(props: uploadProps) {
                     absolute
                     top-0 left-0
                     opacity-0
-                    w-[500px]
-                    h-[500px]
+                    w-full
+                    h-full
                     cursor-pointer
                 `}
             />
