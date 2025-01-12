@@ -13,13 +13,10 @@
   },
   "dependencies": {
     "@react-pdf/renderer": "^3.1.12",
-    "css-total-reset": "^0.0.2",
     "react": "^18.2.0",
     "react-bootstrap-icons": "^1.10.3",
     "react-device-detect": "^2.2.3",
     "react-dom": "^18.2.0",
-    "sass": "^1.58.3",
-    "scss": "^0.2.4",
     "uuid": "^9.0.0",
     "zustand": "^5.0.3"
   },
