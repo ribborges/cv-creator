@@ -1,4 +1,4 @@
-import { ReactNode, InputHTMLAttributes } from 'react';
+import { ReactNode } from 'react';
 
 import classConcat from '../../utils/classConcat';
 
