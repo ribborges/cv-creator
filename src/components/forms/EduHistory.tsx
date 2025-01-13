@@ -1,9 +1,9 @@
 import { ReactNode } from 'react';
 import { AwardFill, BinocularsFill, CalendarFill, CardText, GeoAltFill, MortarboardFill } from "react-bootstrap-icons";
 
-import { displayText } from '../../types/lang';
 import { Fieldset } from '../input/Fieldset';
 import { Input } from '../input/Input';
+import Translator from '../Translator';
 
 interface eduHistoryProps {
     id: number,
@@ -16,14 +16,13 @@ interface eduHistoryProps {
         schoolEdDate?: string,
         schoolDetails?: string;
     },
-    lang: displayText,
     onChange: (event: React.ChangeEvent<HTMLInputElement>, index: number, key: "schoolName" | "schoolDegree" | "schoolFieldStudy" | "schoolLocation" | "schoolBgDate" | "schoolEdDate" | "schoolDetails") => void,
     children: ReactNode
 }
 
 export default function EduHistory(props: eduHistoryProps) {
     return (
-        <Fieldset legend={props.lang.eduHistory}>
+        <Fieldset legend={Translator({ path: "eduHistory.title" })}>
             <div className="flex gap-1 flex-col">
                 <div className='flex gap-1'>
                     <div className='flex flex-col gap-1 flex-1'>
@@ -34,7 +33,7 @@ export default function EduHistory(props: eduHistoryProps) {
                             value={props.value?.schoolName}
                             onChange={(e: React.ChangeEvent<HTMLInputElement>) => props.onChange(e, props.id, "schoolName")}
                             icon={<MortarboardFill />}
-                            placeholder={props.lang.schoolName}
+                            placeholder={Translator({ path: "eduHistory.name" })}
                         />
                         <Input
                             type="text"
@@ -43,7 +42,7 @@ export default function EduHistory(props: eduHistoryProps) {
                             value={props.value?.schoolDegree}
                             onChange={(e: React.ChangeEvent<HTMLInputElement>) => props.onChange(e, props.id, "schoolDegree")}
                             icon={<AwardFill />}
-                            placeholder={props.lang.schoolDegree}
+                            placeholder={Translator({ path: "eduHistory.degree" })}
                         />
                         <Input
                             type="month"
@@ -52,6 +51,7 @@ export default function EduHistory(props: eduHistoryProps) {
                             value={props.value?.schoolBgDate}
                             onChange={(e: React.ChangeEvent<HTMLInputElement>) => props.onChange(e, props.id, "schoolBgDate")}
                             icon={<CalendarFill />}
+                            placeholder={Translator({ path: "eduHistory.bgDate" })}
                         />
                     </div>
                     <div className='flex flex-col gap-1 flex-1'>
@@ -62,7 +62,7 @@ export default function EduHistory(props: eduHistoryProps) {
                             value={props.value?.schoolFieldStudy}
                             onChange={(e: React.ChangeEvent<HTMLInputElement>) => props.onChange(e, props.id, "schoolFieldStudy")}
                             icon={<BinocularsFill />}
-                            placeholder={props.lang.schoolFieldStudy}
+                            placeholder={Translator({ path: "eduHistory.fieldStudy" })}
                         />
                         <Input
                             type="text"
@@ -71,7 +71,7 @@ export default function EduHistory(props: eduHistoryProps) {
                             value={props.value?.schoolLocation}
                             onChange={(e: React.ChangeEvent<HTMLInputElement>) => props.onChange(e, props.id, "schoolLocation")}
                             icon={<GeoAltFill />}
-                            placeholder={props.lang.location}
+                            placeholder={Translator({ path: "eduHistory.location" })}
                         />
                         <Input
                             type="month"
@@ -80,6 +80,7 @@ export default function EduHistory(props: eduHistoryProps) {
                             value={props.value?.schoolEdDate}
                             onChange={(e: React.ChangeEvent<HTMLInputElement>) => props.onChange(e, props.id, "schoolEdDate")}
                             icon={<CalendarFill />}
+                            placeholder={Translator({ path: "eduHistory.edDate" })}
                         />
                     </div>
                 </div>
@@ -90,7 +91,7 @@ export default function EduHistory(props: eduHistoryProps) {
                     value={props.value?.schoolDetails}
                     onChange={(e: React.ChangeEvent<HTMLInputElement>) => props.onChange(e, props.id, "schoolDetails")}
                     icon={<CardText />}
-                    title={props.lang.details}
+                    title={Translator({ path: "eduHistory.details" })}
                 />
                 <div className="flex-container">
                     {props.children}

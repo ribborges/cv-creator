@@ -1,7 +1,7 @@
 import { BarChartFill, Translate } from 'react-bootstrap-icons';
 
-import { displayText } from '../../types/lang';
 import { Input } from '../input/Input';
+import Translator from '../Translator';
 
 interface languagesProps {
     id: number,
@@ -9,7 +9,6 @@ interface languagesProps {
         language?: string,
         level?: string;
     },
-    lang: displayText,
     onSelect: React.Dispatch<React.SetStateAction<boolean>>,
     onChange: (event: React.ChangeEvent<HTMLInputElement>, index: number, key: "language" | "level") => void;
 }
@@ -24,7 +23,7 @@ export default function Languages(props: languagesProps) {
                 value={props.value?.language}
                 onChange={(e: React.ChangeEvent<HTMLInputElement>) => props.onChange(e, props.id, "language")}
                 icon={<Translate />}
-                placeholder={props.lang.language}
+                placeholder={Translator({ path: "languages.language" })}
             />
             <Input
                 type="option"
@@ -33,13 +32,14 @@ export default function Languages(props: languagesProps) {
                 value={props.value?.level}
                 onChange={(e: React.ChangeEvent<HTMLInputElement>) => props.onChange(e, props.id, "level")}
                 icon={<BarChartFill />}
+                placeholder={Translator({ path: "languages.select" })}
             >
-                <option value="select" onSelect={() => props.onSelect(true)}>{props.lang.select}</option>
-                <option value="elementary" onSelect={() => props.onSelect(false)}>{props.lang.elementary}</option>
-                <option value="limited" onSelect={() => props.onSelect(false)}>{props.lang.limited}</option>
-                <option value="professional" onSelect={() => props.onSelect(false)}>{props.lang.professional}</option>
-                <option value="full" onSelect={() => props.onSelect(false)}>{props.lang.full}</option>
-                <option value="native" onSelect={() => props.onSelect(false)}>{props.lang.native}</option>
+                <option value="select" onSelect={() => props.onSelect(true)}><Translator path="languages.select" /></option>
+                <option value="elementary" onSelect={() => props.onSelect(false)}><Translator path="languages.elementary" /></option>
+                <option value="limited" onSelect={() => props.onSelect(false)}><Translator path="languages.limited" /></option>
+                <option value="professional" onSelect={() => props.onSelect(false)}><Translator path="languages.professional" /></option>
+                <option value="full" onSelect={() => props.onSelect(false)}><Translator path="languages.full" /></option>
+                <option value="native" onSelect={() => props.onSelect(false)}><Translator path="languages.native" /></option>
             </Input>
         </div>
     );

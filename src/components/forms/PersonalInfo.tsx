@@ -1,11 +1,10 @@
 import { EnvelopeFill, Fonts, GeoAltFill, Github, Globe, Linkedin, PencilFill, TelephoneFill } from 'react-bootstrap-icons';
 
 import { cvData } from '../../types/cvData';
-import { displayText } from '../../types/lang';
 import { Input } from '../input/Input';
+import Translator from '../Translator';
 
 interface personalInfoProps {
-    lang: displayText,
     data: cvData,
     onChange?: React.ChangeEventHandler<HTMLInputElement>,
 }
@@ -21,7 +20,7 @@ export default function PersonalInfo(props: personalInfoProps) {
                     value={props.data.name}
                     onChange={props.onChange}
                     icon={<Fonts />}
-                    placeholder={props.lang.name}
+                    placeholder={Translator({ path: "personalInfo.name" })}
                 />
                 <div className='flex gap-1'>
                     <div className='flex flex-col gap-1 flex-1'>
@@ -32,7 +31,7 @@ export default function PersonalInfo(props: personalInfoProps) {
                             value={props.data.phone}
                             onChange={props.onChange}
                             icon={<TelephoneFill />}
-                            placeholder={props.lang.phone}
+                            placeholder={Translator({ path: "personalInfo.phone" })}
                         />
                         <Input
                             type="email"
@@ -41,7 +40,7 @@ export default function PersonalInfo(props: personalInfoProps) {
                             value={props.data.email}
                             onChange={props.onChange}
                             icon={<EnvelopeFill />}
-                            placeholder="Email"
+                            placeholder={Translator({ path: "personalInfo.email" })}
                         />
                         <Input
                             type="text"
@@ -50,7 +49,7 @@ export default function PersonalInfo(props: personalInfoProps) {
                             value={props.data.address}
                             onChange={props.onChange}
                             icon={<GeoAltFill />}
-                            placeholder={props.lang.address}
+                            placeholder={Translator({ path: "personalInfo.address" })}
                         />
                     </div>
                     <div className='flex flex-col gap-1 flex-1'>
@@ -79,12 +78,20 @@ export default function PersonalInfo(props: personalInfoProps) {
                             value={props.data.portfolioUrl}
                             onChange={props.onChange}
                             icon={<Globe />}
-                            placeholder="Portfolio"
+                            placeholder={Translator({ path: "personalInfo.portfolio" })}
                         />
                     </div>
                 </div>
             </div>
-            <Input type="textarea" id="summary" name="summary" value={props.data.summary} onChange={props.onChange} icon={<PencilFill />} title={props.lang.summary} />
+            <Input
+                type="textarea"
+                id="summary"
+                name="summary"
+                value={props.data.summary}
+                onChange={props.onChange}
+                icon={<PencilFill />}
+                title={Translator({ path: "personalInfo.summary" })}
+            />
         </div>
     );
 }

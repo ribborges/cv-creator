@@ -1,9 +1,9 @@
 import { ReactNode } from 'react';
 import { BriefcaseFill, BuildingsFill, CalendarFill, CardText, GeoAltFill } from 'react-bootstrap-icons';
 
-import { displayText } from '../../types/lang';
 import { Fieldset } from '../input/Fieldset';
 import { Input } from '../input/Input';
+import Translator from '../Translator';
 
 interface workExpProps {
     id: number,
@@ -15,14 +15,13 @@ interface workExpProps {
         workEdDate?: string,
         workDetails?: string;
     },
-    lang: displayText,
     onChange: (event: React.ChangeEvent<HTMLInputElement>, index: number, key: "workCompanyName" | "workJobTitle" | "workLocation" | "workBgDate" | "workEdDate" | "workDetails") => void,
     children: ReactNode
 }
 
 export default function WorkExp(props: workExpProps) {
     return (
-        <Fieldset legend={props.lang.workExp}>
+        <Fieldset legend={Translator({ path: "workExp.title" })}>
             <div className="flex gap-1 flex-col">
                 <div className='flex gap-1'>
                     <div className='flex flex-col gap-1 flex-1'>
@@ -33,7 +32,7 @@ export default function WorkExp(props: workExpProps) {
                             value={props.value?.workCompanyName}
                             onChange={(e: React.ChangeEvent<HTMLInputElement>) => props.onChange(e, props.id, "workCompanyName")}
                             icon={<BuildingsFill />}
-                            placeholder={props.lang.workCompanyName}
+                            placeholder={Translator({ path: "workExp.companyName" })}
                         />
                         <Input
                             type="text"
@@ -42,7 +41,7 @@ export default function WorkExp(props: workExpProps) {
                             value={props.value?.workJobTitle}
                             onChange={(e: React.ChangeEvent<HTMLInputElement>) => props.onChange(e, props.id, "workJobTitle")}
                             icon={<BriefcaseFill />}
-                            placeholder={props.lang.workJobTitle}
+                            placeholder={Translator({ path: "workExp.jobTitle" })}
                         />
                         <Input
                             type="month"
@@ -51,6 +50,7 @@ export default function WorkExp(props: workExpProps) {
                             value={props.value?.workBgDate}
                             onChange={(e: React.ChangeEvent<HTMLInputElement>) => props.onChange(e, props.id, "workBgDate")}
                             icon={<CalendarFill />}
+                            placeholder={Translator({ path: "workExp.bgDate" })}
                         />
                     </div>
                     <div className='flex flex-col gap-1 flex-1'>
@@ -61,7 +61,7 @@ export default function WorkExp(props: workExpProps) {
                             value={props.value?.workLocation}
                             onChange={(e: React.ChangeEvent<HTMLInputElement>) => props.onChange(e, props.id, "workLocation")}
                             icon={<GeoAltFill />}
-                            placeholder={props.lang.location}
+                            placeholder={Translator({ path: "workExp.title" })}
                         />
                         <div className='flex-1'></div>
                         <Input
@@ -71,6 +71,7 @@ export default function WorkExp(props: workExpProps) {
                             value={props.value?.workEdDate}
                             onChange={(e: React.ChangeEvent<HTMLInputElement>) => props.onChange(e, props.id, "workEdDate")}
                             icon={<CalendarFill />}
+                            placeholder={Translator({ path: "workExp.edDate" })}
                         />
                     </div>
                 </div>
@@ -81,7 +82,7 @@ export default function WorkExp(props: workExpProps) {
                     value={props.value?.workDetails}
                     onChange={(e: React.ChangeEvent<HTMLInputElement>) => props.onChange(e, props.id, "workDetails")}
                     icon={<CardText />}
-                    title={props.lang.details}
+                    title={Translator({ path: "workExp.details" })}
                 />
                 <div className="flex-container">
                     {props.children}

@@ -5,8 +5,8 @@ import FontRobotoSlabBold from './RobotoSlab/RobotoSlab-Bold.ttf';
 import FontRobotoSlabRegular from './RobotoSlab/RobotoSlab-Regular.ttf';
 import FontRobotoSlabLight from './RobotoSlab/RobotoSlab-Light.ttf';
 import FontRobotoSlabThin from './RobotoSlab/RobotoSlab-Thin.ttf';
-import { displayText } from "../../types/lang";
 import { cvData } from "../../types/cvData";
+import Translator from "../Translator";
 
 Font.register({
     family: 'Roboto-Slab',
@@ -99,27 +99,26 @@ const styles = StyleSheet.create({
 });
 
 interface pdfProps {
-    data: cvData,
-    lang: displayText;
+    data: cvData
 }
 
-export default function PdfRenderer({ data, lang }: pdfProps) {
+export default function PdfRenderer({ data }: pdfProps) {
     return (
         isMobile ?
             <PDFDownloadLink className="button"
-                document={<DocCv data={data} lang={lang} />}
+                document={<DocCv data={data} />}
                 fileName="cv-creator"
             >
                 Download pdf
             </PDFDownloadLink>
             :
             <PDFViewer style={styles.viewer}>
-                <DocCv data={data} lang={lang} />
+                <DocCv data={data} />
             </PDFViewer>
     );
 }
 
-function DocCv({ data, lang }: pdfProps) {
+function DocCv({ data }: pdfProps) {
     return (
         <Document>
             <Page size="A4" style={styles.page}>
@@ -158,7 +157,7 @@ function DocCv({ data, lang }: pdfProps) {
                     {
                         data.summary === "" ? "" :
                             <View style={styles.subSection}>
-                                <Text style={styles.title2}>{lang.summary}</Text>
+                                <Text style={styles.title2}><Translator path="personalInfo.title" /></Text>
                                 <Text style={styles.info2}>{data.summary}</Text>
                             </View>
                     }
@@ -168,13 +167,13 @@ function DocCv({ data, lang }: pdfProps) {
                         <>
                             <View style={styles.spacer} />
                             <View style={styles.section}>
-                                <Text style={styles.title1}>{lang.workExp}</Text>
+                                <Text style={styles.title1}><Translator path="personalInfo.title" /></Text>
                                 {
                                     data.workExp && data.workExp.map((value, index) => (
                                         <View key={index} style={styles.subSection}>
                                             <Text style={styles.title2}>{value.workJobTitle}</Text>
                                             <Text style={styles.text1}>{value.workCompanyName}</Text>
-                                            <Text style={styles.text1}>{value.workLocation} {value.workBgDate === "" ? "" : "| " + value.workBgDate?.split("-")[1] + "/" + value.workBgDate?.split("-")[0] + (value.workEdDate === "" ? " - " + lang.today : " - " + value.workEdDate?.split("-")[1] + "/" + value.workEdDate?.split("-")[0])}</Text>
+                                            <Text style={styles.text1}>{value.workLocation} {value.workBgDate === "" ? "" : "| " + value.workBgDate?.split("-")[1] + "/" + value.workBgDate?.split("-")[0] + (value.workEdDate === "" ? " - " + Translator({ path: "personalInfo.title" }) : " - " + value.workEdDate?.split("-")[1] + "/" + value.workEdDate?.split("-")[0])}</Text>
                                             <Text style={styles.text2}>{value.workDetails}</Text>
                                         </View>
                                     ))
@@ -187,13 +186,13 @@ function DocCv({ data, lang }: pdfProps) {
                         <>
                             <View style={styles.spacer} />
                             <View style={styles.section}>
-                                <Text style={styles.title1}>{lang.eduHistory}</Text>
+                                <Text style={styles.title1}><Translator path="personalInfo.title" /></Text>
                                 {
                                     data.eduHistory && data.eduHistory.map((value, index) => (
                                         <View key={index} style={styles.subSection}>
                                             <Text style={styles.title2}>{value.schoolDegree} {value.schoolFieldStudy === "" ? "" : "|"} {value.schoolFieldStudy}</Text>
                                             <Text style={styles.text1}>{value.schoolName}</Text>
-                                            <Text style={styles.text1}>{value.schoolLocation} {value.schoolBgDate === "" ? "" : "| " + value.schoolBgDate?.split("-")[1] + "/" + value.schoolBgDate?.split("-")[0] + (value.schoolEdDate === "" ? " - " + lang.today : " - " + value.schoolEdDate?.split("-")[1] + "/" + value.schoolEdDate?.split("-")[0])}</Text>
+                                            <Text style={styles.text1}>{value.schoolLocation} {value.schoolBgDate === "" ? "" : "| " + value.schoolBgDate?.split("-")[1] + "/" + value.schoolBgDate?.split("-")[0] + (value.schoolEdDate === "" ? " - " + Translator({ path: "personalInfo.title" }) : " - " + value.schoolEdDate?.split("-")[1] + "/" + value.schoolEdDate?.split("-")[0])}</Text>
                                             <Text style={styles.text2}>{value.schoolDetails}</Text>
                                         </View>
                                     ))
@@ -206,7 +205,7 @@ function DocCv({ data, lang }: pdfProps) {
                         <>
                             <View style={styles.spacer} />
                             <View style={styles.section} wrap={false}>
-                                <Text style={styles.title1}>{lang.skills}</Text>
+                                <Text style={styles.title1}><Translator path="personalInfo.title" /></Text>
                                 <View style={styles.subSection}>
                                     <Text style={styles.text2}>
                                         {
@@ -224,18 +223,18 @@ function DocCv({ data, lang }: pdfProps) {
                         <>
                             <View style={styles.spacer} />
                             <View style={styles.section}>
-                                <Text style={styles.title1}>{lang.languages}</Text>
+                                <Text style={styles.title1}><Translator path="personalInfo.title" /></Text>
                                 {
                                     data.languages && data.languages.map((value, index) => (
                                         <View key={index} style={styles.subSection}>
                                             <Text style={styles.text1}>{value.language}</Text>
                                             <Text style={styles.text2}>
                                                 {value.level === "select" ? "" : ""}
-                                                {value.level === "elementary" ? lang.elementary : ""}
-                                                {value.level === "limited" ? lang.limited : ""}
-                                                {value.level === "professional" ? lang.professional : ""}
-                                                {value.level === "full" ? lang.full : ""}
-                                                {value.level === "native" ? lang.native : ""}
+                                                {value.level === "elementary" ? Translator({ path: "personalInfo.title" }) : ""}
+                                                {value.level === "limited" ? Translator({ path: "personalInfo.title" }) : ""}
+                                                {value.level === "professional" ? Translator({ path: "personalInfo.title" }) : ""}
+                                                {value.level === "full" ? Translator({ path: "personalInfo.title" }) : ""}
+                                                {value.level === "native" ? Translator({ path: "personalInfo.title" }) : ""}
                                             </Text>
                                         </View>
                                     ))
@@ -248,7 +247,7 @@ function DocCv({ data, lang }: pdfProps) {
                         <>
                             <View style={styles.spacer} />
                             <View style={styles.section}>
-                                <Text style={styles.title1}>{lang.licensesCertif}</Text>
+                                <Text style={styles.title1}><Translator path="personalInfo.title" /></Text>
                                 {
                                     data.licensesCertif && data.licensesCertif.map((value, index) => (
                                         <View key={index} style={styles.subSection}>
