@@ -1,3 +1,5 @@
+<img src="https://www.richardborges.dev/static/img/projects/cv-creator.webp">
+
 # CV Creator
 
 Create your CV/Resume with this simple tool developed using React, TypeScript, Vite, SCSS and ReactPDF.
@@ -19,9 +21,3 @@ Then...
 ```bash
 > npm start
 ```
-
-## Screenshots
-
-<img src="https://richardborges.vercel.app/static/img/projects/cv-creator-fullpage.png">
-
-<img src="https://richardborges.vercel.app/static/img/projects/cv-creator-pdfviewe.png">
