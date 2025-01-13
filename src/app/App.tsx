@@ -33,7 +33,7 @@ export default function App() {
 
       <section className="
         flex flex-col
-        p-20 m-20 mt-40
+        p-4 m-2 mt-32 lg:p-20 lg:m-20 lg:mt-40
         rounded-xl border border-solid
         border-zinc-300 bg-zinc-200
         dark:border-zinc-800 dark:bg-zinc-900"

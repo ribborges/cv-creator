@@ -27,7 +27,7 @@ export interface inputProps {
 }
 
 const inputStyle = `
-    p-4 h-auto
+    p-2 lg:p-4 h-auto
     bg-transparent
     rounded-xl
     outline-4 outline-none outline-offset-0 outline-purple-700/0 focus:outline-purple-700/50
@@ -51,7 +51,7 @@ function InputGroup(props: inputGroup) {
             transition duration-500
             `
         )}>
-            <div className="flex gap-2 items-center p-4">
+            <div className="flex gap-2 items-center p-2 lg:p-4">
                 {
                     props.icon ?
                         <div>

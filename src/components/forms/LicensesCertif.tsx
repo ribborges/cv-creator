@@ -57,7 +57,7 @@ function LicenseCertifList() {
 
 function LicensesCertif(props: licensesCertifProps) {
     return (
-        <div className="flex-1 flex gap-1">
+        <div className="flex-1 flex gap-1 flex-col lg:flex-row">
             <Input
                 type="text"
                 id={"skill" + props.id}

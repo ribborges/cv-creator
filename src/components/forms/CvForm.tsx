@@ -93,7 +93,7 @@ export default function CvForm() {
 
     return (
         <form ref={formRef}>
-            <div className="flex gap-5">
+            <div className="flex gap-5 flex-col lg:flex-row">
                 <div className="flex-1">
                     <h2><Translator path="personalInfo.title" /></h2>
                 </div>
@@ -104,7 +104,7 @@ export default function CvForm() {
 
             <Collapse title={<h2><Translator path="eduHistory.title" /></h2>}>
                 <div className="flex gap-5">
-                    <div className="flex-1">
+                    <div className="flex-1 hidden lg:block">
                     </div>
                     <div className="flex gap-5 flex-[3] flex-col">
                         <EduHistoryList />
@@ -116,7 +116,7 @@ export default function CvForm() {
 
             <Collapse title={<h2><Translator path="workExp.title" /></h2>}>
                 <div className="flex gap-5">
-                    <div className="flex-1">
+                    <div className="flex-1 hidden lg:block">
                     </div>
                     <div className="flex gap-5 flex-[3] flex-col">
                         <WorkExpList />
@@ -128,7 +128,7 @@ export default function CvForm() {
 
             <Collapse title={<h2><Translator path="licensesCertif.title" /></h2>}>
                 <div className="flex gap-5">
-                    <div className="flex-1">
+                    <div className="flex-1 hidden lg:block">
                     </div>
                     <div className="flex gap-1 flex-[3] flex-col">
                         <LicenseCertifList />
@@ -140,7 +140,7 @@ export default function CvForm() {
 
             <Collapse title={<h2><Translator path="languages.title" /></h2>}>
                 <div className="flex gap-5">
-                    <div className="flex-1">
+                    <div className="flex-1 hidden lg:block">
                     </div>
                     <div className="flex gap-5 flex-[3] flex-col">
                         <LanguagesList setDisableBtns={setDisableBtns} />
@@ -152,7 +152,7 @@ export default function CvForm() {
 
             <Collapse title={<h2><Translator path="skills.title" /></h2>}>
                 <div className="flex gap-5">
-                    <div className="flex-1">
+                    <div className="flex-1 hidden lg:block">
                     </div>
                     <div className="flex gap-5 flex-[3] flex-col">
                         <SkillList />
@@ -162,7 +162,7 @@ export default function CvForm() {
 
             <Spacer />
 
-            <div className="flex gap-5">
+            <div className="flex gap-5 flex-col lg:flex-row">
                 <Button className="flex-1" type="button" name="export" onClick={handleSubmit} disabled={disableBtns} >
                     <Translator path="buttons.export" />
                 </Button>
