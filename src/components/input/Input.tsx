@@ -27,7 +27,7 @@ export interface inputProps {
 }
 
 const inputStyle = `
-    flex-1 p-4 h-auto
+    p-4 h-auto
     bg-transparent
     rounded-xl
     outline-4 outline-none outline-offset-0 outline-purple-700/0 focus:outline-purple-700/50
@@ -136,7 +136,7 @@ export function Input(props: inputProps) {
             return (
                 <InputGroup className={props.className} icon={props.icon} label={props.title}>
                     <input
-                        className={inputStyle}
+                        className={classConcat(inputStyle, "w-full")}
                         type={props.type}
                         id={props.id}
                         name={props.name}
