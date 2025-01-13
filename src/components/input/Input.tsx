@@ -125,7 +125,7 @@ export function Input(props: inputProps) {
         case "option":
             return (
                 <InputGroup icon={props.icon} label={props.title}>
-                    <select className={inputStyle} id={props.id} name={props.name} value={props.value} onChange={props.onChange}>
+                    <select className={classConcat(inputStyle, "w-full")} id={props.id} name={props.name} value={props.value} onChange={props.onChange}>
                         {props.children}
                     </select>
                 </InputGroup>
