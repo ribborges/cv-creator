@@ -1,15 +1,16 @@
 import { EnvelopeFill, Fonts, GeoAltFill, Github, Globe, Linkedin, PencilFill, TelephoneFill } from 'react-bootstrap-icons';
 
-import { cvData } from '../../types/cvData';
+import { useCvDataStore } from '../../lib/store';
 import { Input } from '../input/Input';
 import Translator from '../Translator';
 
-interface personalInfoProps {
-    data: cvData,
-    onChange?: React.ChangeEventHandler<HTMLInputElement>,
-}
+export default function PersonalInfo() {
+    const { setPersonalInfo, personalInfo } = useCvDataStore();
 
-export default function PersonalInfo(props: personalInfoProps) {
+    const handleChange = (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+        setPersonalInfo({ ...personalInfo, [event.target.name]: event.target.value });
+    };
+
     return (
         <div className="flex flex-[3] flex-col gap-1">
             <div className="flex flex-col gap-1">
@@ -17,8 +18,8 @@ export default function PersonalInfo(props: personalInfoProps) {
                     type="text"
                     id="name"
                     name="name"
-                    value={props.data.name}
-                    onChange={props.onChange}
+                    value={personalInfo.name}
+                    onChange={handleChange}
                     icon={<Fonts />}
                     placeholder={Translator({ path: "personalInfo.name" })}
                 />
@@ -28,8 +29,8 @@ export default function PersonalInfo(props: personalInfoProps) {
                             type="phone"
                             id="phone"
                             name="phone"
-                            value={props.data.phone}
-                            onChange={props.onChange}
+                            value={personalInfo.phone}
+                            onChange={handleChange}
                             icon={<TelephoneFill />}
                             placeholder={Translator({ path: "personalInfo.phone" })}
                         />
@@ -37,8 +38,8 @@ export default function PersonalInfo(props: personalInfoProps) {
                             type="email"
                             id="email"
                             name="email"
-                            value={props.data.email}
-                            onChange={props.onChange}
+                            value={personalInfo.email}
+                            onChange={handleChange}
                             icon={<EnvelopeFill />}
                             placeholder={Translator({ path: "personalInfo.email" })}
                         />
@@ -46,8 +47,8 @@ export default function PersonalInfo(props: personalInfoProps) {
                             type="text"
                             id="address"
                             name="address"
-                            value={props.data.address}
-                            onChange={props.onChange}
+                            value={personalInfo.address}
+                            onChange={handleChange}
                             icon={<GeoAltFill />}
                             placeholder={Translator({ path: "personalInfo.address" })}
                         />
@@ -57,8 +58,8 @@ export default function PersonalInfo(props: personalInfoProps) {
                             type="url"
                             id="linkedinUrl"
                             name="linkedinUrl"
-                            value={props.data.linkedinUrl}
-                            onChange={props.onChange}
+                            value={personalInfo.linkedinUrl}
+                            onChange={handleChange}
                             icon={<Linkedin />}
                             placeholder="LinkedIn"
                         />
@@ -66,8 +67,8 @@ export default function PersonalInfo(props: personalInfoProps) {
                             type="url"
                             id="githubUrl"
                             name="githubUrl"
-                            value={props.data.githubUrl}
-                            onChange={props.onChange}
+                            value={personalInfo.githubUrl}
+                            onChange={handleChange}
                             icon={<Github />}
                             placeholder="GitHub"
                         />
@@ -75,8 +76,8 @@ export default function PersonalInfo(props: personalInfoProps) {
                             type="url"
                             id="portfolioUrl"
                             name="portfolioUrl"
-                            value={props.data.portfolioUrl}
-                            onChange={props.onChange}
+                            value={personalInfo.portfolioUrl}
+                            onChange={handleChange}
                             icon={<Globe />}
                             placeholder={Translator({ path: "personalInfo.portfolio" })}
                         />
@@ -87,8 +88,8 @@ export default function PersonalInfo(props: personalInfoProps) {
                 type="textarea"
                 id="summary"
                 name="summary"
-                value={props.data.summary}
-                onChange={props.onChange}
+                value={personalInfo.summary}
+                onChange={handleChange}
                 icon={<PencilFill />}
                 title={Translator({ path: "personalInfo.summary" })}
             />

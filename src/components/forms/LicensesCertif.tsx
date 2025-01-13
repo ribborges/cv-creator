@@ -1,19 +1,61 @@
-import { AwardFill, BuildingFill } from 'react-bootstrap-icons';
+import { AwardFill, BuildingFill, PlusLg, TrashFill } from 'react-bootstrap-icons';
 
 import { Input } from '../input/Input';
 import Translator from '../Translator';
+import { licensesCertif } from '../../types/cvData';
+import { Button } from '../input/Button';
+import { useCvDataStore } from '../../lib/store';
 
 interface licensesCertifProps {
     id: number,
-    value?: {
-        licensesCertifName?: string,
-        licensesCertifOrg?: string;
-    },
+    value?: licensesCertif,
     className?: string,
     onChange: (event: React.ChangeEvent<HTMLInputElement>, index: number, key: "licensesCertifName" | "licensesCertifOrg") => void;
 }
 
-export default function Skill(props: licensesCertifProps) {
+function LicenseCertifList() {
+    const { setLicensesCertif, licensesCertif } = useCvDataStore();
+
+    const handleLicensesCertifChange = (
+        event: React.ChangeEvent<HTMLInputElement>,
+        index: number,
+        key: "licensesCertifName" | "licensesCertifOrg"
+    ) => {
+        const newLicensesCertif = [...(licensesCertif || [])];
+        newLicensesCertif[index][key] = event.target.value;
+        setLicensesCertif(newLicensesCertif);
+    };
+
+    const handleAddLicensesCertif = () => {
+        const newLicensesCertif = [...(licensesCertif || []), {
+            licensesCertifName: '',
+            licensesCertifOrg: ''
+        }];
+        setLicensesCertif(newLicensesCertif);
+    };
+
+    const handleRemoveLicensesCertif = (index: number) => {
+        const newLicensesCertif = [...(licensesCertif || [])];
+        newLicensesCertif.splice(index, 1);
+        setLicensesCertif(newLicensesCertif);
+    };
+
+    return (
+        <>
+            {
+                licensesCertif?.map((value, index) => (
+                    <div key={index} className="flex gap-1">
+                        <LicensesCertif id={index} value={value} onChange={handleLicensesCertifChange} />
+                        <Button type="button" onClick={() => handleRemoveLicensesCertif(index)}><TrashFill /></Button>
+                    </div>
+                ))
+            }
+            < Button type="button" onClick={handleAddLicensesCertif} > <PlusLg /></Button >
+        </>
+    );
+}
+
+function LicensesCertif(props: licensesCertifProps) {
     return (
         <div className="flex-1 flex gap-1">
             <Input
@@ -37,3 +79,5 @@ export default function Skill(props: licensesCertifProps) {
         </div>
     );
 }
+
+export { LicenseCertifList, LicensesCertif };

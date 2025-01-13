@@ -1,7 +1,9 @@
-import { BarChartFill, Translate } from 'react-bootstrap-icons';
+import { BarChartFill, PlusLg, Translate, TrashFill } from 'react-bootstrap-icons';
 
 import { Input } from '../input/Input';
 import Translator from '../Translator';
+import { Button } from '../input/Button';
+import { useCvDataStore } from '../../lib/store';
 
 interface languagesProps {
     id: number,
@@ -13,7 +15,49 @@ interface languagesProps {
     onChange: (event: React.ChangeEvent<HTMLInputElement>, index: number, key: "language" | "level") => void;
 }
 
-export default function Languages(props: languagesProps) {
+function LanguagesList({ setDisableBtns }: { setDisableBtns: React.Dispatch<React.SetStateAction<boolean>> }) {
+    const { setLanguages, languages } = useCvDataStore();
+    
+    const handleLanguagesChange = (
+        event: React.ChangeEvent<HTMLInputElement>,
+        index: number,
+        key: "language" | "level"
+    ) => {
+        const newLanguage = [...languages];
+        newLanguage[index][key] = event.target.value;
+        setLanguages(newLanguage);
+    };
+
+    const handleAddLanguages = () => {
+        const newLanguage = [...(languages || []), {
+            language: '',
+            level: ''
+        }];
+        setLanguages(newLanguage);
+    };
+
+    const handleRemoveLanguages = (index: number) => {
+        const newLanguage = [...(languages || [])];
+        newLanguage.splice(index, 1);
+        setLanguages(newLanguage);
+    };
+
+    return (
+        <>
+            {
+                languages?.map((value, index) => (
+                    <div key={index} className="flex gap-1">
+                        <Languages onSelect={setDisableBtns} id={index} value={value} onChange={handleLanguagesChange} />
+                        <Button type="button" onClick={() => handleRemoveLanguages(index)}><TrashFill /></Button>
+                    </div>
+                ))
+            }
+            <Button type="button" onClick={handleAddLanguages}><PlusLg /></Button>
+        </>
+    );
+}
+
+function Languages(props: languagesProps) {
     return (
         <div className="flex-1 flex gap-1">
             <Input
@@ -35,7 +79,7 @@ export default function Languages(props: languagesProps) {
                 placeholder={Translator({ path: "languages.select" })}
             >
                 <option value="select" onSelect={() => props.onSelect(true)}><Translator path="languages.select" /></option>
-                <option value="elementary" onSelect={() => props.onSelect(false)}><Translator path="languages.elementary" /></option>
+                <option value="elementary" onSelect={() => props.onSelect(false)}><Translator path="languages.novice" /></option>
                 <option value="limited" onSelect={() => props.onSelect(false)}><Translator path="languages.limited" /></option>
                 <option value="professional" onSelect={() => props.onSelect(false)}><Translator path="languages.professional" /></option>
                 <option value="full" onSelect={() => props.onSelect(false)}><Translator path="languages.full" /></option>
@@ -44,3 +88,5 @@ export default function Languages(props: languagesProps) {
         </div>
     );
 }
+
+export { LanguagesList, Languages };

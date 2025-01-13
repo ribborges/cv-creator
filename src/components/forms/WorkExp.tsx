@@ -1,25 +1,69 @@
-import { ReactNode } from 'react';
-import { BriefcaseFill, BuildingsFill, CalendarFill, CardText, GeoAltFill } from 'react-bootstrap-icons';
+import { ReactNode, useState } from 'react';
+import { BriefcaseFill, BuildingsFill, CalendarFill, CardText, GeoAltFill, PlusLg, TrashFill } from 'react-bootstrap-icons';
 
 import { Fieldset } from '../input/Fieldset';
 import { Input } from '../input/Input';
 import Translator from '../Translator';
+import { workExp } from '../../types/cvData';
+import { Button } from '../input/Button';
+import { useCvDataStore } from '../../lib/store';
 
 interface workExpProps {
     id: number,
-    value?: {
-        workCompanyName?: string,
-        workJobTitle?: string,
-        workLocation?: string,
-        workBgDate?: string,
-        workEdDate?: string,
-        workDetails?: string;
-    },
+    value?: workExp,
     onChange: (event: React.ChangeEvent<HTMLInputElement>, index: number, key: "workCompanyName" | "workJobTitle" | "workLocation" | "workBgDate" | "workEdDate" | "workDetails") => void,
     children: ReactNode
 }
 
-export default function WorkExp(props: workExpProps) {
+function WorkExpList() {
+    const { setWorkExp, workExp } = useCvDataStore();
+
+    const handleWorkExpChange = (
+        event: React.ChangeEvent<HTMLInputElement>,
+        index: number,
+        key: "workCompanyName" | "workJobTitle" | "workLocation" | "workBgDate" | "workEdDate" | "workDetails"
+    ) => {
+        const { value } = event.target;
+        const newWorkExp = [...workExp];
+        newWorkExp[index][key] = value;
+        setWorkExp(newWorkExp);
+    };
+
+    const handleAddWorkExp = () => {
+        const newWorkExp = [...(workExp || []), {
+            workCompanyName: "",
+            workJobTitle: "",
+            workLocation: "",
+            workBgDate: "",
+            workEdDate: "",
+            workDetails: ""
+        }];
+        setWorkExp(newWorkExp);
+    };
+
+    const handleRemoveWorkExp = (index: number) => {
+        const newWorkExp = [...(workExp || [])];
+        newWorkExp.splice(index, 1);
+        setWorkExp(newWorkExp);
+    };
+
+    return (
+        <>
+            {
+                workExp.map((value, index) => (
+                    <div key={index} className="flex flex-col">
+                        <WorkExp id={index} value={value} onChange={handleWorkExpChange}>
+                            <Button type="button" onClick={() => handleRemoveWorkExp(index)}><TrashFill /></Button>
+                        </WorkExp>
+                    </div>
+                ))
+            }
+            <Button type="button" onClick={handleAddWorkExp}><PlusLg /></Button>
+        </>
+    );
+}
+
+function WorkExp(props: workExpProps) {
     return (
         <Fieldset legend={Translator({ path: "workExp.title" })}>
             <div className="flex gap-1 flex-col">
@@ -91,3 +135,5 @@ export default function WorkExp(props: workExpProps) {
         </Fieldset>
     );
 }
+
+export { WorkExpList, WorkExp };

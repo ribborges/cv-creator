@@ -1,26 +1,70 @@
 import { ReactNode } from 'react';
-import { AwardFill, BinocularsFill, CalendarFill, CardText, GeoAltFill, MortarboardFill } from "react-bootstrap-icons";
+import { AwardFill, BinocularsFill, CalendarFill, CardText, GeoAltFill, MortarboardFill, PlusLg, TrashFill } from "react-bootstrap-icons";
 
 import { Fieldset } from '../input/Fieldset';
 import { Input } from '../input/Input';
 import Translator from '../Translator';
+import { eduHistory } from '../../types/cvData';
+import { Button } from '../input/Button';
+import { useCvDataStore } from '../../lib/store';
 
 interface eduHistoryProps {
     id: number,
-    value?: {
-        schoolName?: string,
-        schoolDegree?: string,
-        schoolFieldStudy?: string,
-        schoolLocation?: string,
-        schoolBgDate?: string,
-        schoolEdDate?: string,
-        schoolDetails?: string;
-    },
+    value?: eduHistory,
     onChange: (event: React.ChangeEvent<HTMLInputElement>, index: number, key: "schoolName" | "schoolDegree" | "schoolFieldStudy" | "schoolLocation" | "schoolBgDate" | "schoolEdDate" | "schoolDetails") => void,
     children: ReactNode
 }
 
-export default function EduHistory(props: eduHistoryProps) {
+function EduHistoryList() {
+    const { setEduHistory, eduHistory } = useCvDataStore();
+
+    const handleEduHistoryChange = (
+        event: React.ChangeEvent<HTMLInputElement>,
+        index: number,
+        key: "schoolName" | "schoolDegree" | "schoolFieldStudy" | "schoolLocation" | "schoolBgDate" | "schoolEdDate" | "schoolDetails"
+    ) => {
+        const { value } = event.target;
+        const newEduHistory = [...eduHistory];
+        newEduHistory[index][key] = value;
+        setEduHistory(newEduHistory);
+    };
+
+    const handleAddEduHistory = () => {
+        const newEduHistory = [...(eduHistory || []), {
+            schoolName: "",
+            schoolDegree: "",
+            schoolFieldStudy: "",
+            schoolLocation: "",
+            schoolBgDate: "",
+            schoolEdDate: "",
+            schoolDetails: ""
+        }];
+        setEduHistory(newEduHistory);
+    };
+
+    const handleRemoveEduHistory = (index: number) => {
+        const newEduHistory = [...(eduHistory || [])];
+        newEduHistory.splice(index, 1);
+        setEduHistory(newEduHistory);
+    };
+
+    return (
+        <>
+            {
+                eduHistory.map((value, index) => (
+                    <div key={index} className="flex flex-col">
+                        <EduHistory id={index} value={value} onChange={handleEduHistoryChange}>
+                            <Button type="button" onClick={() => handleRemoveEduHistory(index)}><TrashFill /></Button>
+                        </EduHistory>
+                    </div>
+                ))
+            }
+            <Button type="button" onClick={handleAddEduHistory}><PlusLg /></Button>
+        </>
+    );
+}
+
+function EduHistory(props: eduHistoryProps) {
     return (
         <Fieldset legend={Translator({ path: "eduHistory.title" })}>
             <div className="flex gap-1 flex-col">
@@ -100,3 +144,5 @@ export default function EduHistory(props: eduHistoryProps) {
         </Fieldset>
     );
 }
+
+export { EduHistoryList, EduHistory };
