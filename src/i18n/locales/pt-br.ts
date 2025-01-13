@@ -42,7 +42,7 @@ export default {
             title: 'Idiomas',
             language: 'Idioma',
             select: 'Selecione',
-            elementary: 'Básico',
+            novice: 'Básico',
             limited: 'Intermediário',
             professional: 'Profissional',
             full: 'Avançado',
