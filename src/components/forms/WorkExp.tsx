@@ -105,7 +105,7 @@ function WorkExp(props: workExpProps) {
                             value={props.value?.workLocation}
                             onChange={(e: React.ChangeEvent<HTMLInputElement>) => props.onChange(e, props.id, "workLocation")}
                             icon={<GeoAltFill />}
-                            placeholder={Translator({ path: "workExp.title" })}
+                            placeholder={Translator({ path: "workExp.location" })}
                         />
                         <div className='flex-1'></div>
                         <Input
