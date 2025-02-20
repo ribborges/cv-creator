@@ -2,15 +2,87 @@ export default function Logo() {
     return (
         <svg
             xmlns="http://www.w3.org/2000/svg"
+            xmlnsXlink="http://www.w3.org/1999/xlink"
+            xmlSpace="preserve"
+            id="Capa_1"
             width="1024"
             height="1024"
-            viewBox="0 0 1024 1024"
-            style={{ width: '100%', height: '100%' }}
-            preserveAspectRatio="xMidYMid meet"
+            fill="#000"
+            version="1.1"
+            viewBox="0 0 56.212 56.212"
         >
+            <defs id="defs1">
+                <linearGradient id="linearGradient3">
+                    <stop id="stop3" offset="0" stopColor="#7e22ce" stopOpacity="1" />
+                    <stop id="stop4" offset="1" stopColor="#be185d" stopOpacity="1" />
+                </linearGradient>
+                <linearGradient
+                    xlinkHref="#linearGradient3"
+                    id="linearGradient4"
+                    x1="-25.082"
+                    x2="-3.275"
+                    y1="11.475"
+                    y2="33.282"
+                    gradientUnits="userSpaceOnUse"
+                />
+                <filter
+                    id="filter2"
+                    width="2.475"
+                    height="2.196"
+                    x="-0.61"
+                    y="-0.495"
+                    colorInterpolationFilters="sRGB"
+                >
+                    <feFlood
+                        id="feFlood1"
+                        floodColor="#000"
+                        floodOpacity="0.6"
+                        result="flood"
+                    />
+                    <feGaussianBlur
+                        id="feGaussianBlur1"
+                        in="SourceGraphic"
+                        result="blur"
+                        stdDeviation="5"
+                    />
+                    <feOffset
+                        id="feOffset1"
+                        dx="5"
+                        dy="5"
+                        in="blur"
+                        result="offset"
+                    />
+                    <feComposite
+                        id="feComposite1"
+                        in="flood"
+                        in2="offset"
+                        operator="in"
+                        result="comp1"
+                    />
+                    <feComposite
+                        id="feComposite2"
+                        in="SourceGraphic"
+                        in2="comp1"
+                        operator="over"
+                        result="comp2"
+                    />
+                </filter>
+            </defs>
             <path
-                d="M 250 0 C 111.5 0 0 111.5 0 250 L 0 774 C 0 912.5 111.5 1024 250 1024 L 774 1024 C 912.5 1024 1024 912.5 1024 774 L 1024 250 C 1024 111.5 912.5 0 774 0 L 250 0 z M 280.80078 224 L 508 224 C 554.93333 224 594.13294 230.13372 625.59961 242.40039 C 657.06628 254.13372 680.53333 274.13372 696 302.40039 C 712 330.13372 720 368.26745 720 416.80078 C 720 472.80078 707.73255 515.73294 683.19922 545.59961 L 743.19922 800 L 583.19922 800 L 520.80078 508.80078 L 520.80078 498.40039 C 542.13411 488.26706 552.80078 462.93372 552.80078 422.40039 C 552.80078 397.86706 550.66706 379.73333 546.40039 368 C 542.13372 355.73333 534.66667 347.46589 524 343.19922 C 513.86667 338.93255 499.46745 336.80078 480.80078 336.80078 L 324.80078 336.80078 L 280.80078 224 z M 324.80078 376.80078 L 480.80078 376.80078 L 480.80078 800 L 324.80078 800 L 324.80078 376.80078 z "
+                id="rect1"
                 fill="currentColor"
+                fillOpacity="1"
+                strokeWidth="0.876"
+                d="M-36.552.338a5.9 5.9 0 0 0-5.911 5.911v51.777a5.9 5.9 0 0 0 5.91 5.911h44.58a5.9 5.9 0 0 0 5.912-5.911V6.249A5.9 5.9 0 0 0 8.028.34zm5.28 38.328h34.02a2.565 2.565 0 0 1 2.57 2.57 2.565 2.565 0 0 1-2.57 2.571h-34.02a2.565 2.565 0 0 1-2.571-2.57 2.565 2.565 0 0 1 2.57-2.571m0 10.421h34.02a2.565 2.565 0 0 1 2.57 2.571 2.565 2.565 0 0 1-2.57 2.571h-34.02a2.565 2.565 0 0 1-2.571-2.57 2.565 2.565 0 0 1 2.57-2.572"
+                transform="matrix(.81862 0 0 .81862 39.782 1.798)"
+            />
+            <path
+                id="path1-3"
+                fill="url(#linearGradient4)"
+                strokeWidth="1.495"
+                d="M-23.978 25.525c-.628-1.635 1.421-3.17 3.17-3.17h1.109a7.33 7.33 0 0 1-1.909-4.938 7.372 7.372 0 0 1 14.744.001c0 1.901-.727 3.63-1.912 4.937h1.06c1.751 0 3.797 1.535 3.17 3.17l-2.051 5.348c-1.748 4.557-13.582 4.557-15.33 0z"
+                filter="url(#filter2)"
+                transform="matrix(.81862 0 0 .81862 39.782 1.798)"
             />
         </svg>
     );
