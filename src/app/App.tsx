@@ -17,12 +17,8 @@ export default function App() {
   }
 
   return (
-    <div className="text-zinc-950 dark:text-zinc-100 bg-zinc-100 dark:bg-zinc-950 app">
+    <main className="text-zinc-950 dark:text-zinc-100 bg-white dark:bg-black app">
       <NavBar>
-        <NavItemContainer>
-          <img src="/favicon.svg" height="50px" width="50px" />
-          <h1 className="text-xl"><Translator path="home.title"/></h1>
-        </NavItemContainer>
         <NavItemContainer>
           <Input icon={<Translate />} type="option" onChange={handleChangeLanguage}>
             <option value="en-US">English</option>
@@ -35,13 +31,13 @@ export default function App() {
         flex flex-col
         p-4 m-2 mt-32 lg:p-20 lg:m-20 lg:mt-40
         rounded-xl border border-solid
-        border-zinc-300 bg-zinc-200
-        dark:border-zinc-800 dark:bg-zinc-900"
+        border-zinc-200 bg-zinc-100
+        dark:border-zinc-900 dark:bg-zinc-950"
       >
         <CvForm />
       </section>
 
       <Footer />
-    </div>
+    </main>
   );
 }
