@@ -17,8 +17,12 @@ import Translator from '../Translator';
 import { useCvDataStore } from '../../lib/store';
 import { ProjectsList } from './Projects';
 
+import pdfToText from 'react-pdftotext'
+import { askData } from '../../api/ai';
+
 export default function CvForm() {
     const [disableBtns, setDisableBtns] = useState(false);
+    const [loading, setLoading] = useState(false);
 
     const formRef = useRef<HTMLFormElement>(null);
 
@@ -80,7 +84,30 @@ export default function CvForm() {
 
     };
 
-    const readFile = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const readFile = async (event: React.ChangeEvent<HTMLInputElement>) => {
+        const fileType = event.target.files?.[0].type;
+
+
+        if (fileType === "application/pdf") {
+            setLoading(true);
+            const file = event.target.files?.[0];
+            file && pdfToText(file)
+                .then(async (text) => {
+                    const converted = await askData(text);
+                    const formatted = converted?.split(/```json|```/)[1];
+                    if (formatted) {
+                        const toJson = JSON.parse(formatted);
+                        console.log("Converted text: ", toJson);
+                        handleJsonFile(toJson);
+                    } else {
+                        console.error("Failed to format the converted text");
+                    }
+                })
+                .catch(error => console.error("Failed to extract text from pdf"))
+                .finally(() => setLoading(false));
+            return;
+        }
+
         const file = event.target.files?.[0];
         if (file) {
             const reader = new FileReader();
@@ -181,7 +208,7 @@ export default function CvForm() {
                 <Button className="flex-1" type="button" name="export" onClick={handleSubmit} disabled={disableBtns} >
                     <Translator path="buttons.export" />
                 </Button>
-                <Upload className="flex-1" accept=".json" onChange={readFile}>
+                <Upload className="flex-1" accept=".json, .pdf" onChange={readFile} disabled={disableBtns || loading} loading={loading}>
                     <Translator path="buttons.import" />
                 </Upload>
                 <Modal className="flex-1" title={Translator({ path: "buttons.view" })} buttonText={Translator({ path: "buttons.view" })} disabled={disableBtns}>
