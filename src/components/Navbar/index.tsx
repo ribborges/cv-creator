@@ -21,7 +21,7 @@ export function NavBar(props: { children: ReactNode }) {
 				<div className="flex items-center content-center gap-5">
 					<div className="
 						flex items-center content-center
-						text-zinc-950 dark:text-zinc-200 hover:text-indigo-700
+						text-zinc-950 dark:text-zinc-200 hover:text-purple-700
 						w-16 h-16
 						transition duration-500
 					">
