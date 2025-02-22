@@ -13,6 +13,12 @@ export default function Info() {
                 <span className="text-2xl font-bold text-indigo-500">
                     {info.name}
                 </span>
+                {
+                    info.title && info.title !== "" &&
+                    <span className="text-lg text-gray-700">
+                        {info.title}
+                    </span>
+                }
                 <span className="text-black text-sm">
                     {info.address && info.address !== "" ? info.address : ""}
                     {info.address && info.address !== "" && info.phone && info.phone !== "" ? " | " : ""}
