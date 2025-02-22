@@ -1,11 +1,16 @@
 {
   "name": "cv-creator",
-  "private": true,
-  "version": "1.1.0",
-  "type": "module",
-  "author": "Richard",
-  "license": "Mozilla Public License Version 2.0",
   "description": "Create your CV/Resume with this simple tool developed using React, TypeScript, Vite, SCSS and ReactPDF",
+  "private": true,
+  "version": "1.2.0",
+  "type": "module",
+  "license": "MPL-2.0",
+  "repository": "https://github.com/ribborges/cv-creator",
+  "author": {
+    "name": "Richard Borges",
+    "email": "contato@richardborges.dev",
+    "url": "https://richardborges.dev"
+  },
   "scripts": {
     "start": "vite",
     "build": "tsc && vite build",
