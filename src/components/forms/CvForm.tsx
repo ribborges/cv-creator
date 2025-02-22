@@ -92,12 +92,12 @@ export default function CvForm() {
             const file = event.target.files?.[0];
             file && pdfToText(file)
                 .then(async (text) => {
-                    const converted = await askData(text);
-                    const formatted = converted?.split(/```json|```/)[1];
-                    if (formatted) {
-                        const toJson = JSON.parse(formatted);
-                        console.log("Converted text: ", toJson);
-                        handleJsonFile(toJson);
+                    console.log("Extracted text: ", text);
+                    const data = await askData(text);
+
+                    if (data) {
+                        console.log("Converted text: ", data);
+                        handleJsonFile(data);
                     } else {
                         console.error("Failed to format the converted text");
                     }
