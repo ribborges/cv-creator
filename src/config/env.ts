@@ -1,3 +1,3 @@
-const token = import.meta.env.VITE_HF_ACCESS_TOKEN;
+const apiURL = import.meta.env.VITE_PUBLIC_API_URL;
 
-export { token };
+export { apiURL };

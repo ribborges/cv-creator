@@ -1,4 +1,5 @@
 import { useRef, useState } from 'react';
+import pdfToText from 'react-pdftotext';
 
 import { Button } from '../input/Button';
 import Info from './Info';
@@ -16,9 +17,7 @@ import Collapse from '../Collapse';
 import Translator from '../Translator';
 import { useCvDataStore } from '../../lib/store';
 import { ProjectsList } from './Projects';
-
-import pdfToText from 'react-pdftotext'
-import { askData } from '../../api/ai';
+import { askData } from '../../services/ai.service';
 
 export default function CvForm() {
     const [disableBtns, setDisableBtns] = useState(false);
