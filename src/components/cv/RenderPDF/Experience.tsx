@@ -1,11 +1,15 @@
 import { useCvDataStore } from "../../../lib/store";
+import Translator from "../../Translator";
 import Section from "./Section";
 
 export default function Experience() {
     const { experience } = useCvDataStore();
 
+    const title = Translator({ path: "experience.title" });
+
     return (
-        <Section title="Work Experience">
+        experience.length > 0 &&
+        <Section title={title}>
             {
                 experience.map((exp, index) => (
                     <ExperienceItem

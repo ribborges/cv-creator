@@ -1,11 +1,15 @@
 import { useCvDataStore } from "../../../lib/store";
+import Translator from "../../Translator";
 import Section from "./Section";
 
 export default function Certifications() {
     const { certifications } = useCvDataStore();
-    
+
+    const title = Translator({ path: "certifications.title" });
+
     return (
-        <Section title="Certifications">
+        certifications.length > 0 &&
+        <Section title={title}>
             {
                 certifications && certifications.map((value, index) => (
                     <Certification
