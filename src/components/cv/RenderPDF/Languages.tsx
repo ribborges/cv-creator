@@ -22,8 +22,18 @@ export default function Languages() {
 function Language({ language, level }: { language: string, level: string }) {
     return (
         <div className="flex gap-2 text-sm">
-            <span>{language}: </span>
-            <span>{level}</span>
+            <span>
+                {language}:
+                {" "}
+                {
+                    level === "elementary" ? <Translator path="languages.novice" /> :
+                        level === "limited" ? <Translator path="languages.limited" /> :
+                            level === "professional" ? <Translator path="languages.professional" /> :
+                                level === "full" ? <Translator path="languages.full" /> :
+                                    level === "native" ? <Translator path="languages.native" /> :
+                                        <Translator path="languages.select" />
+                }
+            </span>
         </div>
     );
 }
