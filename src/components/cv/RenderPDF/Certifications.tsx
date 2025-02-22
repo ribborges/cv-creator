@@ -2,16 +2,16 @@ import { useCvDataStore } from "../../../lib/store";
 import Section from "./Section";
 
 export default function Certifications() {
-    const { licensesCertif } = useCvDataStore();
+    const { certifications } = useCvDataStore();
     
     return (
         <Section title="Certifications">
             {
-                licensesCertif && licensesCertif.map((value, index) => (
+                certifications && certifications.map((value, index) => (
                     <Certification
                         key={index}
-                        certification={value.licensesCertifName}
-                        organization={value.licensesCertifOrg}
+                        certification={value.name}
+                        organization={value.organization}
                     />
                 ))
             }
