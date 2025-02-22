@@ -2,8 +2,11 @@ import { ReactNode, useRef, useState } from "react";
 import { CloudArrowUpFill, FileEarmarkFill } from "react-bootstrap-icons";
 
 import classConcat from "../../utils/classConcat";
+import Loading from "../Loading";
 
 interface uploadProps {
+    disabled?: boolean,
+    loading?: boolean,
     onChange: Function,
     className?: string,
     accept?: string,
@@ -32,61 +35,72 @@ export default function Upload(props: uploadProps) {
     }
 
     return (
-        <div className={classConcat(`
-            relative
-                text-zinc-800 dark:text-zinc-200 disabled:text-zinc-600 dark:disabled:text-zinc-400
-                bg-transparent hover:bg-purple-700 focus:bg-purple-700
-                disabled:bg-transparent
-                hover:shadow-2xl focus:shadow-2xl
-                hover:shadow-zinc-950/20 focus:shadow-zinc-950/20
-                dark:hover:shadow-zinc-200/20 dark:focus:shadow-zinc-200/20
-                disabled:hover:shadow-none disabled:focus:shadow-none
-                inline-block
-                p-5 m-1
-                rounded-xl border border-dashed
-                border-purple-700 disabled:border-zinc-400
-                transition duration-500
-            `, props.className || "")}
-        >
-            <div
-                ref={uploadRef}
-                className={`
-                    text-zinc-800 dark:text-zinc-200
-                    text-lg
-                    flex flex-col
-                    items-center text-center
+        <div
+            className={classConcat(
+                `
+                    relative
+                    bg-transparent
+                    hover:shadow-2xl focus:shadow-2xl
+                    hover:shadow-zinc-950/20 focus:shadow-zinc-950/20
+                    dark:hover:shadow-zinc-200/20 dark:focus:shadow-zinc-200/20
+                    disabled:hover:shadow-none disabled:focus:shadow-none
+                    inline-block
+                    p-5 m-1
+                    rounded-xl border border-dashed
                     transition duration-500
-                    file-upload-label
-                `}
-                onDragEnter={onDragEnter}
-                onDragLeave={onDragLeave}
-                onDrop={onDragLeave}
-            >
-                {
-                    file == null || file == undefined ?
-                        <>
-                            <CloudArrowUpFill size={64} />
-                            <p>{props.children}</p>
-                        </> :
-                        <>
-                            <FileEarmarkFill size={64} />
-                            <p>{file.name}</p>
-                        </>
-                }
-            </div>
-            <input
-                type="file"
-                onChange={onDrop}
-                accept={props.accept}
-                className={`
-                    absolute
-                    top-0 left-0
-                    opacity-0
-                    w-full
-                    h-full
-                    cursor-pointer
-                `}
-            />
+                `,
+                props.disabled ?
+                "text-zinc-600 dark:text-zinc-400 border-zinc-400" :
+                "text-zinc-800 dark:text-zinc-200 hover:bg-purple-700 focus:bg-purple-700 border-purple-700",
+                props.className || ""
+            )}
+        >
+            {
+                props.loading ?
+                    <Loading /> :
+                    <>
+                        <div
+                            ref={uploadRef}
+                            className={`
+                                text-zinc-800 dark:text-zinc-200
+                                text-lg
+                                flex flex-col
+                                items-center text-center
+                                transition duration-500
+                                file-upload-label
+                            `}
+                            onDragEnter={onDragEnter}
+                            onDragLeave={onDragLeave}
+                            onDrop={onDragLeave}
+                        >
+                            {
+                                file == null || file == undefined ?
+                                    <>
+                                        <CloudArrowUpFill size={64} />
+                                        <p>{props.children}</p>
+                                    </> :
+                                    <>
+                                        <FileEarmarkFill size={64} />
+                                        <p>{file.name}</p>
+                                    </>
+                            }
+                        </div>
+                        <input
+                            disabled={props.disabled}
+                            type="file"
+                            onChange={onDrop}
+                            accept={props.accept}
+                            className={`
+                                absolute
+                                top-0 left-0
+                                opacity-0
+                                w-full
+                                h-full
+                                cursor-pointer
+                            `}
+                        />
+                    </>
+            }
         </div>
     );
 }
