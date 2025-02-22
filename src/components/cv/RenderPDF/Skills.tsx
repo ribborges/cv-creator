@@ -1,33 +1,33 @@
-import { Text, View } from "@react-pdf/renderer";
-
 import { useCvDataStore } from "../../../lib/store";
-import Translator from "../../Translator";
-
-import style from "./style";
+import Section from "./Section";
 
 export default function Skills() {
     const { skills } = useCvDataStore();
 
     return (
-        <>
-            {
-                skills && skills.length > 0 ?
-                    <>
-                        <View style={style.spacer} />
-                        <View style={style.section} wrap={false}>
-                            <Text style={style.title1}><Translator path="skills.title" /></Text>
-                            <View style={style.subSection}>
-                                <Text style={style.text2}>
-                                    {
-                                        skills && skills.map((value, index) => (
-                                            value + (skills && index === skills.length - 1 ? "." : ", ")
-                                        ))
-                                    }
-                                </Text>
-                            </View>
-                        </View>
-                    </> : ""
-            }
-        </>
+        <div className="flex gap-4">
+            <Section title="Hard Skills">
+                <div className="ml-8 text-sm">
+                    <ul className="list-disc">
+                        {
+                            skills?.hard?.map((skill, index) => (
+                                <li key={index}>{skill}</li>
+                            ))
+                        }
+                    </ul>
+                </div>
+            </Section>
+            <Section title="Soft Skills">
+                <div className="ml-8 text-sm">
+                    <ul className="list-disc">
+                        {
+                            skills?.soft?.map((skill, index) => (
+                                <li key={index}>{skill}</li>
+                            ))
+                        }
+                    </ul>
+                </div>
+            </Section>
+        </div>
     );
 }

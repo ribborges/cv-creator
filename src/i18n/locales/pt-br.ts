@@ -2,41 +2,38 @@ import { t } from "i18next";
 
 export default {
     translations: {
-        home: {
-            title: 'Criador de Curriculum Vitae'
-        },
-        personalInfo: {
+        info: {
             title: 'Informações pessoais',
             name: 'Nome',
+            personal_title: 'Título',
             phone: 'Telefone',
             email: 'Email',
             address: 'Endereço',
-            portfolio: 'Portfólio',
             summary: 'Resumo'
         },
-        eduHistory: {
+        education: {
             title: 'Histórico acadêmico',
-            name: 'Nome da escola',
+            school: 'Nome da escola',
             degree: 'Grau',
-            fieldStudy: 'Área de estudo',
+            field: 'Área de estudo',
             location: 'Localização',
-            bgDate: 'Data de início',
-            edDate: 'Data de conclusão',
+            start_date: 'Data de início',
+            end_date: 'Data de conclusão',
             details: 'Detalhes'
         },
-        workExp: {
+        experience: {
             title: 'Experiência de trabalho',
-            companyName: 'Nome da empresa',
-            jobTitle: 'Cargo',
+            company: 'Nome da empresa',
+            position: 'Cargo',
             location: 'Localização',
-            bgDate: 'Data de início',
-            edDate: 'Data de conclusão',
+            start_date: 'Data de início',
+            end_date: 'Data de conclusão',
             details: 'Detalhes'
         },
-        licensesCertif: {
+        certifications: {
             title: 'Licenças e Certificações',
             name: 'Nome da Licença/Certificação',
-            org: 'Organização emissora'
+            organization: 'Organização emissora'
         },
         languages: {
             title: 'Idiomas',
@@ -50,7 +47,16 @@ export default {
         },
         skills: {
             title: 'Habilidades',
-            skill: 'Habilidade'
+            skill: 'Habilidade',
+            hard: 'Habilidades técnicas',
+            soft: 'Habilidades interpessoais'
+        },
+        projects: {
+            title: 'Projetos',
+            project: 'Projeto',
+            name: 'Nome do projeto',
+            skills: 'Habilidades utilizadas',
+            details: 'Detalhes'
         },
         buttons: {
             export: 'Exportar arquivo .json',

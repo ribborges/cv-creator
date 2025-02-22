@@ -2,41 +2,39 @@ import { t } from "i18next";
 
 export default {
     translations: {
-        home: {
-            title: 'Curriculum Vitae Creator'
-        },
-        personalInfo: {
+        info: {
             title: 'Personal information',
             name: 'Name',
+            personal_title: 'Title',
             phone: 'Phone',
             email: 'Email',
             address: 'Address',
             portfolio: 'Portfolio',
             summary: 'Summary'
         },
-        eduHistory: {
+        education: {
             title: 'Education history',
             name: 'School name',
             degree: 'Degree',
-            fieldStudy: 'Field of study',
+            field: 'Field of study',
             location: 'Location',
-            bgDate: 'Begin date',
-            edDate: 'End date',
+            start_date: 'Begin date',
+            end_date: 'End date',
             details: 'Details'
         },
-        workExp: {
+        experience: {
             title: 'Work experience',
-            companyName: 'Company name',
-            jobTitle: 'Job title',
+            company: 'Company name',
+            position: 'Job title',
             location: 'Location',
-            bgDate: 'Begin date',
-            edDate: 'End date',
+            start_date: 'Begin date',
+            end_date: 'End date',
             details: 'Details'
         },
-        licensesCertif: {
+        certifications: {
             title: 'Licenses & Certifications',
             name: 'License/Certification name',
-            org: 'Issuing organization'
+            organization: 'Issuing organization'
         },
         languages: {
             title: 'Languages',
@@ -50,7 +48,16 @@ export default {
         },
         skills: {
             title: 'Skills',
-            skill: 'Skill'
+            skill: 'Skill',
+            hard: 'Hard skills',
+            soft: 'Soft skills'
+        },
+        projects: {
+            title: 'Projects',
+            project: 'Project',
+            name: 'Project name',
+            skills: 'Skills used',
+            details: 'Details'
         },
         buttons: {
             export: 'Export .json file',

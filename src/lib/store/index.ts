@@ -1,46 +1,54 @@
 import { create } from 'zustand';
-import { personalInfo, eduHistory, workExp, licensesCertif, languages } from '../../types/cvData';
+import { info, education, experience, certifications, languages, project, skills } from '../../types/cvData';
 
 type State = {
-    personalInfo: personalInfo,
-    eduHistory: Array<eduHistory>,
-    workExp: Array<workExp>,
-    licensesCertif: Array<licensesCertif>,
+    info: info,
+    education: Array<education>,
+    experience: Array<experience>,
+    certifications: Array<certifications>,
     languages: Array<languages>,
-    skills: Array<string>
+    skills: skills,
+    projects: Array<project>
 }
 
 type Actions = {
-    setPersonalInfo: (personalInfo: personalInfo) => void,
-    setEduHistory: (eduHistory: Array<eduHistory>) => void,
-    setWorkExp: (workExp: Array<workExp>) => void,
-    setLicensesCertif: (licensesCertif: Array<licensesCertif>) => void,
+    setInfo: (info: info) => void,
+    setEducation: (education: Array<education>) => void,
+    setExperience: (experience: Array<experience>) => void,
+    setCertifications: (certifications: Array<certifications>) => void,
     setLanguages: (languages: Array<languages>) => void,
-    setSkills: (skills: Array<string>) => void
+    setSkills: (skills: skills) => void,
+    setProjects: (projects: Array<project>) => void
 }
 
 const useCvDataStore = create<State & Actions>()((set) => ({
-    personalInfo: {
+    info: {
         name: "",
+        title: "",
         phone: "",
         email: "",
         address: "",
-        linkedinUrl: "",
-        githubUrl: "",
-        portfolioUrl: "",
+        linkedin: "",
+        github: "",
+        website: "",
         summary: ""
     },
-    eduHistory: [],
-    workExp: [],
-    licensesCertif: [],
+    education: [],
+    experience: [],
+    certifications: [],
     languages: [],
-    skills: [],
-    setPersonalInfo: (personalInfo) => set({ personalInfo }),
-    setEduHistory: (eduHistory) => set({ eduHistory }),
-    setWorkExp: (workExp) => set({ workExp }),
-    setLicensesCertif: (licensesCertif) => set({ licensesCertif }),
+    skills: {
+        hard: [],
+        soft: []
+    },
+    projects: [],
+    setInfo: (info) => set({ info }),
+    setEducation: (education) => set({ education }),
+    setExperience: (experience) => set({ experience }),
+    setCertifications: (certifications) => set({ certifications }),
     setLanguages: (languages) => set({ languages }),
-    setSkills: (skills) => set({ skills })
+    setSkills: (skills) => set({ skills }),
+    setProjects: (projects) => set({ projects })
 }));
 
 export { useCvDataStore };

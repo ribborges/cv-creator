@@ -1,14 +1,14 @@
-import { EnvelopeFill, Fonts, GeoAltFill, Github, Globe, Linkedin, PencilFill, TelephoneFill } from 'react-bootstrap-icons';
+import { EnvelopeFill, Fonts, GeoAltFill, Github, Globe, Linkedin, PencilFill, PersonBadgeFill, TelephoneFill } from 'react-bootstrap-icons';
 
 import { useCvDataStore } from '../../lib/store';
 import { Input } from '../input/Input';
 import Translator from '../Translator';
 
-export default function PersonalInfo() {
-    const { setPersonalInfo, personalInfo } = useCvDataStore();
+export default function Info() {
+    const { setInfo, info } = useCvDataStore();
 
     const handleChange = (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-        setPersonalInfo({ ...personalInfo, [event.target.name]: event.target.value });
+        setInfo({ ...info, [event.target.name]: event.target.value });
     };
 
     return (
@@ -18,10 +18,19 @@ export default function PersonalInfo() {
                     type="text"
                     id="name"
                     name="name"
-                    value={personalInfo.name}
+                    value={info.name}
                     onChange={handleChange}
                     icon={<Fonts />}
-                    placeholder={Translator({ path: "personalInfo.name" })}
+                    placeholder={Translator({ path: "info.name" })}
+                />
+                <Input
+                    type="text"
+                    id="title"
+                    name="title"
+                    value={info.title}
+                    onChange={handleChange}
+                    icon={<PersonBadgeFill />}
+                    placeholder={Translator({ path: "info.personal_title" })}
                 />
                 <div className='flex gap-1'>
                     <div className='flex flex-col gap-1 flex-1'>
@@ -29,28 +38,28 @@ export default function PersonalInfo() {
                             type="phone"
                             id="phone"
                             name="phone"
-                            value={personalInfo.phone}
+                            value={info.phone}
                             onChange={handleChange}
                             icon={<TelephoneFill />}
-                            placeholder={Translator({ path: "personalInfo.phone" })}
+                            placeholder={Translator({ path: "info.phone" })}
                         />
                         <Input
                             type="email"
                             id="email"
                             name="email"
-                            value={personalInfo.email}
+                            value={info.email}
                             onChange={handleChange}
                             icon={<EnvelopeFill />}
-                            placeholder={Translator({ path: "personalInfo.email" })}
+                            placeholder={Translator({ path: "info.email" })}
                         />
                         <Input
                             type="text"
                             id="address"
                             name="address"
-                            value={personalInfo.address}
+                            value={info.address}
                             onChange={handleChange}
                             icon={<GeoAltFill />}
-                            placeholder={Translator({ path: "personalInfo.address" })}
+                            placeholder={Translator({ path: "info.address" })}
                         />
                     </div>
                     <div className='flex flex-col gap-1 flex-1'>
@@ -58,7 +67,7 @@ export default function PersonalInfo() {
                             type="url"
                             id="linkedinUrl"
                             name="linkedinUrl"
-                            value={personalInfo.linkedinUrl}
+                            value={info.linkedin}
                             onChange={handleChange}
                             icon={<Linkedin />}
                             placeholder="LinkedIn"
@@ -67,7 +76,7 @@ export default function PersonalInfo() {
                             type="url"
                             id="githubUrl"
                             name="githubUrl"
-                            value={personalInfo.githubUrl}
+                            value={info.github}
                             onChange={handleChange}
                             icon={<Github />}
                             placeholder="GitHub"
@@ -76,10 +85,10 @@ export default function PersonalInfo() {
                             type="url"
                             id="portfolioUrl"
                             name="portfolioUrl"
-                            value={personalInfo.portfolioUrl}
+                            value={info.website}
                             onChange={handleChange}
                             icon={<Globe />}
-                            placeholder={Translator({ path: "personalInfo.portfolio" })}
+                            placeholder="Website"
                         />
                     </div>
                 </div>
@@ -88,10 +97,10 @@ export default function PersonalInfo() {
                 type="textarea"
                 id="summary"
                 name="summary"
-                value={personalInfo.summary}
+                value={info.summary}
                 onChange={handleChange}
                 icon={<PencilFill />}
-                title={Translator({ path: "personalInfo.summary" })}
+                title={Translator({ path: "info.summary" })}
             />
         </div>
     );

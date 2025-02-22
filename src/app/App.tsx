@@ -17,7 +17,7 @@ export default function App() {
   }
 
   return (
-    <main className="text-zinc-950 dark:text-zinc-100 bg-white dark:bg-black app">
+    <main id="no-print" className="text-zinc-950 dark:text-zinc-100 bg-white dark:bg-black app">
       <NavBar>
         <NavItemContainer>
           <Input icon={<Translate />} type="option" onChange={handleChangeLanguage}>

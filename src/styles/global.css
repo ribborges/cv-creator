@@ -2,6 +2,32 @@
 @tailwind components;
 @tailwind utilities;
 
+#print-area {
+    display: none;
+}
+
+@media print {
+    #no-print {
+        display: none;
+    }
+
+    #print-area {
+        display: block;
+    }
+
+    body {
+        background-color: white;
+        margin: 0;
+        padding: 0;
+    }
+}
+
+@page {
+    margin: 0.2in;
+    size: A4;
+    margin: 0;
+}
+
 /* Reset CSS */
 * {
     color: unset;

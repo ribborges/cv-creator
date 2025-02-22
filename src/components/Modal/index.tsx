@@ -43,14 +43,14 @@ export default function Modal(props: modalProps) {
                         bg-zinc-200 dark:bg-zinc-900
                         shadow-2xl shadow-black/20 dark:shadow-zinc-200/20
                     ">
-                        <div className="flex content-center items-center gap-5">
+                        <div id="no-print" className="flex items-center justify-between gap-5">
+                            <span className="text-4xl font-bold">{props.title}</span>
                             <Button onClick={closeModal}>
                                 <X />
                             </Button>
-                            <span className="text-4xl font-bold">{props.title}</span>
                         </div>
                         <Spacer height={50} />
-                        <div className="flex-1">
+                        <div className="flex flex-col items-center flex-1 h-full w-full overflow-hidden">
                             {props.children}
                         </div>
                     </div>

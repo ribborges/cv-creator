@@ -1,20 +1,21 @@
 import { useRef, useState } from 'react';
 
 import { Button } from '../input/Button';
-import PersonalInfo from './PersonalInfo';
-import { EduHistoryList } from './EduHistory';
-import { WorkExpList } from './WorkExp';
+import Info from './Info';
+import { EducationList } from './Education';
+import { ExperienceList } from './Experience';
 import { Spacer } from '../Separator';
 import RenderPDF from '../cv/RenderPDF';
 import Modal from '../Modal';
 import { SkillList } from './Skill';
-import { LicenseCertifList } from './LicensesCertif';
+import { CertificationList } from './Certifications';
 import { LanguagesList } from './Languages';
 import Upload from '../input/Upload';
 import { cvData } from '../../types/cvData';
 import Collapse from '../Collapse';
 import Translator from '../Translator';
 import { useCvDataStore } from '../../lib/store';
+import { ProjectsList } from './Projects';
 
 export default function CvForm() {
     const [disableBtns, setDisableBtns] = useState(false);
@@ -22,17 +23,18 @@ export default function CvForm() {
     const formRef = useRef<HTMLFormElement>(null);
 
     const {
-        personalInfo, eduHistory, workExp, licensesCertif, languages, skills,
-        setPersonalInfo, setEduHistory, setWorkExp, setLicensesCertif, setLanguages, setSkills
+        info, education, experience, certifications, languages, skills, projects,
+        setInfo, setEducation, setExperience, setCertifications, setLanguages, setSkills, setProjects
     } = useCvDataStore();
 
     const handleJsonFile = (data: cvData) => {
-        if (data.personalInfo) setPersonalInfo(data.personalInfo);
-        if (data.eduHistory) setEduHistory(data.eduHistory);
-        if (data.workExp) setWorkExp(data.workExp);
-        if (data.licensesCertif) setLicensesCertif(data.licensesCertif);
+        if (data.info) setInfo(data.info);
+        if (data.education) setEducation(data.education);
+        if (data.experience) setExperience(data.experience);
+        if (data.certifications) setCertifications(data.certifications);
         if (data.languages) setLanguages(data.languages);
         if (data.skills) setSkills(data.skills);
+        if (data.projects) setProjects(data.projects);
     }
 
     const handleSubmit = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
@@ -40,12 +42,13 @@ export default function CvForm() {
         const name = event.currentTarget.name;
 
         const data = {
-            personalInfo: personalInfo,
-            eduHistory: eduHistory,
-            workExp: workExp,
-            licensesCertif: licensesCertif,
-            languages: languages,
-            skills: skills
+            info,
+            education,
+            experience,
+            certifications,
+            languages,
+            skills,
+            projects
         };
 
         switch (name) {
@@ -95,43 +98,43 @@ export default function CvForm() {
         <form ref={formRef}>
             <div className="flex gap-5 flex-col lg:flex-row">
                 <div className="flex-1">
-                    <h2><Translator path="personalInfo.title" /></h2>
+                    <h2><Translator path="info.title" /></h2>
                 </div>
-                <PersonalInfo />
+                <Info />
             </div>
 
             <Spacer />
 
-            <Collapse title={<h2><Translator path="eduHistory.title" /></h2>}>
+            <Collapse title={<h2><Translator path="education.title" /></h2>}>
                 <div className="flex gap-5">
                     <div className="flex-1 hidden lg:block">
                     </div>
                     <div className="flex gap-5 flex-[3] flex-col">
-                        <EduHistoryList />
+                        <EducationList />
                     </div>
                 </div>
             </Collapse>
 
             <Spacer />
 
-            <Collapse title={<h2><Translator path="workExp.title" /></h2>}>
+            <Collapse title={<h2><Translator path="experience.title" /></h2>}>
                 <div className="flex gap-5">
                     <div className="flex-1 hidden lg:block">
                     </div>
                     <div className="flex gap-5 flex-[3] flex-col">
-                        <WorkExpList />
+                        <ExperienceList />
                     </div>
                 </div>
             </Collapse>
 
             <Spacer />
 
-            <Collapse title={<h2><Translator path="licensesCertif.title" /></h2>}>
+            <Collapse title={<h2><Translator path="certifications.title" /></h2>}>
                 <div className="flex gap-5">
                     <div className="flex-1 hidden lg:block">
                     </div>
                     <div className="flex gap-1 flex-[3] flex-col">
-                        <LicenseCertifList />
+                        <CertificationList />
                     </div>
                 </div>
             </Collapse>
@@ -156,6 +159,18 @@ export default function CvForm() {
                     </div>
                     <div className="flex gap-5 flex-[3] flex-col">
                         <SkillList />
+                    </div>
+                </div>
+            </Collapse>
+
+            <Spacer />
+
+            <Collapse title={<h2><Translator path="projects.title" /></h2>}>
+                <div className="flex gap-5">
+                    <div className="flex-1 hidden lg:block">
+                    </div>
+                    <div className="flex gap-5 flex-[3] flex-col">
+                        <ProjectsList />
                     </div>
                 </div>
             </Collapse>

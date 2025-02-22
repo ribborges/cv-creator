@@ -1,45 +1,52 @@
 export interface cvData {
-    personalInfo?: personalInfo,
-    eduHistory?: Array<eduHistory>,
-    workExp?: Array<workExp>,
-    licensesCertif?: Array<licensesCertif>,
-    skills?: Array<string>,
+    info: info,
+    education?: Array<education>,
+    experience?: Array<experience>,
+    certifications?: Array<certifications>,
+    skills?: skills,
     languages?: Array<languages>;
+    projects?: Array<project>;
 }
 
-export interface personalInfo {
-    name: string,
+export interface info {
+    name?: string,
+    title?: string,
+    email?: string,
     phone: string,
-    email: string,
     address: string,
-    linkedinUrl: string,
-    githubUrl: string,
-    portfolioUrl: string,
+    linkedin: string,
+    github: string,
+    website: string,
     summary: string;
 }
 
-export interface eduHistory {
-    schoolName: string,
-    schoolDegree: string,
-    schoolFieldStudy: string,
-    schoolLocation: string,
-    schoolBgDate: string,
-    schoolEdDate: string,
-    schoolDetails: string;
+export interface education {
+    school: string,
+    degree: string,
+    field: string,
+    location: string,
+    start_date: string,
+    end_date: string,
+    details: string;
 }
 
-export interface workExp {
-    workCompanyName: string,
-    workJobTitle: string,
-    workLocation: string,
-    workBgDate: string,
-    workEdDate: string,
-    workDetails: string;
+export interface experience {
+    company: string,
+    position: string,
+    location: string,
+    start_date: string,
+    end_date: string,
+    details: string;
 }
 
-export interface licensesCertif {
-    licensesCertifName: string,
-    licensesCertifOrg: string;
+export interface certifications {
+    name: string,
+    organization: string;
+}
+
+export interface skills {
+    hard: Array<string>,
+    soft: Array<string>;
 }
 
 export interface languages {
@@ -47,20 +54,31 @@ export interface languages {
     level: string;
 }
 
+export interface project {
+    name: string,
+    technologies: string,
+    description: string,
+}
+
 export const cleanData: cvData = {
-    personalInfo: {
+    info: {
         name: "",
-        phone: "",
+        title: "",
         email: "",
+        phone: "",
         address: "",
-        linkedinUrl: "",
-        githubUrl: "",
-        portfolioUrl: "",
+        linkedin: "",
+        github: "",
+        website: "",
         summary: ""
     },
-    eduHistory: [],
-    workExp: [],
-    licensesCertif: [],
-    skills: [],
-    languages: []
+    education: [],
+    experience: [],
+    certifications: [],
+    skills: {
+        hard: [],
+        soft: []
+    },
+    languages: [],
+    projects: []
 }
