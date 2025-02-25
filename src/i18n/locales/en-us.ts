@@ -61,7 +61,7 @@ export default {
         },
         buttons: {
             export: 'Export .json file',
-            import: 'Drag and drop the .json file or click to upload',
+            import: 'Drag and drop the .json or .pdf file or click to upload',
             view: 'View .pdf'
         }
     }

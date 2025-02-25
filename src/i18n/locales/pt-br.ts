@@ -60,7 +60,7 @@ export default {
         },
         buttons: {
             export: 'Exportar arquivo .json',
-            import: 'Arraste e solte o arquivo .json ou clique para fazer o upload',
+            import: 'Arraste e solte o arquivo .json ou .pdf ou clique para fazer o upload',
             view: 'Visualizar .pdf'
         }
     }
