@@ -26,44 +26,51 @@ function SkillList() {
         setSkills(newSkills);
     };
 
-    const handleAddSkills = () => {
+    const handleAddHardSkills = () => {
         const newSkills = { ...skills, hard: [...(skills.hard || []), ''], soft: [...(skills.soft || [])] };
         setSkills(newSkills);
     };
 
-    const handleRemoveSkills = (index: number) => {
+    const handleAddSoftSkills = () => {
+        const newSkills = { ...skills, hard: [...(skills.hard || [])], soft: [...(skills.soft || []), ''] };
+        setSkills(newSkills);
+    };
+
+    const handleRemoveHardSkills = (index: number) => {
         const newSkills = { ...skills, hard: [...(skills.hard || [])], soft: [...(skills.soft || [])] };
-        if (index < skills.hard.length) {
-            newSkills.hard.splice(index, 1);
-        } else {
-            newSkills.soft.splice(index - skills.hard.length, 1);
-        }
+        newSkills.hard.splice(index, 1);
+        setSkills(newSkills);
+    };
+
+    const handleRemoveSoftSkills = (index: number) => {
+        const newSkills = { ...skills, hard: [...(skills.hard || [])], soft: [...(skills.soft || [])] };
+        newSkills.soft.splice(index, 1);
         setSkills(newSkills);
     };
 
     return (
         <div className="flex flex-[3] flex-col md:flex-row gap-2">
-            <Fieldset legend={Translator({ path: "skills.hard" })} className="flex-1">
+            <Fieldset legend={Translator({ path: "skills.hard" })} className="flex gap-1 flex-col flex-1">
                 {
                     skills?.hard?.map((value, index) => (
                         <div key={index} className="flex gap-1">
                             <Skill id={index} value={value} onChange={handleSkillsChange} />
-                            <Button type="button" onClick={() => handleRemoveSkills(index)}><TrashFill /></Button>
+                            <Button type="button" onClick={() => handleRemoveHardSkills(index)}><TrashFill /></Button>
                         </div>
                     ))
                 }
-                <Button type="button" onClick={handleAddSkills} > <PlusLg /></Button >
+                <Button type="button" onClick={handleAddHardSkills} > <PlusLg /></Button >
             </Fieldset>
-            <Fieldset legend={Translator({ path: "skills.soft" })} className="flex-1">
+            <Fieldset legend={Translator({ path: "skills.soft" })} className="flex gap-1 flex-col flex-1">
                 {
                     skills?.soft?.map((value, index) => (
                         <div key={index} className="flex gap-1">
                             <Skill id={index} value={value} onChange={handleSkillsChange} />
-                            <Button type="button" onClick={() => handleRemoveSkills(index)}><TrashFill /></Button>
+                            <Button type="button" onClick={() => handleRemoveSoftSkills(index)}><TrashFill /></Button>
                         </div>
                     ))
                 }
-                <Button type="button" onClick={handleAddSkills} > <PlusLg /></Button >
+                <Button type="button" onClick={handleAddSoftSkills} > <PlusLg /></Button >
             </Fieldset>
         </div>
     );
