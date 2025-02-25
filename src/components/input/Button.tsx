@@ -25,7 +25,7 @@ export function Button({ type = "button", autofocus, disabled, id, name, value, 
                 dark:hover:shadow-zinc-200/20 dark:focus:shadow-zinc-200/20
                 disabled:hover:shadow-none disabled:focus:shadow-none
                 flex basis-[max-content] items-center justify-center content-center gap-2
-                p-5 m-1
+                p-2 lg:p-4 m-1
                 rounded-xl border border-solid
                 border-purple-700 disabled:border-zinc-400
                 transition duration-500
