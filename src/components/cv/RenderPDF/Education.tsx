@@ -17,8 +17,8 @@ export default function Education() {
                         field={edu.field}
                         degree={edu.degree}
                         school={edu.school}
-                        endDate={edu.start_date}
-                        startDate={edu.end_date}
+                        startDate={edu.start_date}
+                        endDate={edu.end_date}
                         location={edu.location}
                         details={edu.details}
                     />
