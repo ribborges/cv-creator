@@ -47,7 +47,7 @@ function EducationItem({
 }) {
     return (
         <div className="flex flex-col px-2 text-sm">
-            <div className="flex justify-between">
+            <div className="flex justify-between gap-2">
                 <span className="font-bold">{degree}{degree && field ? ", " : ""}{field}</span>
                 <span>{startDate}{startDate && endDate ? " - " : ""}{endDate}</span>
             </div>

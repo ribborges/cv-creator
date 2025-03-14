@@ -44,7 +44,7 @@ function ExperienceItem({
 }) {
     return (
         <div className="flex flex-col px-2 text-sm">
-            <div className="flex justify-between">
+            <div className="flex justify-between gap-2">
                 <span className="font-bold">{position}</span>
                 <span>{startDate}{startDate && endDate ? " - " : ""}{endDate}</span>
             </div>
