@@ -18,6 +18,7 @@ import Translator from '../Translator';
 import { useCvDataStore } from '../../lib/store';
 import { ProjectsList } from './Projects';
 import { askData } from '../../services/ai.service';
+import { H2 } from '../Heading';
 
 export default function CvForm() {
     const [disableBtns, setDisableBtns] = useState(false);
@@ -124,14 +125,14 @@ export default function CvForm() {
         <form ref={formRef}>
             <div className="flex gap-5 flex-col lg:flex-row">
                 <div className="flex-1">
-                    <h2><Translator path="info.title" /></h2>
+                    <H2><Translator path="info.title" /></H2>
                 </div>
                 <Info />
             </div>
 
             <Spacer />
 
-            <Collapse title={<h2><Translator path="education.title" /></h2>}>
+            <Collapse title={<H2><Translator path="education.title" /></H2>}>
                 <div className="flex gap-5">
                     <div className="flex-1 hidden lg:block">
                     </div>
@@ -143,7 +144,7 @@ export default function CvForm() {
 
             <Spacer />
 
-            <Collapse title={<h2><Translator path="experience.title" /></h2>}>
+            <Collapse title={<H2><Translator path="experience.title" /></H2>}>
                 <div className="flex gap-5">
                     <div className="flex-1 hidden lg:block">
                     </div>
@@ -155,7 +156,7 @@ export default function CvForm() {
 
             <Spacer />
 
-            <Collapse title={<h2><Translator path="certifications.title" /></h2>}>
+            <Collapse title={<H2><Translator path="certifications.title" /></H2>}>
                 <div className="flex gap-5">
                     <div className="flex-1 hidden lg:block">
                     </div>
@@ -167,7 +168,7 @@ export default function CvForm() {
 
             <Spacer />
 
-            <Collapse title={<h2><Translator path="languages.title" /></h2>}>
+            <Collapse title={<H2><Translator path="languages.title" /></H2>}>
                 <div className="flex gap-5">
                     <div className="flex-1 hidden lg:block">
                     </div>
@@ -179,7 +180,7 @@ export default function CvForm() {
 
             <Spacer />
 
-            <Collapse title={<h2><Translator path="skills.title" /></h2>}>
+            <Collapse title={<H2><Translator path="skills.title" /></H2>}>
                 <div className="flex gap-5">
                     <div className="flex-1 hidden lg:block">
                     </div>
@@ -191,7 +192,7 @@ export default function CvForm() {
 
             <Spacer />
 
-            <Collapse title={<h2><Translator path="projects.title" /></h2>}>
+            <Collapse title={<H2><Translator path="projects.title" /></H2>}>
                 <div className="flex gap-5">
                     <div className="flex-1 hidden lg:block">
                     </div>
