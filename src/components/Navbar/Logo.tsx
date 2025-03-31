@@ -42,14 +42,14 @@ export default function Logo() {
                     <feGaussianBlur
                         id="feGaussianBlur1"
                         in="SourceGraphic"
-                        result="blur"
+                        result="blur-sm"
                         stdDeviation="5"
                     />
                     <feOffset
                         id="feOffset1"
                         dx="5"
                         dy="5"
-                        in="blur"
+                        in="blur-sm"
                         result="offset"
                     />
                     <feComposite

@@ -14,7 +14,7 @@ export default function App() {
   }
 
   return (
-    <main id="no-print" className="text-zinc-950 dark:text-zinc-100 bg-white dark:bg-black app">
+    <main id="no-print" className="flex flex-col text-zinc-950 dark:text-zinc-100 bg-white dark:bg-black app">
       <NavBar>
         <NavItemContainer>
           <Input icon={<Translate />} type="option" onChange={handleChangeLanguage} value={i18n.language}>

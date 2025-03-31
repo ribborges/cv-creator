@@ -30,7 +30,7 @@ const inputStyle = `
     p-2 lg:p-4 h-auto
     bg-transparent
     rounded-xl
-    outline-4 outline-none outline-offset-0 outline-purple-700/0 focus:outline-purple-700/50
+    outline-4 outline-hidden outline-offset-0 outline-purple-700/0 focus:outline-purple-700/50
     transition duration-500
 `;
 

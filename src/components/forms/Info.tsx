@@ -12,7 +12,7 @@ export default function Info() {
     };
 
     return (
-        <div className="flex flex-[3] flex-col gap-1">
+        <div className="flex flex-3 flex-col gap-1">
             <div className="flex flex-col gap-1">
                 <Input
                     type="text"

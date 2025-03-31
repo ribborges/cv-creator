@@ -10,11 +10,12 @@ export function NavBar(props: { children: ReactNode }) {
 	return (
 		<>
 			<nav className="
+				top-0 left-0 right-0
 				flex items-center content-center justify-between
 				fixed
-				backdrop-blur-md bg-zinc-100 dark:bg-zinc-950 bg-opacity-50 dark:bg-opacity-50 h-16
-				top-0 z-50 p-5 m-2
-				border border-b-2 border-solid border-zinc-400 dark:border-zinc-800 border-opacity-40 dark:border-opacity-40 rounded-2xl
+				backdrop-blur-md bg-zinc-100/50 dark:bg-zinc-950/50
+				z-50 p-5 m-2
+				border border-b-2 border-solid border-zinc-400/40 dark:border-zinc-800/40 rounded-2xl
 				shadow-xl
 				select-none
 			">
@@ -40,7 +41,7 @@ export function NavBar(props: { children: ReactNode }) {
 				</div>
 			</nav>
 			{isMenuOpen && (
-				<div className="lg:hidden fixed inset-0 z-40 bg-white dark:bg-black bg-opacity-90 dark:bg-opacity-90 backdrop-blur-sm">
+				<div className="lg:hidden fixed inset-0 z-40 bg-white dark:bg-black bg-opacity-90 dark:bg-opacity-90 backdrop-blur-xs">
 					<div className="flex flex-col items-center justify-center h-full space-y-8">
 						{props.children}
 					</div>

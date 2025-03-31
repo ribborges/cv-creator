@@ -49,7 +49,7 @@ function SkillList() {
     };
 
     return (
-        <div className="flex flex-[3] flex-col md:flex-row gap-2">
+        <div className="flex flex-3 flex-col md:flex-row gap-2">
             <Fieldset legend={Translator({ path: "skills.hard" })} className="flex gap-1 flex-col flex-1">
                 {
                     skills?.hard?.map((value, index) => (

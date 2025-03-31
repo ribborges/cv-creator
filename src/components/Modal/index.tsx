@@ -29,11 +29,11 @@ export default function Modal(props: modalProps) {
             {isOpen && (
                 <div className="
                     fixed flex box-border
-                    z-[99] left-0 top-0
+                    z-99 left-0 top-0
                     w-screen h-screen
                     overflow-hidden
                     bg-zinc-100 dark:bg-zinc-950/50
-                    backdrop-blur-sm
+                    backdrop-blur-xs
                 ">
                     <div className="
                         flex flex-col box-border

@@ -1,6 +1,4 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import 'tailwindcss';
 
 #print-area {
     display: none;
@@ -29,88 +27,11 @@
 }
 
 /* Reset CSS */
-* {
-    color: unset;
-    background-color: unset;
-    margin: 0;
-    padding: 0;
-    box-sizing: unset;
-    font-family: unset;
-    border: 0 none;
-    vertical-align: baseline;
-    font-size: unset;
-}
-
-:root {
-    background-color: white;
-}
 
 @media screen and (prefers-color-scheme: dark) {
     :root {
         background-color: black;
     }
-}
-
-html,
-body {
-    min-height: 100vh;
-}
-
-.app {
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-}
-
-body,
-div,
-header,
-main,
-footer,
-nav {
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-}
-
-img,
-video {
-    height: auto;
-    max-width: 100%;
-}
-
-ol,
-ul {
-    list-style: none;
-}
-
-a {
-    text-decoration: none;
-    font-style: normal;
-}
-
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-p,
-span,
-a {
-    font-size: 100%;
-    font-weight: normal;
-}
-
-/* Global styles */
-body {
-    /* Font */
-    font-size: 100%;
-
-    /* Scrollbar */
-    -ms-overflow-style: none;
-    scrollbar-width: none;
 }
 
 h1 {
@@ -163,15 +84,5 @@ a {
     h4 {
         font-size: 1em;
         font-weight: bold;
-    }
-}
-
-.content {
-    padding: 5vw;
-
-    section {
-        padding: 4vw;
-        padding-top: 15vw;
-        padding-bottom: 15vw;
     }
 }

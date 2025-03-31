@@ -135,7 +135,7 @@ export default function CvForm() {
                 <div className="flex gap-5">
                     <div className="flex-1 hidden lg:block">
                     </div>
-                    <div className="flex gap-5 flex-[3] flex-col">
+                    <div className="flex gap-5 flex-3 flex-col">
                         <EducationList />
                     </div>
                 </div>
@@ -147,7 +147,7 @@ export default function CvForm() {
                 <div className="flex gap-5">
                     <div className="flex-1 hidden lg:block">
                     </div>
-                    <div className="flex gap-5 flex-[3] flex-col">
+                    <div className="flex gap-5 flex-3 flex-col">
                         <ExperienceList />
                     </div>
                 </div>
@@ -159,7 +159,7 @@ export default function CvForm() {
                 <div className="flex gap-5">
                     <div className="flex-1 hidden lg:block">
                     </div>
-                    <div className="flex gap-1 flex-[3] flex-col">
+                    <div className="flex gap-1 flex-3 flex-col">
                         <CertificationList />
                     </div>
                 </div>
@@ -171,7 +171,7 @@ export default function CvForm() {
                 <div className="flex gap-5">
                     <div className="flex-1 hidden lg:block">
                     </div>
-                    <div className="flex gap-5 flex-[3] flex-col">
+                    <div className="flex gap-5 flex-3 flex-col">
                         <LanguagesList setDisableBtns={setDisableBtns} />
                     </div>
                 </div>
@@ -183,7 +183,7 @@ export default function CvForm() {
                 <div className="flex gap-5">
                     <div className="flex-1 hidden lg:block">
                     </div>
-                    <div className="flex gap-5 flex-[3] flex-col">
+                    <div className="flex gap-5 flex-3 flex-col">
                         <SkillList />
                     </div>
                 </div>
@@ -195,7 +195,7 @@ export default function CvForm() {
                 <div className="flex gap-5">
                     <div className="flex-1 hidden lg:block">
                     </div>
-                    <div className="flex gap-5 flex-[3] flex-col">
+                    <div className="flex gap-5 flex-3 flex-col">
                         <ProjectsList />
                     </div>
                 </div>
