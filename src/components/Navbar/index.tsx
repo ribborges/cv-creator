@@ -10,20 +10,19 @@ export function NavBar(props: { children: ReactNode }) {
 	return (
 		<>
 			<nav className="
-				top-0 left-0 right-0
-				flex items-center content-center justify-between
+				top-0 left-0 right-0 bottom-0
+				flex items-center content-center justify-between self-start
 				fixed
 				backdrop-blur-md bg-zinc-100/50 dark:bg-zinc-950/50
-				z-50 p-5 m-2
-				border border-b-2 border-solid border-zinc-400/40 dark:border-zinc-800/40 rounded-2xl
+				z-50 p-4 m-2
+				border border-b-2 border-solid rounded-4xl
+                border-zinc-400/40 dark:border-zinc-800/40
 				shadow-xl
 				select-none
 			">
-				<div className="flex items-center content-center gap-5">
+				<div className="w-12 h-12 md:w-14 md:h-14 lg:w-16 lg:h-16">
 					<div className="
-						flex items-center content-center
-						text-zinc-950 dark:text-zinc-200 hover:text-purple-700
-						w-16 h-16
+						text-zinc-950 dark:text-zinc-200 hover:text-purple-600
 						transition duration-500
 					">
 						<Logo />
