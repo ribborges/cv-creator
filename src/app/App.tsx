@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 
 import CvForm from '@/components/forms/CvForm';
 import Footer from '@/components/Footer';
-import { Input } from '@/components/Input/Input';
+import { Input } from '@/components/Input';
 import { NavBar, NavItemContainer } from '@/components/Navbar';
 
 export default function App() {
@@ -18,7 +18,7 @@ export default function App() {
     <main id="no-print" className="flex flex-col text-zinc-950 dark:text-zinc-100 bg-white dark:bg-black app">
       <NavBar>
         <NavItemContainer>
-          <Input icon={<Translate />} type="option" onChange={handleChangeLanguage} value={i18n.language}>
+          <Input icon={<Translate />} type="select" onChange={handleChangeLanguage} value={i18n.language}>
             <option value="en-US">English</option>
             <option value="pt-BR">Português</option>
           </Input>
@@ -28,7 +28,7 @@ export default function App() {
       <section className="
         flex flex-col
         p-4 m-2 mt-32 lg:p-20 lg:m-20 lg:mt-40
-        rounded-xl border border-solid
+        border border-solid rounded-4xl
         border-zinc-200 bg-zinc-100
         dark:border-zinc-900 dark:bg-zinc-950"
       >
