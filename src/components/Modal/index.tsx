@@ -1,62 +1,44 @@
-import { ReactNode, useState } from 'react';
-import { X } from "react-bootstrap-icons";
+import { ReactNode } from 'react';
+import { XLg } from "react-bootstrap-icons";
 
-import { Button } from '@/components/Input/Button';
 import { Spacer } from '@/components/Separator';
 
-interface modalProps {
-    buttonText?: string,
+interface ModalProps {
+    closeBtn: () => void,
     title?: string,
-    className?: string,
-    disabled?: boolean,
     children?: ReactNode,
 }
 
-export default function Modal(props: modalProps) {
-    const [isOpen, setIsOpen] = useState(false);
-
-    const openModal = () => {
-        setIsOpen(true);
-    };
-
-    const closeModal = () => {
-        setIsOpen(false);
-    };
-
+export default function Modal(props: ModalProps) {
     return (
-        <>
-            <Button className={props.className} onClick={openModal} disabled={props.disabled == undefined ? false : props.disabled}>{props.buttonText}</Button>
-
-            {isOpen && (
-                <div className="
-                    fixed flex box-border
-                    z-99 left-0 top-0
-                    w-screen h-screen
-                    overflow-hidden
-                    bg-zinc-100 dark:bg-zinc-950/50
-                    backdrop-blur-xs
-                ">
-                    <div className="
-                        flex flex-col box-border
-                        m-auto p-5
-                        w-5/6 h-5/6
-                        rounded-xl border border-solid border-zinc-300 dark:border-zinc-800
-                        bg-zinc-200 dark:bg-zinc-900
-                        shadow-2xl shadow-black/20 dark:shadow-zinc-200/20
-                    ">
-                        <div id="no-print" className="flex items-center justify-between gap-5">
-                            <span className="text-4xl font-bold">{props.title}</span>
-                            <Button onClick={closeModal}>
-                                <X />
-                            </Button>
-                        </div>
-                        <Spacer height={50} />
-                        <div className="flex flex-col items-center flex-1 h-full w-full overflow-hidden">
-                            {props.children}
-                        </div>
-                    </div>
+        <div className="
+            fixed
+            flex box-border
+            z-99
+            w-screen h-screen
+            overflow-hidden
+            backdrop-blur-xs
+        ">
+            <div className="
+                flex flex-col box-border
+                m-auto
+                w-11/12 md:w-10/12 lg:w-8/12 h-[calc(100vh-2rem)]
+                rounded-4xl border border-solid border-zinc-200 dark:border-zinc-900
+                bg-zinc-100 dark:bg-zinc-950
+                shadow-2xl shadow-black/20 dark:shadow-zinc-200/20
+                overflow-hidden
+            ">
+                <div className="flex items-center justify-between p-6">
+                    <span className="text-2xl md:text-3xl lg:text-4xl font-bold">{props.title}</span>
+                    <button onClick={props.closeBtn} className="p-1 m-1 rounded-full hover:bg-red-600 transition duration-500">
+                        <XLg />
+                    </button>
                 </div>
-            )}
-        </>
+                <Spacer space={0} />
+                <div className="flex flex-1 overflow-hidden relative">
+                    {props.children}
+                </div>
+            </div>
+        </div>
     );
 }
