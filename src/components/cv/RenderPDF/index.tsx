@@ -4,7 +4,7 @@ import Print from "./Print";
 
 export default function RenderPDF() {
     return (
-        <div className="flex flex-col p-4 gap-4">
+        <div className="flex-1 flex flex-col items-stretch p-4 gap-4">
             <Button
                 type="button"
                 onClick={() => window.print()}
