@@ -1,12 +1,10 @@
 import { ReactNode } from 'react';
 import { AwardFill, BinocularsFill, CalendarFill, CardText, GeoAltFill, MortarboardFill, PlusLg, TrashFill } from "react-bootstrap-icons";
 
-import { Fieldset } from '@/components/Input/Fieldset';
-import { Input } from '@/components/Input/Input';
-import Translator from '../Translator';
-import { education } from '../../types/cvData';
-import { Button } from '@/components/Input/Button';
-import { useCvDataStore } from '../../lib/store';
+import { Fieldset, Button, Input } from '@/components/Input';
+import Translator from '@/components/Translator';;
+import { useCvDataStore } from '@/lib/store';
+import { education } from '@/types/cvData';
 
 interface educationProps {
     id: number,
@@ -134,7 +132,7 @@ function Education(props: educationProps) {
                 value={props.value?.details}
                 onChange={(e: React.ChangeEvent<HTMLInputElement>) => props.onChange(e, props.id, "details")}
                 icon={<CardText />}
-                title={Translator({ path: "education.details" })}
+                label={Translator({ path: "education.details" })}
             />
             {props.children}
         </Fieldset>

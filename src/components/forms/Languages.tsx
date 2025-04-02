@@ -1,9 +1,8 @@
 import { BarChartFill, PlusLg, Translate, TrashFill } from 'react-bootstrap-icons';
 
-import { Input } from '@/components/Input/Input';
-import Translator from '../Translator';
-import { Button } from '@/components/Input/Button';
-import { useCvDataStore } from '../../lib/store';
+import { Button, Input } from '@/components/Input';
+import Translator from '@/components/Translator';
+import { useCvDataStore } from '@/lib/store';
 
 interface languagesProps {
     id: number,
@@ -17,7 +16,7 @@ interface languagesProps {
 
 function LanguagesList({ setDisableBtns }: { setDisableBtns: React.Dispatch<React.SetStateAction<boolean>> }) {
     const { setLanguages, languages } = useCvDataStore();
-    
+
     const handleLanguagesChange = (
         event: React.ChangeEvent<HTMLInputElement>,
         index: number,
@@ -61,6 +60,7 @@ function Languages(props: languagesProps) {
     return (
         <div className="flex-1 flex gap-1 flex-col lg:flex-row">
             <Input
+                rootClassName="flex-1"
                 type="text"
                 id={"language" + props.id}
                 name={"language" + props.id}
@@ -70,7 +70,8 @@ function Languages(props: languagesProps) {
                 placeholder={Translator({ path: "languages.language" })}
             />
             <Input
-                type="option"
+                rootClassName="flex-1"
+                type="select"
                 id={"language" + props.id}
                 name={"language" + props.id}
                 value={props.value?.level}

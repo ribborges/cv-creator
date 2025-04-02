@@ -1,10 +1,9 @@
 import { AwardFill, BuildingFill, PlusLg, TrashFill } from 'react-bootstrap-icons';
 
-import { Input } from '@/components/Input/Input';
-import Translator from '../Translator';
-import { certifications } from '../../types/cvData';
-import { Button } from '@/components/Input/Button';
-import { useCvDataStore } from '../../lib/store';
+import { Button, Input } from '@/components/Input';
+import Translator from '@/components/Translator';
+import { useCvDataStore } from '@/lib/store';
+import { certifications } from '@/types/cvData';
 
 interface certificationsProps {
     id: number,
@@ -59,6 +58,7 @@ function Certification(props: certificationsProps) {
     return (
         <div className="flex-1 flex gap-1 flex-col lg:flex-row">
             <Input
+                rootClassName="flex-1"
                 type="text"
                 id={"skill" + props.id}
                 name={"skill" + props.id}
@@ -68,6 +68,7 @@ function Certification(props: certificationsProps) {
                 placeholder={Translator({ path: "certifications.name" })}
             />
             <Input
+                rootClassName="flex-1"
                 type="text"
                 id={"skill" + props.id}
                 name={"skill" + props.id}

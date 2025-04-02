@@ -1,11 +1,9 @@
 import { CardText, KanbanFill, PersonFillGear, PlusLg, TrashFill } from 'react-bootstrap-icons';
 
-import { Input } from '@/components/Input/Input';
-import Translator from '../Translator';
-import { project } from '../../types/cvData';
-import { Button } from '@/components/Input/Button';
-import { useCvDataStore } from '../../lib/store';
-import { Fieldset } from '@/components/Input/Fieldset';
+import { Fieldset, Button, Input } from '@/components/Input';
+import Translator from '@/components/Translator';
+import { useCvDataStore } from '@/lib/store';
+import { project } from '@/types/cvData';
 
 interface projectProps {
     id: number,

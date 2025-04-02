@@ -1,12 +1,10 @@
-import { ReactNode, useState } from 'react';
+import { ReactNode } from 'react';
 import { BriefcaseFill, BuildingsFill, CalendarFill, CardText, GeoAltFill, PlusLg, TrashFill } from 'react-bootstrap-icons';
 
-import { Fieldset } from '@/components/Input/Fieldset';
-import { Input } from '@/components/Input/Input';
-import Translator from '../Translator';
-import { experience } from '../../types/cvData';
-import { Button } from '@/components/Input/Button';
-import { useCvDataStore } from '../../lib/store';
+import { Fieldset, Button, Input } from '@/components/Input';
+import Translator from '@/components/Translator';
+import { useCvDataStore } from '@/lib/store';
+import { experience } from '@/types/cvData';
 
 interface experienceProps {
     id: number,
@@ -125,7 +123,7 @@ function Experience(props: experienceProps) {
                 value={props.value?.details}
                 onChange={(e: React.ChangeEvent<HTMLInputElement>) => props.onChange(e, props.id, "details")}
                 icon={<CardText />}
-                title={Translator({ path: "experience.details" })}
+                label={Translator({ path: "experience.details" })}
             />
             {props.children}
         </Fieldset>

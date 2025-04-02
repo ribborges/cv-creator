@@ -1,10 +1,8 @@
 import { PersonFillGear, PlusLg, TrashFill } from 'react-bootstrap-icons';
 
-import { Input } from '@/components/Input/Input';
-import Translator from '../Translator';
-import { Button } from '@/components/Input/Button';
-import { useCvDataStore } from '../../lib/store';
-import { Fieldset } from '@/components/Input/Fieldset';
+import { Fieldset, Button, Input } from '@/components/Input';
+import Translator from '@/components/Translator';
+import { useCvDataStore } from '@/lib/store';
 
 interface skillProps {
     id: number,
@@ -79,7 +77,7 @@ function SkillList() {
 function Skill(props: skillProps) {
     return (
         <Input
-            className={props.className}
+            rootClassName="flex-1"
             type="text"
             id={"skill" + props.id}
             name={"skill" + props.id}

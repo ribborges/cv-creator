@@ -1,24 +1,24 @@
 import { useRef, useState } from 'react';
 import pdfToText from 'react-pdftotext';
 
-import { Button } from '@/components/Input/Button';
+import { Button, Upload } from '@/components/Input';
+import { Spacer } from '@/components/Separator';
+import RenderPDF from '@/components/cv/RenderPDF';
+import Modal from '@/components/Modal';
+import Collapse from '@/components/Collapse';
+import Translator from '@/components/Translator';
+import { H2 } from '@/components/Heading';
+import { useCvDataStore } from '@/lib/store';
+import { cvData } from '@/types/cvData';
+import { askData } from '@/services/ai.service';
+
 import Info from './Info';
 import { EducationList } from './Education';
 import { ExperienceList } from './Experience';
-import { Spacer } from '../Separator';
-import RenderPDF from '../cv/RenderPDF';
-import Modal from '../Modal';
 import { SkillList } from './Skill';
 import { CertificationList } from './Certifications';
 import { LanguagesList } from './Languages';
-import Upload from '@/components/Input/Upload';
-import { cvData } from '../../types/cvData';
-import Collapse from '../Collapse';
-import Translator from '../Translator';
-import { useCvDataStore } from '../../lib/store';
 import { ProjectsList } from './Projects';
-import { askData } from '../../services/ai.service';
-import { H2 } from '../Heading';
 
 export default function CvForm() {
     const [disableBtns, setDisableBtns] = useState(false);

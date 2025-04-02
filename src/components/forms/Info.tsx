@@ -1,8 +1,8 @@
 import { EnvelopeFill, Fonts, GeoAltFill, Github, Globe, Linkedin, PencilFill, PersonBadgeFill, TelephoneFill } from 'react-bootstrap-icons';
 
-import { useCvDataStore } from '../../lib/store';
-import { Input } from '@/components/Input/Input';
-import Translator from '../Translator';
+import { Input } from '@/components/Input';
+import Translator from '@/components/Translator';
+import { useCvDataStore } from '@/lib/store';
 
 export default function Info() {
     const { setInfo, info } = useCvDataStore();
@@ -100,7 +100,7 @@ export default function Info() {
                 value={info.summary}
                 onChange={handleChange}
                 icon={<PencilFill />}
-                title={Translator({ path: "info.summary" })}
+                label={Translator({ path: "info.summary" })}
             />
         </div>
     );
