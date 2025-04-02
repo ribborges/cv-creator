@@ -4,13 +4,13 @@ import pdfToText from 'react-pdftotext';
 import { Button, Upload } from '@/components/Input';
 import { Spacer } from '@/components/Separator';
 import RenderPDF from '@/components/cv/RenderPDF';
-import Modal from '@/components/Modal';
 import Collapse from '@/components/Collapse';
 import Translator from '@/components/Translator';
 import { H2 } from '@/components/Heading';
 import { useCvDataStore } from '@/lib/store';
 import { cvData } from '@/types/cvData';
 import { askData } from '@/services/ai.service';
+import useModal from '@/hooks/useModal';
 
 import Info from './Info';
 import { EducationList } from './Education';
@@ -23,6 +23,16 @@ import { ProjectsList } from './Projects';
 export default function CvForm() {
     const [disableBtns, setDisableBtns] = useState(false);
     const [loading, setLoading] = useState(false);
+
+    const { show } = useModal();
+    const modalTitle = Translator({ path: "buttons.view" });
+
+    const renderModal = () => {
+        show({
+            title: modalTitle,
+            content: <RenderPDF />,
+        })
+    }
 
     const formRef = useRef<HTMLFormElement>(null);
 
@@ -211,9 +221,9 @@ export default function CvForm() {
                 <Upload className="flex-1" accept=".json, .pdf" onChange={readFile} disabled={disableBtns || loading} loading={loading}>
                     <Translator path="buttons.import" />
                 </Upload>
-                <Modal className="flex-1" title={Translator({ path: "buttons.view" })} buttonText={Translator({ path: "buttons.view" })} disabled={disableBtns}>
-                    <RenderPDF />
-                </Modal>
+                <Button className="flex-1" type="button" onClick={renderModal} disabled={disableBtns}>
+                    <Translator path="buttons.view" />
+                </Button>
             </div>
         </form>
     );
