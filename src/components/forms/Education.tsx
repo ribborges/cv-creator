@@ -1,11 +1,11 @@
 import { ReactNode } from 'react';
 import { AwardFill, BinocularsFill, CalendarFill, CardText, GeoAltFill, MortarboardFill, PlusLg, TrashFill } from "react-bootstrap-icons";
 
-import { Fieldset } from '../input/Fieldset';
-import { Input } from '../input/Input';
+import { Fieldset } from '@/components/Input/Fieldset';
+import { Input } from '@/components/Input/Input';
 import Translator from '../Translator';
 import { education } from '../../types/cvData';
-import { Button } from '../input/Button';
+import { Button } from '@/components/Input/Button';
 import { useCvDataStore } from '../../lib/store';
 
 interface educationProps {

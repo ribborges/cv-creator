@@ -1,8 +1,8 @@
 import { ReactNode, useRef, useState } from "react";
 import { CloudArrowUpFill, FileEarmarkFill } from "react-bootstrap-icons";
+import clsx from "clsx";
 
-import classConcat from "../../utils/classConcat";
-import Loading from "../Loading";
+import Loading from "@/components/Loading";
 
 interface uploadProps {
     disabled?: boolean,
@@ -36,7 +36,7 @@ export default function Upload(props: uploadProps) {
 
     return (
         <div
-            className={classConcat(
+            className={clsx(
                 `
                     relative
                     bg-transparent

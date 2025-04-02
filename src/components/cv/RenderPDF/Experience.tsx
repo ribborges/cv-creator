@@ -1,5 +1,6 @@
-import { useCvDataStore } from "../../../lib/store";
-import Translator from "../../Translator";
+import { useCvDataStore } from "@/lib/store";
+import Translator from "@/components/Translator";
+
 import Section from "./Section";
 
 export default function Experience() {

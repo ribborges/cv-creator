@@ -1,5 +1,5 @@
 import { ReactNode } from "react";
-import classConcat from "../../utils/classConcat";
+import clsx from "clsx";
 
 interface fieldsetProps {
     legend?: string,
@@ -9,7 +9,7 @@ interface fieldsetProps {
 
 export function Fieldset(Props: fieldsetProps) {
     return (
-        <fieldset className={classConcat(
+        <fieldset className={clsx(
             Props.className || "",
             "p-2 lg:p-5 rounded-xl border border-solid border-zinc-400 dark:border-zinc-700"
         )}>

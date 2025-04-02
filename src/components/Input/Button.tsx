@@ -1,5 +1,5 @@
 import { ReactNode } from "react";
-import classConcat from "../../utils/classConcat";
+import clsx from "clsx";
 
 interface ButtonProps {
     autofocus?: boolean,
@@ -16,7 +16,7 @@ interface ButtonProps {
 export function Button({ type = "button", autofocus, disabled, id, name, value, onClick, children, className }: ButtonProps) {
     return (
         <button
-            className={classConcat(`
+            className={clsx(`
                 text-zinc-800 dark:text-zinc-200 disabled:text-zinc-600 dark:disabled:text-zinc-400
                 bg-transparent hover:bg-purple-700 focus:bg-purple-700
                 disabled:bg-transparent

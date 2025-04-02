@@ -1,8 +1,8 @@
 import { BarChartFill, PlusLg, Translate, TrashFill } from 'react-bootstrap-icons';
 
-import { Input } from '../input/Input';
+import { Input } from '@/components/Input/Input';
 import Translator from '../Translator';
-import { Button } from '../input/Button';
+import { Button } from '@/components/Input/Button';
 import { useCvDataStore } from '../../lib/store';
 
 interface languagesProps {

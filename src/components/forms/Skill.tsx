@@ -1,10 +1,10 @@
 import { PersonFillGear, PlusLg, TrashFill } from 'react-bootstrap-icons';
 
-import { Input } from '../input/Input';
+import { Input } from '@/components/Input/Input';
 import Translator from '../Translator';
-import { Button } from '../input/Button';
+import { Button } from '@/components/Input/Button';
 import { useCvDataStore } from '../../lib/store';
-import { Fieldset } from '../input/Fieldset';
+import { Fieldset } from '@/components/Input/Fieldset';
 
 interface skillProps {
     id: number,

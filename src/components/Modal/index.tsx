@@ -1,7 +1,8 @@
 import { ReactNode, useState } from 'react';
-import { Button } from '../input/Button';
-import { Blanckspace, Spacer } from '../Separator';
 import { X } from "react-bootstrap-icons";
+
+import { Button } from '@/components/Input/Button';
+import { Spacer } from '@/components/Separator';
 
 interface modalProps {
     buttonText?: string,

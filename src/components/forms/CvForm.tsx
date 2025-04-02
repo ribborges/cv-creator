@@ -1,7 +1,7 @@
 import { useRef, useState } from 'react';
 import pdfToText from 'react-pdftotext';
 
-import { Button } from '../input/Button';
+import { Button } from '@/components/Input/Button';
 import Info from './Info';
 import { EducationList } from './Education';
 import { ExperienceList } from './Experience';
@@ -11,7 +11,7 @@ import Modal from '../Modal';
 import { SkillList } from './Skill';
 import { CertificationList } from './Certifications';
 import { LanguagesList } from './Languages';
-import Upload from '../input/Upload';
+import Upload from '@/components/Input/Upload';
 import { cvData } from '../../types/cvData';
 import Collapse from '../Collapse';
 import Translator from '../Translator';

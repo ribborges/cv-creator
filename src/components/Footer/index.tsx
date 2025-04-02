@@ -1,4 +1,4 @@
-import Anchor from "../Anchor";
+import Anchor from "@/components/Anchor";
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();

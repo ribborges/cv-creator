@@ -1,7 +1,7 @@
 import { EnvelopeFill, Fonts, GeoAltFill, Github, Globe, Linkedin, PencilFill, PersonBadgeFill, TelephoneFill } from 'react-bootstrap-icons';
 
 import { useCvDataStore } from '../../lib/store';
-import { Input } from '../input/Input';
+import { Input } from '@/components/Input/Input';
 import Translator from '../Translator';
 
 export default function Info() {

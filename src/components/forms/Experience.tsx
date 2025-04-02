@@ -1,11 +1,11 @@
 import { ReactNode, useState } from 'react';
 import { BriefcaseFill, BuildingsFill, CalendarFill, CardText, GeoAltFill, PlusLg, TrashFill } from 'react-bootstrap-icons';
 
-import { Fieldset } from '../input/Fieldset';
-import { Input } from '../input/Input';
+import { Fieldset } from '@/components/Input/Fieldset';
+import { Input } from '@/components/Input/Input';
 import Translator from '../Translator';
 import { experience } from '../../types/cvData';
-import { Button } from '../input/Button';
+import { Button } from '@/components/Input/Button';
 import { useCvDataStore } from '../../lib/store';
 
 interface experienceProps {

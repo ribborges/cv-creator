@@ -1,9 +1,10 @@
 import { Translate } from 'react-bootstrap-icons';
 import { useTranslation } from 'react-i18next';
-import CvForm from '../components/forms/CvForm';
-import Footer from '../components/Footer';
-import { Input } from '../components/input/Input';
-import { NavBar, NavItemContainer } from '../components/Navbar';
+
+import CvForm from '@/components/forms/CvForm';
+import Footer from '@/components/Footer';
+import { Input } from '@/components/Input/Input';
+import { NavBar, NavItemContainer } from '@/components/Navbar';
 
 export default function App() {
   const { i18n } = useTranslation();

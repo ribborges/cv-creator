@@ -1,11 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 
-import App from './App';
-import '../i18n';
+import Print from '@/components/cv/RenderPDF/Print';
+import '@/i18n';
 
-import '../styles/global.css';
-import Print from '../components/cv/RenderPDF/Print';
+import App from './App';
+
+import '@/styles/global.css';
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>

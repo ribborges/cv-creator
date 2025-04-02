@@ -1,6 +1,5 @@
 import { ReactNode } from 'react';
-
-import classConcat from '../../utils/classConcat';
+import clsx from "clsx";
 
 interface inputGroup {
     className?: string,
@@ -36,7 +35,7 @@ const inputStyle = `
 
 function InputGroup(props: inputGroup) {
     return (
-        <div className={classConcat(
+        <div className={clsx(
             props.className || "",
             `
             m-1
@@ -125,7 +124,7 @@ export function Input(props: inputProps) {
         case "option":
             return (
                 <InputGroup icon={props.icon} label={props.title}>
-                    <select className={classConcat(inputStyle, "w-full")} id={props.id} name={props.name} value={props.value} onChange={props.onChange}>
+                    <select className={clsx(inputStyle, "w-full")} id={props.id} name={props.name} value={props.value} onChange={props.onChange}>
                         {props.children}
                     </select>
                 </InputGroup>
@@ -136,7 +135,7 @@ export function Input(props: inputProps) {
             return (
                 <InputGroup className={props.className} icon={props.icon} label={props.title}>
                     <input
-                        className={classConcat(inputStyle, "w-full")}
+                        className={clsx(inputStyle, "w-full")}
                         type={props.type}
                         id={props.id}
                         name={props.name}
