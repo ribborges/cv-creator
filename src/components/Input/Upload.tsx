@@ -3,6 +3,7 @@ import { CloudArrowUpFill, FileEarmarkFill } from "react-bootstrap-icons";
 import clsx from "clsx";
 
 import Loading from "@/components/Loading";
+import { buttonStyles } from "./Button";
 
 interface uploadProps {
     disabled?: boolean,
@@ -13,7 +14,7 @@ interface uploadProps {
     children?: ReactNode
 }
 
-export default function Upload(props: uploadProps) {
+function Upload(props: uploadProps) {
     const [file, setFile] = useState<File>();
     const uploadRef = useRef<any>(null);
 
@@ -37,22 +38,8 @@ export default function Upload(props: uploadProps) {
     return (
         <div
             className={clsx(
-                `
-                    relative
-                    bg-transparent
-                    hover:shadow-2xl focus:shadow-2xl
-                    hover:shadow-zinc-950/20 focus:shadow-zinc-950/20
-                    dark:hover:shadow-zinc-200/20 dark:focus:shadow-zinc-200/20
-                    disabled:hover:shadow-none disabled:focus:shadow-none
-                    inline-block
-                    p-5 m-1
-                    rounded-xl border border-dashed
-                    transition duration-500
-                `,
-                props.disabled ?
-                "text-zinc-600 dark:text-zinc-400 border-zinc-400" :
-                "text-zinc-800 dark:text-zinc-200 hover:bg-purple-700 focus:bg-purple-700 border-purple-700",
-                props.className || ""
+                buttonStyles,
+                "relative border-dashed"
             )}
         >
             {
@@ -104,3 +91,5 @@ export default function Upload(props: uploadProps) {
         </div>
     );
 }
+
+export { Upload };

@@ -13,24 +13,35 @@ interface ButtonProps {
     children?: ReactNode,
 }
 
-export function Button({ type = "button", autofocus, disabled, id, name, value, onClick, children, className }: ButtonProps) {
+interface ButtonLinkProps {
+    id?: string,
+    href?: string,
+    className?: string,
+    target?: React.HTMLAttributeAnchorTarget | undefined,
+    children?: ReactNode,
+}
+
+const buttonStyles = `
+    flex basis-[max-content] items-center justify-center content-center gap-2
+    p-3 lg:p-4 m-1
+    text-sm lg:text-base
+    text-zinc-800 dark:text-zinc-200 disabled:text-zinc-500/40
+    bg-transparent hover:bg-purple-700 focus:bg-purple-700
+    disabled:bg-transparent
+    rounded-2xl border
+    border-purple-700 disabled:border-zinc-500/40
+    hover:shadow-2xl focus:shadow-2xl
+    disabled:hover:shadow-none disabled:focus:shadow-none
+    hover:shadow-zinc-950/20 focus:shadow-zinc-950/20
+    dark:hover:shadow-zinc-200/20 dark:focus:shadow-zinc-200/20
+    transition duration-500
+    cursor-pointer disabled:cursor-default select-none
+`;
+
+function Button({ type = "button", autofocus, disabled, id, name, value, onClick, children, className }: ButtonProps) {
     return (
         <button
-            className={clsx(`
-                text-zinc-800 dark:text-zinc-200 disabled:text-zinc-600 dark:disabled:text-zinc-400
-                bg-transparent hover:bg-purple-700 focus:bg-purple-700
-                disabled:bg-transparent
-                hover:shadow-2xl focus:shadow-2xl
-                hover:shadow-zinc-950/20 focus:shadow-zinc-950/20
-                dark:hover:shadow-zinc-200/20 dark:focus:shadow-zinc-200/20
-                disabled:hover:shadow-none disabled:focus:shadow-none
-                flex basis-[max-content] items-center justify-center content-center gap-2
-                p-2 lg:p-4 m-1
-                rounded-xl border border-solid
-                border-purple-700 disabled:border-zinc-400
-                transition duration-500
-                select-none
-            `, className || "")}
+            className={clsx(buttonStyles, className)}
             type={type}
             id={id}
             name={name}
@@ -43,3 +54,19 @@ export function Button({ type = "button", autofocus, disabled, id, name, value, 
         </button>
     );
 }
+
+function ButtonLink({ target = "_blank", ...props }: ButtonLinkProps) {
+    return (
+        <a
+            id={props.id}
+            className={clsx(buttonStyles, props.className)}
+            href={props.href}
+            target={target}
+            rel="noopener noreferrer"
+        >
+            {props.children}
+        </a>
+    );
+}
+
+export { Button, ButtonLink, buttonStyles };
