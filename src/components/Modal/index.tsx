@@ -11,7 +11,7 @@ interface ModalProps {
 
 export default function Modal(props: ModalProps) {
     return (
-        <div className="
+        <div id='no-print' className="
             fixed
             flex box-border
             z-99
