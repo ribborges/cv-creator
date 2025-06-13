@@ -14,13 +14,15 @@ interface skillProps {
 function SkillList() {
     const { setSkills, skills } = useCvDataStore();
 
-    const handleSkillsChange = (event: React.ChangeEvent<HTMLInputElement>, index: number) => {
+    const handleHardSkillChange = (event: React.ChangeEvent<HTMLInputElement>, index: number) => {
         const newSkills = { ...skills, hard: [...(skills.hard || [])], soft: [...(skills.soft || [])] };
-        if (index < skills.hard.length) {
-            newSkills.hard[index] = event.target.value;
-        } else {
-            newSkills.soft[index - skills.hard.length] = event.target.value;
-        }
+        newSkills.hard[index] = event.target.value;
+        setSkills(newSkills);
+    };
+
+    const handleSoftSkillChange = (event: React.ChangeEvent<HTMLInputElement>, index: number) => {
+        const newSkills = { ...skills, hard: [...(skills.hard || [])], soft: [...(skills.soft || [])] };
+        newSkills.soft[index] = event.target.value;
         setSkills(newSkills);
     };
 
@@ -52,7 +54,7 @@ function SkillList() {
                 {
                     skills?.hard?.map((value, index) => (
                         <div key={index} className="flex gap-1">
-                            <Skill id={index} value={value} onChange={handleSkillsChange} />
+                            <Skill id={index} value={value} onChange={handleHardSkillChange} />
                             <Button type="button" onClick={() => handleRemoveHardSkills(index)}><TrashFill /></Button>
                         </div>
                     ))
@@ -63,7 +65,7 @@ function SkillList() {
                 {
                     skills?.soft?.map((value, index) => (
                         <div key={index} className="flex gap-1">
-                            <Skill id={index} value={value} onChange={handleSkillsChange} />
+                            <Skill id={index} value={value} onChange={handleSoftSkillChange} />
                             <Button type="button" onClick={() => handleRemoveSoftSkills(index)}><TrashFill /></Button>
                         </div>
                     ))
