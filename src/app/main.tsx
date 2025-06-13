@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
+import { Analytics } from '@vercel/analytics/react';
 
 import Print from '@/components/cv/RenderPDF/Print';
 import ModalProvider from '@/providers/ModalProvider';
@@ -15,5 +16,6 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
       <App />
       <Print id="print-area" />
     </ModalProvider>
+    <Analytics />
   </React.StrictMode>,
 );
