@@ -10,7 +10,7 @@ export default function Skills() {
     const titleSoft = Translator({ path: "skills.soft" });
 
     return (
-        skills.hard.length > 0 && skills.soft.length > 0 &&
+        (skills.hard.length > 0 || skills.soft.length > 0) &&
         <div className="flex gap-4">
             {
                 skills.hard.length > 0 &&
