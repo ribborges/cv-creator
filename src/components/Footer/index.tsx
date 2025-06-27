@@ -9,8 +9,9 @@ export default function Footer() {
         text-xs
         flex items-center justify-center
         bg-zinc-200/50 dark:bg-zinc-900/50
-        border border-solid rounded-4xl border-zinc-300/50 dark:border-zinc-800/50
-        p-4 md:p-6 lg:p-8 m-4
+        border-t border-solid
+        border-zinc-300/50 dark:border-zinc-800/50
+        p-6 md:p-8 lg:p-10
       "
     >
       <p>
