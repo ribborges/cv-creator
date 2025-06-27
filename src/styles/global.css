@@ -37,3 +37,30 @@
         color: #eeeeee;
     }
 }
+
+body,
+div,
+header,
+main,
+footer,
+nav {
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+img,
+video {
+  height: auto;
+  max-width: 100%;
+}
+
+body {
+  /* Font */
+  font-size: 100%;
+
+  /* Scrollbar */
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
