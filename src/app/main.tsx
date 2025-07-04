@@ -13,13 +13,13 @@ import About from './pages/About';
 import Creator from './pages/creator/root';
 import Info from './pages/creator/Info';
 import Education from './pages/creator/Education';
-
-import '@/styles/global.css';
 import Experience from './pages/creator/Experience';
 import Certifications from './pages/creator/Certifications';
 import Languages from './pages/creator/Languages';
 import SkillList from './pages/creator/Skills';
 import Projects from './pages/creator/Projects';
+
+import '@/styles/global.css';
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
