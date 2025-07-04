@@ -4,7 +4,7 @@ import { Input } from '@/components/Input';
 import Translator from '@/components/Translator';
 import { useCvDataStore } from '@/lib/store';
 
-export default function Info() {
+function Info() {
     const { setInfo, info } = useCvDataStore();
 
     const handleChange = (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -65,8 +65,8 @@ export default function Info() {
                     <div className='flex flex-col gap-1 flex-1'>
                         <Input
                             type="url"
-                            id="linkedinUrl"
-                            name="linkedinUrl"
+                            id="linkedin"
+                            name="linkedin"
                             value={info.linkedin}
                             onChange={handleChange}
                             icon={<Linkedin />}
@@ -74,8 +74,8 @@ export default function Info() {
                         />
                         <Input
                             type="url"
-                            id="githubUrl"
-                            name="githubUrl"
+                            id="github"
+                            name="github"
                             value={info.github}
                             onChange={handleChange}
                             icon={<Github />}
@@ -83,8 +83,8 @@ export default function Info() {
                         />
                         <Input
                             type="url"
-                            id="portfolioUrl"
-                            name="portfolioUrl"
+                            id="website"
+                            name="website"
                             value={info.website}
                             onChange={handleChange}
                             icon={<Globe />}
@@ -105,3 +105,5 @@ export default function Info() {
         </div>
     );
 }
+
+export { Info };

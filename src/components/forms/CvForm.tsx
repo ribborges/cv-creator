@@ -12,7 +12,7 @@ import { cvData } from '@/types/cvData';
 import { askData } from '@/services/ai.service';
 import useModal from '@/hooks/useModal';
 
-import Info from './Info';
+import { Info } from './Info';
 import { EducationList } from './Education';
 import { ExperienceList } from './Experience';
 import { SkillList } from './Skill';
@@ -21,7 +21,6 @@ import { LanguagesList } from './Languages';
 import { ProjectsList } from './Projects';
 
 export default function CvForm() {
-    const [disableBtns, setDisableBtns] = useState(false);
     const [loading, setLoading] = useState(false);
 
     const { show } = useModal();
@@ -91,7 +90,6 @@ export default function CvForm() {
                 alert("Huummm, there's something wrong here!!! 🤔");
                 break;
         }
-
     };
 
     const readFile = async (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -183,7 +181,7 @@ export default function CvForm() {
                     <div className="flex-1 hidden lg:block">
                     </div>
                     <div className="flex gap-5 flex-3 flex-col">
-                        <LanguagesList setDisableBtns={setDisableBtns} />
+                        <LanguagesList />
                     </div>
                 </div>
             </Collapse>
@@ -215,13 +213,13 @@ export default function CvForm() {
             <Spacer />
 
             <div className="flex gap-5 flex-col lg:flex-row">
-                <Button className="flex-1" type="button" name="export" onClick={handleSubmit} disabled={disableBtns} >
+                <Button className="flex-1" type="button" name="export" onClick={handleSubmit}>
                     <Translator path="buttons.export" />
                 </Button>
-                <Upload className="flex-1" accept=".json, .pdf" onChange={readFile} disabled={disableBtns || loading} loading={loading}>
+                <Upload className="flex-1" accept=".json, .pdf" onChange={readFile} disabled={loading} loading={loading}>
                     <Translator path="buttons.import" />
                 </Upload>
-                <Button className="flex-1" type="button" onClick={renderModal} disabled={disableBtns}>
+                <Button className="flex-1" type="button" onClick={renderModal}>
                     <Translator path="buttons.view" />
                 </Button>
             </div>
