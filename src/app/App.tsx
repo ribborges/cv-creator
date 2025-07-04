@@ -1,16 +1,40 @@
-import { useTranslation } from 'react-i18next';
+import { Trans, useTranslation } from 'react-i18next';
+import { Outlet, useNavigate } from "react-router";
 
-import CvForm from '@/components/forms/CvForm';
 import Footer from '@/components/Footer';
 import { NavBar, NavItemContainer } from '@/components/Navbar';
 import Dropdown from '@/components/Dropdown';
+import { MenuButton, MenuLink } from '@/components/Input';
+import Translator from "@/components/Translator";
 
 export default function App() {
   const { i18n } = useTranslation();
+  const navigate = useNavigate();
+
+  const navTranslations = {
+    home: Translator({ path: "nav.home" }),
+    about: Translator({ path: "nav.about" }),
+    source: Translator({ path: "nav.source" }),
+  }
 
   return (
-    <main id="no-print" className="flex flex-col">
+    <main id="no-print" className="flex flex-col h-screen overflow-hidden">
       <NavBar>
+        <NavItemContainer>
+          <MenuButton
+            label={navTranslations.home}
+            onClick={() => navigate('/')}
+          />
+          <MenuButton
+            label={navTranslations.about}
+            onClick={() => navigate('/about')}
+          />
+          <MenuLink
+            label={navTranslations.source}
+            href='https://github.com/ribborges/cv-creator'
+            target='_blank'
+          />
+        </NavItemContainer>
         <NavItemContainer>
           <Dropdown align={'right'} items={[
             {
@@ -37,13 +61,10 @@ export default function App() {
       </NavBar>
 
       <section className="
-        flex flex-col
-        p-4 m-2 mt-32 lg:p-20 lg:m-20 lg:mt-40
-        border border-solid rounded-4xl
-        border-zinc-200 bg-zinc-100
-        dark:border-zinc-900 dark:bg-zinc-950"
-      >
-        <CvForm />
+        flex flex-1 flex-col
+        overflow-hidden
+      ">
+        <Outlet />
       </section>
 
       <Footer />
