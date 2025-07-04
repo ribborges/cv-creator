@@ -22,7 +22,6 @@ export default function Modal(props: ModalProps) {
             <div className="
                 flex flex-col box-border
                 m-auto
-                w-11/12 md:w-10/12 lg:w-8/12 h-[calc(100vh-2rem)]
                 rounded-4xl border border-solid border-zinc-200 dark:border-zinc-900
                 bg-zinc-100 dark:bg-zinc-950
                 shadow-2xl shadow-black/20 dark:shadow-zinc-200/20
