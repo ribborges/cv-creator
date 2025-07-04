@@ -1,5 +1,5 @@
 import { ReactNode, useState } from 'react';
-import { X, ThreeDots } from 'react-bootstrap-icons';
+import { XLg, List } from 'react-bootstrap-icons';
 
 import Logo from './Logo';
 
@@ -22,6 +22,7 @@ export function NavBar(props: { children: ReactNode }) {
 			">
 				<div className="w-12 h-12 md:w-14 md:h-14 lg:w-16 lg:h-16">
 					<div className="
+						p-2
 						text-zinc-950 dark:text-zinc-200 hover:text-purple-600
 						transition duration-500
 					">
@@ -31,7 +32,7 @@ export function NavBar(props: { children: ReactNode }) {
 				<div className="flex items-center content-center gap-5">
 					<div className="flex lg:hidden">
 						<NavButton onClick={toggleMenu} icon={
-							isMenuOpen ? <X /> : <ThreeDots />
+							isMenuOpen ? <XLg /> : <List />
 						} />
 					</div>
 					<div className="hidden lg:flex items-center content-center gap-5">
@@ -52,7 +53,7 @@ export function NavBar(props: { children: ReactNode }) {
 
 export function NavItemContainer(props: { children: ReactNode }) {
 	return (
-		<div className="flex items-center content-center gap-5">
+		<div className="flex flex-col md:flex-row items-center content-center gap-5">
 			{props.children}
 		</div>
 	);
