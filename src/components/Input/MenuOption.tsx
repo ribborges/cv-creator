@@ -1,7 +1,7 @@
 "use client";
 
 import clsx from "clsx";
-import { type ReactNode } from "react";
+import { type ReactNode, HTMLAttributeAnchorTarget } from "react";
 
 interface MenuButtonProps {
     label?: string;
@@ -32,11 +32,12 @@ export function MenuButton({ label, icon, className, onClick }: { onClick?: () =
     );
 }
 
-export function MenuLink({ label, icon, className, href }: { href?: string } & MenuButtonProps) {
+export function MenuLink({ label, icon, className, href, target }: { href?: string, target?: HTMLAttributeAnchorTarget } & MenuButtonProps) {
     return (
         <a
             className={clsx(menuOptStyle, className)}
             href={href}
+            target={target}
         >
             {icon && icon}
             {label && label}
