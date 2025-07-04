@@ -10,11 +10,10 @@ interface languagesProps {
         language?: string,
         level?: string;
     },
-    onSelect: React.Dispatch<React.SetStateAction<boolean>>,
     onChange: (event: React.ChangeEvent<HTMLInputElement>, index: number, key: "language" | "level") => void;
 }
 
-function LanguagesList({ setDisableBtns }: { setDisableBtns: React.Dispatch<React.SetStateAction<boolean>> }) {
+function LanguagesList() {
     const { setLanguages, languages } = useCvDataStore();
 
     const handleLanguagesChange = (
@@ -30,7 +29,7 @@ function LanguagesList({ setDisableBtns }: { setDisableBtns: React.Dispatch<Reac
     const handleAddLanguages = () => {
         const newLanguage = [...(languages || []), {
             language: '',
-            level: ''
+            level: 'elementary'
         }];
         setLanguages(newLanguage);
     };
@@ -46,7 +45,7 @@ function LanguagesList({ setDisableBtns }: { setDisableBtns: React.Dispatch<Reac
             {
                 languages?.map((value, index) => (
                     <div key={index} className="flex gap-1">
-                        <Languages onSelect={setDisableBtns} id={index} value={value} onChange={handleLanguagesChange} />
+                        <Languages id={index} value={value} onChange={handleLanguagesChange} />
                         <Button type="button" onClick={() => handleRemoveLanguages(index)}><TrashFill /></Button>
                     </div>
                 ))
@@ -79,12 +78,11 @@ function Languages(props: languagesProps) {
                 icon={<BarChartFill />}
                 placeholder={Translator({ path: "languages.select" })}
             >
-                <option value="select" onSelect={() => props.onSelect(true)}><Translator path="languages.select" /></option>
-                <option value="elementary" onSelect={() => props.onSelect(false)}><Translator path="languages.novice" /></option>
-                <option value="limited" onSelect={() => props.onSelect(false)}><Translator path="languages.limited" /></option>
-                <option value="professional" onSelect={() => props.onSelect(false)}><Translator path="languages.professional" /></option>
-                <option value="full" onSelect={() => props.onSelect(false)}><Translator path="languages.full" /></option>
-                <option value="native" onSelect={() => props.onSelect(false)}><Translator path="languages.native" /></option>
+                <option selected value="elementary" ><Translator path="languages.novice" /></option>
+                <option value="limited" ><Translator path="languages.limited" /></option>
+                <option value="professional" ><Translator path="languages.professional" /></option>
+                <option value="full" ><Translator path="languages.full" /></option>
+                <option value="native" ><Translator path="languages.native" /></option>
             </Input>
         </div>
     );
