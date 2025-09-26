@@ -43,6 +43,8 @@ export default {
             }
         },
         menu: {
+            edit: 'Edit',
+            preview: 'Preview',
             info: 'Info',
             education: 'Education',
             experience: 'Experience',
