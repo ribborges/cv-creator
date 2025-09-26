@@ -124,7 +124,7 @@ export default function Creator() {
                     <FiletypeJson /> <Translator path="menu.export" />
                 </Button>
             </div>
-            <div className="flex flex-1 overflow-y-auto p-8">
+            <div className="flex flex-1 overflow-y-scroll p-6">
                 <Outlet />
             </div>
             <div className="flex flex-1 flex-col items-stretch p-2 gap-4">

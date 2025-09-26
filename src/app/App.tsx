@@ -18,7 +18,7 @@ export default function App() {
   }
 
   return (
-    <main id="no-print" className="flex flex-col h-screen overflow-hidden">
+    <main id="no-print" className="flex flex-col h-screen">
       <NavBar>
         <NavItemContainer>
           <MenuButton
@@ -61,6 +61,7 @@ export default function App() {
       </NavBar>
 
       <section className="
+        min-h-full
         flex flex-1 flex-col
         overflow-hidden
       ">

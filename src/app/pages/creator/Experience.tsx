@@ -16,6 +16,8 @@ export default function Experience() {
             </p>
 
             <ExperienceForm />
+
+            <div className="min-h-4" />
         </div>
     );
 }

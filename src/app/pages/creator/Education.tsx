@@ -16,6 +16,8 @@ export default function Education() {
             </p>
 
             <EducationForm />
+
+            <div className="min-h-4" />
         </div>
     );
 }

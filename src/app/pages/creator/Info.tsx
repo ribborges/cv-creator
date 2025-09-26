@@ -16,6 +16,8 @@ export default function Info() {
             </p>
 
             <InfoForm />
+
+            <div className="min-h-4" />
         </div>
     );
 }

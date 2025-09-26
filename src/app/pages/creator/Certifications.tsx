@@ -16,6 +16,8 @@ export default function Certifications() {
             </p>
 
             <CertificationsForm />
+
+            <div className="min-h-4" />
         </div>
     );
 }

@@ -19,6 +19,8 @@ export default function Skills() {
             </p>
 
             <SkillsForm />
+
+            <div className="min-h-4" />
         </div>
     );
 }

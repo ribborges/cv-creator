@@ -16,6 +16,8 @@ export default function Languages() {
             </p>
 
             <LanguagesForm />
+
+            <div className="min-h-4" />
         </div>
     );
 }
