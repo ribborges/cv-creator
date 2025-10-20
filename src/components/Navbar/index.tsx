@@ -1,11 +1,23 @@
 import { ReactNode, useState } from 'react';
-import { XLg, List } from 'react-bootstrap-icons';
+import { XLg as X, List } from 'react-bootstrap-icons';
+import clsx from 'clsx';
+import { Trans, useTranslation } from 'react-i18next';
+
+import { MenuButton } from '@/components/Input';
+import Dropdown from '@/components/Dropdown';
 
 import Logo from './Logo';
 
-export function NavBar(props: { children: ReactNode }) {
+interface ItemContainerProps {
+	className?: string;
+	children?: ReactNode;
+}
+
+function NavBar(props: { children: ReactNode }) {
 	const [isMenuOpen, setIsMenuOpen] = useState(false);
 	const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
+
+	const { i18n } = useTranslation();
 
 	return (
 		<>
@@ -20,7 +32,15 @@ export function NavBar(props: { children: ReactNode }) {
 				shadow-xl
 				select-none
 			">
-				<div className="w-12 h-12 md:w-14 md:h-14 lg:w-16 lg:h-16">
+				<NavItemContainer className="justify-start lg:hidden">
+					<MenuButton onClick={toggleMenu} icon={
+						isMenuOpen ? <X /> : <List />
+					} />
+				</NavItemContainer>
+				<NavItemContainer className="justify-start hidden lg:flex">
+					{props.children}
+				</NavItemContainer>
+				<div className="w-8 h-8 md:w-10 md:h-10 lg:w-12 lg:h-12">
 					<div className="
 						p-2
 						text-zinc-950 dark:text-zinc-200 hover:text-purple-600
@@ -29,80 +49,53 @@ export function NavBar(props: { children: ReactNode }) {
 						<Logo />
 					</div>
 				</div>
-				<div className="flex items-center content-center gap-5">
-					<div className="flex lg:hidden">
-						<NavButton onClick={toggleMenu} icon={
-							isMenuOpen ? <XLg /> : <List />
-						} />
-					</div>
-					<div className="hidden lg:flex items-center content-center gap-5">
-						{props.children}
-					</div>
-				</div>
+				<NavItemContainer className="justify-end">
+					<Dropdown align={'right'} items={[
+						{
+							type: 'button',
+							icon: <img src='https://img.icons8.com/color/32/brazil-circular.png' />,
+							label: 'Português',
+							onClick: () => i18n.changeLanguage('pt-BR'),
+						}, {
+							type: 'button',
+							icon: <img src='https://img.icons8.com/color/32/great-britain-circular.png' />,
+							label: 'English',
+							onClick: () => i18n.changeLanguage('en-US'),
+						}
+					]}>
+						{
+							i18n.language === 'pt-BR' ? (
+								<img src='https://img.icons8.com/color/32/brazil-circular.png' />
+							) : (
+								<img src='https://img.icons8.com/color/32/great-britain-circular.png' />
+							)
+						}
+					</Dropdown>
+				</NavItemContainer>
 			</nav>
-			{isMenuOpen && (
-				<div className="lg:hidden fixed inset-0 z-40 bg-white dark:bg-black bg-opacity-90 dark:bg-opacity-90 backdrop-blur-xs">
-					<div className="flex flex-col items-center justify-center h-full space-y-8">
-						{props.children}
-					</div>
+			<div className={clsx(
+				`
+				lg:hidden fixed w-8/12 inset-0 z-40
+				bg-white/80 dark:bg-black/80 backdrop-blur-sm
+				border-r border-zinc-400/40 dark:border-zinc-800/40
+				pt-32 p-4
+				transition-transform duration-300
+				`, isMenuOpen ? 'translate-x-0' : '-translate-x-full'
+			)}>
+				<div className="flex flex-col items-stretch h-full gap-2">
+					{props.children}
 				</div>
-			)}
+			</div>
 		</>
 	);
 }
 
-export function NavItemContainer(props: { children: ReactNode }) {
+function NavItemContainer(props: ItemContainerProps) {
 	return (
-		<div className="flex flex-col md:flex-row items-center content-center gap-5">
+		<div className={clsx("flex-1 flex items-center content-center gap-1", props.className)}>
 			{props.children}
 		</div>
 	);
 }
 
-export function NavItem(props: { label?: string, icon: any, href?: string }) {
-	return (
-		<a className="
-			flex items-center content-center gap-2
-			text-xl
-			p-2
-			hover:bg-zinc-400 dark:hover:bg-zinc-800
-			text-zinc-900 hover:text-zinc-900 dark:text-zinc-200 dark:hover:text-zinc-200 hover:no-underline
-			border border-solid border-transparent rounded-2xl hover:border-zinc-500 dark:hover:border-zinc-700
-			transition duration-500
-			cursor-pointer
-		"
-			href={props.href}>
-			{props.icon}
-			{
-				props.label ?
-					<i className="text-zinc-900 dark:text-zinc-200 not-italic text-lg">{props.label}</i>
-					:
-					<></>
-			}
-		</a>
-	);
-}
-
-export function NavButton(props: { label?: string, icon: any, onClick?: () => void }) {
-	return (
-		<button className="
-			flex items-center content-center gap-2
-			text-xl
-			p-2
-			hover:bg-zinc-400 dark:hover:bg-zinc-800
-			text-zinc-900 hover:text-zinc-900 dark:text-zinc-200 dark:hover:text-zinc-200 hover:no-underline
-			border border-solid border-transparent rounded-2xl hover:border-zinc-500 dark:hover:border-zinc-700
-			transition duration-500
-			cursor-pointer
-		"
-			onClick={props.onClick}>
-			{props.icon}
-			{
-				props.label ?
-					<i className="text-zinc-900 dark:text-zinc-200 not-italic text-lg">{props.label}</i>
-					:
-					<></>
-			}
-		</button>
-	);
-}
+export { NavBar, NavItemContainer };
