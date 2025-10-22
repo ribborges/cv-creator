@@ -4,7 +4,7 @@ import clsx from "clsx";
 import { type ReactNode, HTMLAttributeAnchorTarget } from "react";
 
 interface MenuButtonProps {
-    label?: string;
+    label?: ReactNode;
     icon?: ReactNode;
     className?: string;
 }
