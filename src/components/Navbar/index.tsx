@@ -1,5 +1,5 @@
 import { ReactNode, useState } from 'react';
-import { XLg as X, List } from 'react-bootstrap-icons';
+import { X, List } from 'react-bootstrap-icons';
 import clsx from 'clsx';
 import { Trans, useTranslation } from 'react-i18next';
 
