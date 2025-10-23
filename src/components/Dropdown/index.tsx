@@ -56,24 +56,23 @@ export default function Dropdown({ align = 'center', showCaret = true, ...props 
                 )}
             </button>
             <div className={clsx(
-                "absolute w-fit min-w-52 z-[5]",
-                align === 'left' ? "translate-y-full" : "",
-                align === 'right' ? "translate-y-full -translate-x-8/12" : "",
-                align === 'center' ? "translate-y-full -translate-x-1/2" : ""
+                "absolute w-fit min-w-52 z-60 top-0 bottom-0",
+                align === 'left' ? "left-0 translate-y-full" : "",
+                align === 'right' ? "right-0 translate-y-full" : "",
+                align === 'center' ? "translate-y-full -translate-x-1/2" : "",
+                isOpen ? "block" : "hidden"
             )}>
                 <div
-                    className={clsx(
-                        `
-                            overflow-hidden
-                            p-6
-                            flex-col items-stretch justify-stretch gap-1
-                            shadow-2xl shadow-black/10 dark:shadow-white/10
-                            border border-solid rounded-4xl
-                            border-zinc-400/40 dark:border-zinc-800/40
-                            backdrop-blur-md bg-zinc-100/50 dark:bg-zinc-950/50
-                            transition-all duration-500
-                        `, isOpen ? "flex" : "hidden"
-                    )}
+                    className="
+                        flex
+                        overflow-hidden
+                        p-6
+                        flex-col items-stretch justify-stretch gap-1
+                        border border-solid rounded-4xl
+                        border-zinc-400/40 dark:border-zinc-800/40
+                        backdrop-blur-md bg-zinc-100/50 dark:bg-zinc-950/50
+                        transition-all duration-500
+                    "
                 >
                     {props.title &&
                         <>
