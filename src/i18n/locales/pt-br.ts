@@ -144,6 +144,10 @@ export default {
             export: 'Exportar arquivo .json',
             import: 'Arraste e solte o arquivo .json ou .pdf ou clique para fazer o upload',
             view: 'Visualizar .pdf'
+        },
+        notFound: {
+            title: '404: Não Encontrado',
+            description: 'A página que você está procurando não existe.'
         }
     }
 };  

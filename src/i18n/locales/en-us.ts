@@ -145,6 +145,10 @@ export default {
             export: 'Export .json file',
             import: 'Drag and drop the .json or .pdf file or click to upload',
             view: 'View .pdf'
+        },
+        notFound: {
+            title: '404: Not Found',
+            description: 'The page you are looking for does not exist.'
         }
     }
 };

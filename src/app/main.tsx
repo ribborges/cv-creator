@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import { BrowserRouter, Route, Routes } from "react-router";
+import { BrowserRouter, Route, Routes, Navigate } from "react-router";
 import { Analytics } from '@vercel/analytics/react';
 
 import Print from '@/components/cv/RenderPDF/Print';
@@ -18,6 +18,7 @@ import Certifications from './pages/creator/Certifications';
 import Languages from './pages/creator/Languages';
 import SkillList from './pages/creator/Skills';
 import Projects from './pages/creator/Projects';
+import NotFound from './pages/NorFound';
 
 import '@/styles/global.css';
 
@@ -38,6 +39,8 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
               <Route path="skills" element={<SkillList />} />
               <Route path="projects" element={<Projects />} />
             </Route>
+            <Route path="404" element={<NotFound />} />
+            <Route path="*" element={<Navigate to="/404" replace />} />
           </Route>
         </Routes>
       </BrowserRouter>
