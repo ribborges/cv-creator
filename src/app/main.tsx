@@ -18,7 +18,7 @@ import Certifications from './pages/creator/Certifications';
 import Languages from './pages/creator/Languages';
 import SkillList from './pages/creator/Skills';
 import Projects from './pages/creator/Projects';
-import NotFound from './pages/NorFound';
+import NotFound from './pages/NotFound';
 
 import '@/styles/global.css';
 
