@@ -63,7 +63,7 @@ export default function Creator() {
 
     return (
         <div className="flex flex-row overflow-hidden h-full pt-22 lg:pt-26">
-            <Sidebar>
+            <Sidebar defaultExpanded={false}>
                 <SidebarToggle />
                 <SidebarHeader className="md:hidden">
                     <SidebarItem>{(context) => <Button
