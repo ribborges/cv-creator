@@ -1,29 +1,19 @@
 import { useState } from "react";
 import { Outlet, useNavigate, useLocation } from "react-router";
 import clsx from "clsx";
-import { Award, Briefcase, FileEarmarkPdf, FiletypeJson, Kanban, Mortarboard, Person, PersonGear, Translate, InputCursorText, List } from "react-bootstrap-icons";
+import { Award, Briefcase, FileEarmarkPdf, FiletypeJson, Kanban, Mortarboard, Person, PersonGear, Translate, InputCursorText } from "react-bootstrap-icons";
 
 import RenderPDF from "@/components/cv/RenderPDF";
 import { AnimatedButton, Button, MenuButton } from "@/components/Input";
 import Translator from '@/components/Translator';
 import { useCvDataStore } from "@/lib/store";
+import { Sidebar, SidebarToggle, SidebarHeader, SidebarContent, SidebarFooter, SidebarItem } from "@/components/Sidebar";
 
 export default function Creator() {
-    const [sideMenu, setSideMenu] = useState(false);
     const [pdfVisible, setPdfVisible] = useState(false);
 
     const navigate = useNavigate();
     const location = useLocation();
-
-    const menuTranslations = {
-        info: Translator({ path: "menu.info" }),
-        education: Translator({ path: "menu.education" }),
-        experience: Translator({ path: "menu.experience" }),
-        certifications: Translator({ path: "menu.certifications" }),
-        languages: Translator({ path: "menu.languages" }),
-        skills: Translator({ path: "menu.skills" }),
-        projects: Translator({ path: "menu.projects" })
-    };
 
     const {
         info, education, experience, certifications, languages, skills, projects
@@ -73,80 +63,183 @@ export default function Creator() {
 
     return (
         <div className="flex flex-row overflow-hidden h-full pt-22 lg:pt-26">
-            <div className="flex flex-col border-r border-zinc-200 dark:border-zinc-900 p-2 md:p-4 gap-2">
-                <MenuButton
-                    icon={<List />}
-                    onClick={() => setSideMenu(!sideMenu)}
-                    className="md:hidden"
-                />
-                <div className={clsx("flex-col gap-2", sideMenu ? "flex" : "hidden lg:flex")}>
-                    <Button
+            <Sidebar>
+                <SidebarToggle />
+                <SidebarHeader className="md:hidden">
+                    <SidebarItem>{(context) => <Button
                         onClick={() => setPdfVisible(!pdfVisible)}
-                        className="md:hidden"
                     >
                         {
                             pdfVisible ? <>
-                                <InputCursorText /> <Translator path="menu.edit" />
+                                <InputCursorText />
+                                <span
+                                    className={clsx(
+                                        "transition duration-500",
+                                        context.isExpanded ? "opacity-100 translate-x-0" : "absolute opacity-0 -translate-x-2 w-0"
+                                    )}
+                                >
+                                    <Translator path="menu.edit" />
+                                </span>
                             </> : <>
-                                <FileEarmarkPdf /> <Translator path="menu.preview" />
+                                <FileEarmarkPdf />
+                                <span
+                                    className={clsx(
+                                        "transition duration-500",
+                                        context.isExpanded ? "opacity-100 translate-x-0" : "absolute opacity-0 -translate-x-2 w-0"
+                                    )}
+                                >
+                                    <Translator path="menu.preview" />
+                                </span>
                             </>}
                     </Button>
-                    <MenuButton
+                    }</SidebarItem>
+                </SidebarHeader>
+                <SidebarContent>
+                    <SidebarItem>{(context) => <MenuButton
                         icon={<Person />}
-                        label={menuTranslations.info}
+                        label={
+                            <span
+                                className={clsx(
+                                    "text-sm transition duration-500",
+                                    context.isExpanded ? "opacity-100 translate-x-0" : "absolute opacity-0 -translate-x-2 w-0"
+                                )}
+                            ><Translator path="menu.info" /></span>
+                        }
                         onClick={() => navigate("/creator")}
-                        className={location.pathname === "/creator" ? "bg-zinc-200 dark:bg-zinc-900" : ""}
-                    />
-                    <MenuButton
+                        className={clsx(
+                            location.pathname === "/creator" ? "bg-zinc-200 dark:bg-zinc-900" : "",
+                            context.isExpanded ? "" : "justify-center"
+                        )}
+                    />}</SidebarItem>
+                    <SidebarItem>{(context) => <MenuButton
                         icon={<Mortarboard />}
-                        label={menuTranslations.education}
+                        label={
+                            <span
+                                className={clsx(
+                                    "text-sm transition duration-500",
+                                    context.isExpanded ? "opacity-100 translate-x-0" : "absolute opacity-0 -translate-x-2 w-0"
+                                )}
+                            ><Translator path="menu.education" /></span>
+                        }
                         onClick={() => navigate("/creator/education")}
-                        className={location.pathname === "/creator/education" ? "bg-zinc-200 dark:bg-zinc-900" : ""}
-                    />
-                    <MenuButton
+                        className={clsx(
+                            location.pathname === "/creator/education" ? "bg-zinc-200 dark:bg-zinc-900" : "",
+                            context.isExpanded ? "" : "justify-center"
+                        )}
+                    />}</SidebarItem>
+                    <SidebarItem>{(context) => <MenuButton
                         icon={<Briefcase />}
-                        label={menuTranslations.experience}
+                        label={
+                            <span
+                                className={clsx(
+                                    "text-sm transition duration-500",
+                                    context.isExpanded ? "opacity-100 translate-x-0" : "absolute opacity-0 -translate-x-2 w-0"
+                                )}
+                            ><Translator path="menu.experience" /></span>
+                        }
                         onClick={() => navigate("/creator/experience")}
-                        className={location.pathname === "/creator/experience" ? "bg-zinc-200 dark:bg-zinc-900" : ""}
-                    />
-                    <MenuButton
+                        className={clsx(
+                            location.pathname === "/creator/experience" ? "bg-zinc-200 dark:bg-zinc-900" : "",
+                            context.isExpanded ? "" : "justify-center"
+                        )}
+                    />}</SidebarItem>
+                    <SidebarItem>{(context) => <MenuButton
                         icon={<Award />}
-                        label={menuTranslations.certifications}
+                        label={
+                            <span
+                                className={clsx(
+                                    "text-sm transition duration-500",
+                                    context.isExpanded ? "opacity-100 translate-x-0" : "absolute opacity-0 -translate-x-2 w-0"
+                                )}
+                            ><Translator path="menu.certifications" /></span>
+                        }
                         onClick={() => navigate("/creator/certifications")}
-                        className={location.pathname === "/creator/certifications" ? "bg-zinc-200 dark:bg-zinc-900" : ""}
-                    />
-                    <MenuButton
+                        className={clsx(
+                            location.pathname === "/creator/certifications" ? "bg-zinc-200 dark:bg-zinc-900" : "",
+                            context.isExpanded ? "" : "justify-center"
+                        )}
+                    />}</SidebarItem>
+                    <SidebarItem>{(context) => <MenuButton
                         icon={<Translate />}
-                        label={menuTranslations.languages}
+                        label={
+                            <span
+                                className={clsx(
+                                    "text-sm transition duration-500",
+                                    context.isExpanded ? "opacity-100 translate-x-0" : "absolute opacity-0 -translate-x-2 w-0"
+                                )}
+                            ><Translator path="menu.languages" /></span>
+                        }
                         onClick={() => navigate("/creator/languages")}
-                        className={location.pathname === "/creator/languages" ? "bg-zinc-200 dark:bg-zinc-900" : ""}
-                    />
-                    <MenuButton
+                        className={clsx(
+                            location.pathname === "/creator/languages" ? "bg-zinc-200 dark:bg-zinc-900" : "",
+                            context.isExpanded ? "" : "justify-center"
+                        )}
+                    />}</SidebarItem>
+                    <SidebarItem>{(context) => <MenuButton
                         icon={<PersonGear />}
-                        label={menuTranslations.skills}
+                        label={
+                            <span
+                                className={clsx(
+                                    "text-sm transition duration-500",
+                                    context.isExpanded ? "opacity-100 translate-x-0" : "absolute opacity-0 -translate-x-2 w-0"
+                                )}
+                            ><Translator path="menu.skills" /></span>
+                        }
                         onClick={() => navigate("/creator/skills")}
-                        className={location.pathname === "/creator/skills" ? "bg-zinc-200 dark:bg-zinc-900" : ""}
-                    />
-                    <MenuButton
+                        className={clsx(
+                            location.pathname === "/creator/skills" ? "bg-zinc-200 dark:bg-zinc-900" : "",
+                            context.isExpanded ? "" : "justify-center"
+                        )}
+                    />}</SidebarItem>
+                    <SidebarItem>{(context) => <MenuButton
                         icon={<Kanban />}
-                        label={menuTranslations.projects}
+                        label={
+                            <span
+                                className={clsx(
+                                    "text-sm transition duration-500",
+                                    context.isExpanded ? "opacity-100 translate-x-0" : "absolute opacity-0 -translate-x-2 w-0"
+                                )}
+                            ><Translator path="menu.projects" /></span>
+                        }
                         onClick={() => navigate("/creator/projects")}
-                        className={location.pathname === "/creator/projects" ? "bg-zinc-200 dark:bg-zinc-900" : ""}
-                    />
-                    <AnimatedButton
+                        className={clsx(
+                            location.pathname === "/creator/projects" ? "bg-zinc-200 dark:bg-zinc-900" : "",
+                            context.isExpanded ? "" : "justify-center"
+                        )}
+                    />}</SidebarItem>
+
+                </SidebarContent>
+                <SidebarFooter>
+                    <SidebarItem>{(context) => <AnimatedButton
                         onClick={() => window.print()}
                     >
-                        <FileEarmarkPdf /> <Translator path="menu.print" />
-                    </AnimatedButton>
-                    <Button
+                        <FileEarmarkPdf />
+                        <span
+                            className={clsx(
+                                "transition duration-500",
+                                context.isExpanded ? "opacity-100 translate-x-0" : "absolute opacity-0 -translate-x-2 w-0"
+                            )}
+                        >
+                            <Translator path="menu.print" />
+                        </span>
+                    </AnimatedButton>}</SidebarItem>
+                    <SidebarItem>{(context) => <Button
                         type="button"
                         name="export"
                         onClick={handleSubmit}
                     >
-                        <FiletypeJson /> <Translator path="menu.export" />
-                    </Button>
-                </div>
-            </div>
+                        <FiletypeJson />
+                        <span
+                            className={clsx(
+                                "transition duration-500",
+                                context.isExpanded ? "opacity-100 translate-x-0" : "absolute opacity-0 -translate-x-2 w-0"
+                            )}
+                        >
+                            <Translator path="menu.export" />
+                        </span>
+                    </Button>}</SidebarItem>
+                </SidebarFooter>
+            </Sidebar>
             <div className={clsx("md:flex flex-1 overflow-y-scroll p-6", pdfVisible ? "hidden" : "flex")}>
                 <Outlet />
             </div>
