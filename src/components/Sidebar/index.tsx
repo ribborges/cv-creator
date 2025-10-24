@@ -46,7 +46,7 @@ function Sidebar({ children, defaultExpanded = true, className }: SidebarProps) 
             <aside
                 className={clsx(
                     "relative border-r border-zinc-200 dark:border-zinc-900 transition-all duration-500 ease-in-out",
-                    isExpanded ? "w-48 md:w-64" : "w-20 md:w-24",
+                    isExpanded ? "w-48 md:w-64" : "w-18 md:w-20",
                     className
                 )}
             >
