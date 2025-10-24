@@ -69,8 +69,8 @@ export default function Dropdown({ align = 'center', showCaret = true, ...props 
                         p-6
                         flex-col items-stretch justify-stretch gap-1
                         border border-solid rounded-4xl
-                        border-zinc-400/40 dark:border-zinc-800/40
-                        backdrop-blur-md bg-zinc-100/50 dark:bg-zinc-950/50
+                        border-zinc-400 dark:border-zinc-800
+                        bg-zinc-100 dark:bg-zinc-950
                         transition-all duration-500
                     "
                 >
