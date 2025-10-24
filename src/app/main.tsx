@@ -4,6 +4,7 @@ import { BrowserRouter, Route, Routes, Navigate } from "react-router";
 import { Analytics } from '@vercel/analytics/react';
 
 import Print from '@/components/cv/RenderPDF/Print';
+import AnimBackground from "@/components/AnimBackground";
 import ModalProvider from '@/providers/ModalProvider';
 import '@/i18n';
 
@@ -24,6 +25,7 @@ import '@/styles/global.css';
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
+    <AnimBackground />
     <ModalProvider>
       <BrowserRouter>
         <Routes>
