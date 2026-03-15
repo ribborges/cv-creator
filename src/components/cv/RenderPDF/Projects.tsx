@@ -34,11 +34,23 @@ function Project({
     tech: string,
     description: string
 }) {
+    const formattedDescription = description ? description.split("\n").filter(line => line.trim() !== "") : [];
+
     return (
         <div className="flex flex-col gap-1 text-sm">
             {name && <span className="font-bold">{name}</span>}
             {tech && <span className="text-sm italic">{tech}</span>}
-            {description && <span>{description}</span>}
+            {description && (
+                <div>
+                    {
+                        formattedDescription.map((line, index) => (
+                            <p className="indent-2" key={index}>
+                                {line}
+                            </p>
+                        ))
+                    }
+                </div>
+            )}
         </div>
     );
 }

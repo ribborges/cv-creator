@@ -46,6 +46,9 @@ function EducationItem({
     location: string;
     details?: string;
 }) {
+    // Tratar quebras de linha em detalhes e remover linhas vazias
+    const formattedDetails = details ? details.split("\n").filter(line => line.trim() !== "") : [];
+
     return (
         <div className="flex flex-col px-2 text-sm">
             <div className="flex justify-between gap-2">
@@ -58,7 +61,13 @@ function EducationItem({
             {
                 details &&
                 <div>
-                    <p className="indent-2">{details}</p>
+                    {
+                        formattedDetails.map((line, index) => (
+                            <p className="indent-2" key={index}>
+                                {line}
+                            </p>
+                        ))
+                    }
                 </div>
             }
         </div>

@@ -6,7 +6,9 @@ import Section from "./Section";
 export default function Info() {
     const { info } = useCvDataStore();
 
-    const summary = Translator({ path: "info.summary" })
+    const summary = Translator({ path: "info.summary" });
+
+    const formattedSummary = info.summary ? info.summary.split("\n").filter(line => line.trim() !== "") : [];
 
     return (
         <div>
@@ -56,9 +58,13 @@ export default function Info() {
             {
                 info.summary && info.summary !== "" &&
                 <Section title={summary}>
-                    <p className="indent-12 text-sm">
-                        {info.summary}
-                    </p>
+                    {
+                        formattedSummary.map((line, index) => (
+                            <p className="indent-12 text-sm" key={index}>
+                                {line}
+                            </p>
+                        ))
+                    }
                 </Section>
             }
         </div>
