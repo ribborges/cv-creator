@@ -82,6 +82,7 @@ function Languages(props: languagesProps) {
                 <option value="limited" ><Translator path="languages.limited" /></option>
                 <option value="professional" ><Translator path="languages.professional" /></option>
                 <option value="full" ><Translator path="languages.full" /></option>
+                <option value="fluent" ><Translator path="languages.fluent" /></option>
                 <option value="native" ><Translator path="languages.native" /></option>
             </Input>
         </div>
