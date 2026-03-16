@@ -31,8 +31,9 @@ function Language({ language, level }: { language: string, level: string }) {
                         level === "limited" ? <Translator path="languages.limited" /> :
                             level === "professional" ? <Translator path="languages.professional" /> :
                                 level === "full" ? <Translator path="languages.full" /> :
-                                    level === "native" ? <Translator path="languages.native" /> :
-                                        <Translator path="languages.select" />
+                                    level === "fluent" ? <Translator path="languages.fluent" /> :
+                                        level === "native" ? <Translator path="languages.native" /> :
+                                            <Translator path="languages.select" />
                 }
             </span>
         </div>

@@ -117,7 +117,8 @@ export default {
             limited: 'Limited',
             professional: 'Professional',
             full: 'Advanced',
-            native: 'Native or bilingual'
+            fluent: 'Fluent',
+            native: 'Native'
         },
         skills: {
             title: 'Skills',

@@ -116,7 +116,8 @@ export default {
             limited: 'Intermediário',
             professional: 'Profissional',
             full: 'Avançado',
-            native: 'Nativa ou bilíngue'
+            fluent: 'Fluente',
+            native: 'Nativa'
         },
         skills: {
             title: 'Habilidades',
